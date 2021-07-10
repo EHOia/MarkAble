@@ -30,8 +30,8 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
-    stdin_open: true
-    tty: true
+#     stdin_open: true
+#     tty: true
     restart: always
   
   mongo_db:
@@ -56,5 +56,18 @@ services:
       - frontend
       - backend
     restart: "on-failure"
-    
+
+  ai:
+    build:
+      context: .
+      dockerfile: ./AI/Dockerfile
+    expose:
+      - 8887
+    ports:
+      - "8887:8887"
+    volumes:
+      - ./AI/codes:/usr/src/app
+    stdin_open: true
+    tty: true
+
   
