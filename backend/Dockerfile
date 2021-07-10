@@ -16,6 +16,8 @@ COPY /backend/requirements.txt /usr/src/app
 #-r 옵션은 파일(requirement.txt)에 적혀있는 라이브러리를 설치하라는 의미
 RUN pip3 install -r requirements.txt 
 RUN pip3 install flask-restx
+RUN pip3 install pymongo
+RUN pip3 install flask_cors
 
 EXPOSE 5000
 

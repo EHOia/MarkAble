@@ -1,15 +1,38 @@
 import './App.css';
-import React from 'react';
-
+import React , {useState} from 'react';
+import axios from 'axios';
 function App() {
-  
+    // text : 현재값 / setText : 변경할 값
+    const [text, setText] = useState('')
+    const [number, setNumber] = useState(0)
+
+    const processText = (e) => {
+      setText(e.target.value)
+    }
+
+    const processNumber = (e) => {
+      setNumber(e.target.value)
+    }
+
+    const sendData = () => {
+      let form = new FormData()
+      form.append('title',text)
+      form.append('category',number)
+
+      axios.post(`http://127.0.0.1:5000/api/data_transmit`,form)
+      .then( response => { 
+        console.log('response : ', JSON.stringify(response, null, 2)) 
+      }).catch( error => { console.log('failed', error) 
+    })
+  }
+
     return (
     <div className="App">
       <p stype="text-align:center;">
         <h1>Welcome Trademark Verification</h1>
       </p>
       <p>
-        <select  id="class">
+        <select id="class" onChange = {processNumber}>
           <optgroup label="상표 분류 선택">
             <option value="1">제1류</option>
             <option value="2">제2류</option>
@@ -34,10 +57,10 @@ function App() {
         </select>
       </p>
       <p>
-          <input type="text" placeholder="상표명 입력"/>
+          <input type="text" placeholder="상표명 입력" onChange={processText}/>
       </p>
       <p>
-        <button>
+        <button onClick={sendData}>
           상표 유사도 확인
         </button>
       </p>

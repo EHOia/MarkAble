@@ -6,6 +6,7 @@ WORKDIR /usr/src/app
 COPY frontend/package.json /usr/src/app
 
 RUN npm install
+RUN npm install axios
 COPY frontend/ /usr/src/app
 
 EXPOSE 3000
