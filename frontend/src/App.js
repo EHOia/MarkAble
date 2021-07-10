@@ -1,7 +1,7 @@
-
 import './App.css';
 import React , {useState} from 'react';
 import axios from 'axios';
+
 function App() {
     // text : 현재값 / setText : 변경할 값
     const [text, setText] = useState('')
@@ -67,5 +67,6 @@ function App() {
       </p>
     </div>
   );
-
+  
+}
 export default App;
