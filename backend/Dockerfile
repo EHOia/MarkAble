@@ -1,7 +1,8 @@
-FROM ubuntu:20.04
+# Base image
+FROM tensorflow/tensorflow:2.4.1
 
-#작업디렉토리 
 WORKDIR /usr/src/app
+# upgrade pip
 
 RUN apt-get update -y && \
     apt-get install -y python3-pip python3-dev \
@@ -11,14 +12,20 @@ RUN apt-get update -y && \
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
-#현재 디렉토리 경로에 req.txt 복사 
+RUN pip install --upgrade pip
+
+# install Python modules needed by the Python app
 COPY /backend/requirements.txt /usr/src/app
-#-r 옵션은 파일(requirement.txt)에 적혀있는 라이브러리를 설치하라는 의미
-RUN pip3 install -r requirements.txt 
+RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
+RUN pip install --upgrade tensorflow-hub
+Run pip install -U tensorflow-text==2.4.1
 RUN pip3 install flask-restx
 RUN pip3 install pymongo
 RUN pip3 install flask_cors
 
+
+# tell the port number the container should expose
 EXPOSE 5000
 
+CMD ["python", "calculate_sim.py"]
 CMD [ "python3", "app.py" ]

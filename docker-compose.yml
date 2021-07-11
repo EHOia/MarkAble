@@ -16,9 +16,11 @@ services:
       - mongo_db
     restart: always  
     volumes:
-      - ./backend/flask_app:/usr/src/app
+      - ./backend/codes:/usr/src/app
     command: gunicorn -w 1 -b 0.0.0.0:5000 wsgi:app
-
+    stdin_open: true
+    tty: true
+    
   frontend:
     build:
       context: .
@@ -54,17 +56,17 @@ services:
       - backend
     restart: "on-failure"
 
-  ai:
-    build:
-      context: .
-      dockerfile: ./AI/Dockerfile
-    expose:
-      - 8887
-    ports:
-      - "8887:8887"
-    volumes:
-      - ./AI/codes:/usr/src/app
-    stdin_open: true
-    tty: true
+#   ai:
+#     build:
+#       context: .
+#       dockerfile: ./AI/Dockerfile
+#     expose:
+#       - 8887
+#     ports:
+#       - "8887:8887"
+#     volumes:
+#       - ./AI/codes:/usr/src/app
+#     stdin_open: true
+#     tty: true
 
   
