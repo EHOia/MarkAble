@@ -1,7 +1,6 @@
 import './App.css';
 import React , {useState} from 'react';
 import axios from 'axios';
-
 function App() {
     // text : 현재값 / setText : 변경할 값
     const [text, setText] = useState('')
@@ -26,6 +25,22 @@ function App() {
       }).catch( error => { console.log('failed', error) 
     })
   }
+
+  const Loading= () => {
+    return (
+        <div className="d-flex justify-content-center">
+            <div 
+                className="spinner-border" 
+                style={{width: '3rem', height: '3rem'}} 
+                role="status"
+            >
+                <span className="sr-only">
+                    Loading...
+                </span>
+            </div>
+        </div>
+    );
+};
 
     return (
     <div className="App">
@@ -58,12 +73,18 @@ function App() {
         </select>
       </p>
       <p>
-          <input type="text" placeholder="상표명 입력" onChange={processText}/>
+          <input type="text" 
+          placeholder="상표명 입력"
+          value={text}
+          onChange={processText}/>
       </p>
       <p>
         <button onClick={sendData}>
-          상표 유사도 확인
+          상표 유사도 확인🔎
         </button>
+      </p>
+      <p>
+        <Loading />
       </p>
     </div>
   );
