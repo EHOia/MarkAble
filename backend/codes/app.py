@@ -4,6 +4,12 @@ from pymongo import MongoClient
 from flask_restx import reqparse, Api, Resource  # Api 구현을 위한 Api 객체 import
 from flask_cors import CORS
 
+# AI모델을 읽어오기위한 라이브러리
+import tensorflow_hub as hub
+import tensorflow as tf
+import tensorflow_text
+from ai import cal_similarity
+
 app = Flask(__name__)  # Flask 객체 선언, 파라미터로 어플리케이션 패키지의 이름을 넣어줌.
 app.config['JSON_AS_ASCII'] = False
 
@@ -25,6 +31,9 @@ db = conn.vitaminc
 collect = db.trademark
 collect2 = db.ai
 
+# Embbeding 모델 읽어오기.
+module_url = 'https://tfhub.dev/google/universal-sentence-encoder-multilingual/3'
+model = hub.load(module_url)
 #api 구현 
 @api.route('/api')
 class index(Resource):
@@ -60,13 +69,13 @@ class saveTrademark(Resource):
         args = parser.parse_args()
         title = args['title']
         category = args['category']
-
+        top_k_sim, top_k_title, _ = cal_similarity(model, title, word_cloud=True, top_k=5)
         # document 생성 
         doc = {
             "title" : title,
             "category" : category,
-            "result" : 0,
-            "similar_list":[]
+            "top_k_sim" : top_k_sim,
+            "top_k_title":top_k_title
         }
         
         results = collect.find_one(doc)
@@ -85,4 +94,3 @@ class saveTrademark(Resource):
                 "success": True,
                 "message": "데이터 등록 성공"
             })
-        
