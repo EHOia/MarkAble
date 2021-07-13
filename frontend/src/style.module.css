@@ -119,6 +119,7 @@ a:-webkit-any-link {
 select {
   width: 10vw;
   height: 5vh;
+  font: 0.9vw;
   text-rendering: auto;
   color: -internal-light-dark(black, white);
   letter-spacing: normal;
@@ -565,6 +566,7 @@ i {
 
 .result_txt {
   font-weight: 600;
+  font-size: 1vw;
 }
 
 .wordcloud_zone {
@@ -604,4 +606,9 @@ i {
 
 .similarity_top5 {
   padding-top: 2%;
+  font-size: 0.9vw;
+}
+
+.similarity_top5 div {
+  padding-top: 1%;
 }
