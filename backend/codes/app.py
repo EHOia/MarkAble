@@ -70,28 +70,38 @@ class saveTrademark(Resource):
         args = parser.parse_args()
         title = args['title']
         category = args['category']
-        top_k_sim, top_k_title, _ = cal_similarity(model, title, word_cloud=True, top_k=5) ##
-        # document 생성 
-        doc = {
+        
+        results = collect.find_one({"title":title, "category":category})
+
+        if results != None: #아예 중복되는 데이터가 있는 경우 
+            print(results)
+            return jsonify({
+                "status": 201,
+                "success": True,
+                "results": str(results),
+                "message": "데이터 등록 성공"
+            })
+                
+        else: #중복 없으면 insert  
+            top_k_sim, top_k_title, _ = cal_similarity(model, title, word_cloud=True, top_k=5) ## 
+
+            doc = {
             "title" : title,
             "category" : category,
             "top_k_sim" : top_k_sim,##
             "top_k_title":top_k_title##
-        }
-        
-        results = collect.find_one(doc)
+            }
 
-        if results != None: #아예 중복되는 데이터가 있는 경우 
-            return jsonify({
-                "status": 409,
-                "success": False,
-                "message": "중복데이터 존재"
-                })
-                
-        else: #중복 없으면 insert   
             collect.insert(doc)
+
             return jsonify({
                 "status": 201,
                 "success": True,
+                "results": {
+                    "title" : title,
+                    "category" : category,
+                    "top_k_sim" : top_k_sim,##
+                    "top_k_title":top_k_title##
+                },
                 "message": "데이터 등록 성공"
             })

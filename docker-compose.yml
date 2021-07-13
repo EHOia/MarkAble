@@ -17,7 +17,7 @@ services:
     restart: always  
     volumes:
       - ./backend/codes:/usr/src/app
-    command: gunicorn -w 1 -b 0.0.0.0:5000 wsgi:app
+    command: gunicorn -w 1 -b 0.0.0.0:5000 -t 240 wsgi:app 
     stdin_open: true
     tty: true
     
