@@ -7,7 +7,7 @@ class SimilarityText extends Component {
     render() {
       return(
         <div className={styles.result_txt}>
-            🧐 입력하신 상표와 기존 상표 데이터와의 유사도는 00 % 입니다.
+            🧐 입력하신 상표와 기존 상표 데이터와의 유사도는 {this.props.per}% 입니다.
         </div>
       )
       

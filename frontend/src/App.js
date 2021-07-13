@@ -22,22 +22,29 @@ import SimilarityImg from "./components/SimilarityImg";
 import SimilarityDesc from "./components/SimilarityDesc";
 
 
-
 function App() {
+
+  // mode 설정 변수
+  const [mode, setMode] = useState("welcome");
 
   // text : 현재값 / setText : 변경할 값
   const [text, setText] = useState("");
   const [number, setNumber] = useState(0);
 
+  // 상표명 입력받는 변수
   const processText = (e) => {
     setText(e.target.value);
   };
 
+  // 상품 카테고리 입력받는 변수
   const processNumber = (e) => {
     setNumber(e.target.value);
   };
 
+  // (공통) input-zone 백엔드에 데이터 주기
   const sendData = () => {
+    console.log('senddata'); // 확인용 >> 나중에 지우기
+    setMode("result");
     let form = new FormData();
     form.append("title", text);
     form.append("category", number);
@@ -52,7 +59,7 @@ function App() {
       });
   };
 
-  /* Loading Effect */
+  // Loading Effect
   const Loading = () => {
     return (
       <div className="d-flex justify-content-center">
@@ -70,16 +77,18 @@ function App() {
   return (
     <div className="App">
 
+      {/* title-zone */}
       <div className={styles.title_zone}>
         <Title></Title>
         <TitleDesc></TitleDesc>
       </div>
 
+      {/* input-zone : scene1 */} 
       <div className={styles.input_zone}>
         <div className={styles.category_options}>
           {/* <CategoryOptions></CategoryOptions> */}
           <p>
-            <select id="class" onChange={processNumber}>
+            <select id="class" onChange={processNumber}> // onChange는 input 안의 값이 변경될 때에 발생
               <option value="">상표 분류 선택</option>
               <optgroup label="카테고리">
                 <option value="1">제1류</option>
@@ -111,7 +120,7 @@ function App() {
               type="text"
               placeholder="상표명 입력"
               value={text}
-              onChange={processText}
+              onChange={processText} // onChange는 input 안의 값이 변경될 때에 발생
             />
           </p>
         </div>
@@ -122,6 +131,7 @@ function App() {
         </div>
       </div>
 
+      {/* loading-zone : scene2 - 데이터 로딩 함수 찾아보기 */}
       <div className={styles.loading_zone}>
         <div className={styles.loading_effect_zone}>
           <Loading />
@@ -130,8 +140,10 @@ function App() {
         
       </div>
 
+      {/* result-zone : scene3  - 데이터 (유사도 퍼센트, TOP5 or 워드클라우드 이미지 ) 백에서 받아오기 */}
+      {/* props로 데이터 받아오기 */}
       <div className={styles.result_zone}>
-        <SimilarityText></SimilarityText>
+        <SimilarityText per="50"></SimilarityText> 
         <div className={styles.wordcloud_zone}>
           <SubTitle></SubTitle>
           <SimilarityImg></SimilarityImg>
