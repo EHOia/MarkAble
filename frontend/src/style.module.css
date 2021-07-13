@@ -113,6 +113,7 @@ a:-webkit-any-link {
 }
 
 .category_options {
+  transition: all 0.3s ease-in-out;
 }
 
 select {
@@ -136,6 +137,7 @@ select {
   background-color: transparent;
   cursor: pointer;
   border: none;
+  transition: all 0.3s ease-in-out;
   /* border-radius: 10px;
     border-width: 0.13vw;
     border-style: solid;
@@ -198,10 +200,17 @@ button {
   padding: 5% 5%;
   border: none;
   border-radius: 0 10px 10px 0;
+  transition: all 0.3s ease-in-out;
   /* border-width: 2px;
     border-style: outset;
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
     border-image: initial; */
+}
+
+button:hover {
+  background-color: #f7f9fd;
+  color: #7399f1;
+  transition: all 0.3s ease-in-out;
 }
 
 .intro_zone {
@@ -547,7 +556,7 @@ i {
 
 .result_zone {
   display: block;
-  margin: 5% 0 10% 0;
+  margin: 2% 0 10% 0;
   display: flex-wrap;
   justify-content: center;
   align-items: center;
@@ -582,4 +591,17 @@ i {
 .wordcloud_desc {
   padding-top: 3%;
   font-size: 0.8vw;
+}
+
+.rty_btn {
+  border-radius: 10px;
+  height: 55px;
+  padding: 1%;
+  vertical-align: middle;
+}
+
+::-webkit-scrollbar { display: none; }
+
+.similarity_top5 {
+  padding-top: 2%;
 }
