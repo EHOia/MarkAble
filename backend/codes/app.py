@@ -7,10 +7,10 @@ import pickle as p
 
 # AI모델을 읽어오기위한 라이브러리
 # 개인개발하실떄에는 제가 ## 표시한 부분을 주석처리하고 하시면 덜 무거워집니다.
-import tensorflow_hub as hub ##
-import tensorflow as tf ##
-import tensorflow_text ##
-from ai import cal_similarity ##
+# import tensorflow_hub as hub ##
+# import tensorflow as tf ##
+# import tensorflow_text ##
+# from ai import cal_similarity ##
 
 app = Flask(__name__)  # Flask 객체 선언, 파라미터로 어플리케이션 패키지의 이름을 넣어줌.
 app.config['JSON_AS_ASCII'] = False
@@ -34,9 +34,10 @@ collect = db.trademark
 collect2 = db.ai
 
 # Embbeding 모델 읽어오기.
-module_url = 'https://tfhub.dev/google/universal-sentence-encoder-multilingual/3' ##
-model = hub.load(module_url) ##
-#api 구현
+# module_url = 'https://tfhub.dev/google/universal-sentence-encoder-multilingual/3' ##
+# model = hub.load(module_url) ##
+
+# api 구현
 @api.route('/api')
 class index(Resource):
     def get(self):
@@ -84,13 +85,13 @@ class saveTrademark(Resource):
             })
                 
         else: #중복 없으면 insert
-            top_k_sim, top_k_title, _ = cal_similarity(model, title, word_cloud=True, top_k=5) ##
+            # top_k_sim, top_k_title, _ = cal_similarity(model, title, word_cloud=True, top_k=5) ##
 
             doc = {
             "title" : title,
             "category" : category,
-            "top_k_sim" : top_k_sim, ##
-            "top_k_title":top_k_title ##
+            # "top_k_sim" : top_k_sim, ##
+            # "top_k_title":top_k_title ##
             }
 
             collect.insert(doc)
@@ -101,8 +102,8 @@ class saveTrademark(Resource):
                 "results": {
                     "title" : title,
                     "category" : category,
-                    "top_k_sim" : top_k_sim, ##
-                    "top_k_title":top_k_title ##
+                    # "top_k_sim" : top_k_sim, ##
+                    # "top_k_title":top_k_title ##
                 },
                 "message": "데이터 등록 성공"
             })
