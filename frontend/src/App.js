@@ -28,16 +28,16 @@ function App() {
 
   // text : 현재값 / setText : 변경할 값
   const [text, setText] = useState("");
-  const [number, setNumber] = useState(0);
+  const [category, setCategory] = useState("");
 
   // 상표명 입력받는 변수
-  const processText = (e) => {
+  const processText = e => {
     setText(e.target.value);
   };
 
   // 상품 카테고리 입력받는 변수
-  const processNumber = (e) => {
-    setNumber(e.target.value);
+  const categoryText = e => {
+    setCategory(e.target.value);
   };
 
   // (공통) input-zone 백엔드에 데이터 주기
@@ -45,14 +45,14 @@ function App() {
     setMode("result");
     let form = new FormData();
     form.append("title", text);
-    form.append("category", number);
+    form.append("category", category);
 
     axios
       .post(`http://127.0.0.1:5000/api/data_transmit`, form)
-      .then((response) => {
+      .then(response => {
         console.log("response : ", JSON.stringify(response, null, 2));
       })
-      .catch((error) => {
+      .catch(error => {
         console.log("failed", error);
       });
   };
@@ -79,12 +79,11 @@ function App() {
   // setMode 때문에 RetryBtn App.js 에 배치
   class RetryBtn extends Component {
     render() {
-      return(
-          <button className={styles.rty_btn} onClick={toWelcomeChange}>
-            Check Others
-          </button>
-        
-      )
+      return (
+        <button className={styles.rty_btn} onClick={toWelcomeChange}>
+          Check Others
+        </button>
+      );
     }
   }
 
@@ -97,7 +96,7 @@ function App() {
         <div className={styles.wordcloud_zone}>
           <SubTitle></SubTitle>
           <SimilarityImg></SimilarityImg>
-          {/* <SimilarityDesc></SimilarityDesc> */}
+          <SimilarityDesc></SimilarityDesc>
         </div>
         <RetryBtn></RetryBtn>
       </div>
@@ -109,7 +108,7 @@ function App() {
       {/* title-zone */}
       <div className={styles.title_zone}>
         <Title></Title>
-        <TitleDesc></TitleDesc>
+        {/* <TitleDesc></TitleDesc> */}
       </div>
 
       {/* input-zone : scene1 */}
@@ -118,12 +117,12 @@ function App() {
           {/* <CategoryOptions></CategoryOptions> */}
           <p>
             <input
+              className={styles.category_input}
               type="text"
-              placeholder="유사군 코드 입력"
-              value={text}
-              onChange={processNumber} // onChange는 input 안의 값이 변경될 때에 발생
+              placeholder="🔍 &nbsp;상품 명칭 입력"
+              value={category}
+              onChange={categoryText} // onChange는 input 안의 값이 변경될 때에 발생
             />
-              {/* onChange는 input 안의 값이 변경될 때에 발생 */}
           </p>
         </div>
         <div className={styles.input_name}>
