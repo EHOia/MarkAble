@@ -77,28 +77,69 @@ function App() {
   };
 
   // setMode 때문에 RetryBtn App.js 에 배치
-  class RetryBtn extends Component {
-    render() {
-      return (
-        <button className={styles.rty_btn} onClick={toWelcomeChange}>
-          Check Others
-        </button>
-      );
-    }
-  }
+  // class RetryBtn extends Component {
+  //   render() {
+  //     return (
+  //       <button className={styles.rty_btn} onClick={toWelcomeChange}>
+  //         Check Others
+  //       </button>
+  //     );
+  //   }
+  // }
 
   // 모드 변경
   var _article = null;
   if (mode === "result") {
     _article = (
+      // <div className={styles.result_zone}>
+      //   <SimilarityText per="50"></SimilarityText>
+      //   <div className={styles.wordcloud_zone}>
+      //     <SubTitle></SubTitle>
+      //     <SimilarityImg></SimilarityImg>
+      //     <SimilarityDesc></SimilarityDesc>
+      //   </div>
+      //   {/* <RetryBtn></RetryBtn> */}
+      // </div>
+
+      // 컴포넌트로 분리해야함
       <div className={styles.result_zone}>
-        <SimilarityText per="50"></SimilarityText>
-        <div className={styles.wordcloud_zone}>
-          <SubTitle></SubTitle>
-          <SimilarityImg></SimilarityImg>
-          <SimilarityDesc></SimilarityDesc>
+        <div className={styles.report_zone1}>
+          <div className={styles.most_similarity}>
+            <div className={styles.most_similarity_txt}>
+              Highest similarity probability
+            </div>
+            <div className={styles.most_similarity_num}>86.53%</div>
+          </div>
         </div>
-        <RetryBtn></RetryBtn>
+        <div className={styles.report_zone2}>
+          <div className={styles.similar_list}>
+            <div className={styles.list_title}>
+              📝 List of Similar Trademarks
+            </div>
+            <ul>
+              <li>
+                <div className={styles.rank}>1</div>
+                <div className={styles.mark_name}>Coca-Cola</div>
+              </li>
+              <li>
+                <div className={styles.rank}>2</div>
+                <div className={styles.mark_name}>COLO</div>
+              </li>
+              <li>
+                <div className={styles.rank}>3</div>
+                <div className={styles.mark_name}>CORA</div>
+              </li>
+              <li>
+                <div className={styles.rank}>4</div>
+                <div className={styles.mark_name}>JONNY COTA</div>
+              </li>
+              <li>
+                <div className={styles.rank}>5</div>
+                <div className={styles.mark_name}>COL D'ORCIA</div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }
@@ -107,7 +148,9 @@ function App() {
     <div className="App">
       {/* title-zone */}
       <div className={styles.title_zone}>
-        <Title></Title>
+        <div onClick={toWelcomeChange}>
+          <Title></Title>
+        </div>
         {/* <TitleDesc></TitleDesc> */}
       </div>
 
