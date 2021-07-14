@@ -117,31 +117,13 @@ function App() {
         <div className={styles.category_options}>
           {/* <CategoryOptions></CategoryOptions> */}
           <p>
-            <select id="class" onChange={processNumber}>
+            <input
+              type="text"
+              placeholder="유사군 코드 입력"
+              value={text}
+              onChange={processNumber} // onChange는 input 안의 값이 변경될 때에 발생
+            />
               {/* onChange는 input 안의 값이 변경될 때에 발생 */}
-              <option value="">상표 분류 선택</option>
-              <optgroup label="카테고리">
-                <option value="1">제1류</option>
-                <option value="2">제2류</option>
-                <option value="3">제3류</option>
-                <option value="4">제4류</option>
-                <option value="5">제5류</option>
-                <option value="6">제6류</option>
-                <option value="7">제7류</option>
-                <option value="8">제8류</option>
-                <option value="9">제9류</option>
-                <option value="10">제10류</option>
-                <option value="11">제11류</option>
-                <option value="12">제12류</option>
-                <option value="13">제13류</option>
-                <option value="14">제14류</option>
-                <option value="15">제15류</option>
-                <option value="16">제16류</option>
-                <option value="17">제17류</option>
-                <option value="18">제18류</option>
-                <option value="19">제19류</option>
-              </optgroup>
-            </select>
           </p>
         </div>
         <div className={styles.input_name}>
