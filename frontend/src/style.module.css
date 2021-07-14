@@ -1,0 +1,614 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: #edf2fb;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:-webkit-any-link {
+  color: #111;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.header-zone {
+  width: 100%;
+  height: max-content;
+  margin-top: 3%;
+}
+
+.header {
+  width: 13%;
+  font-family: "Poppins", sans-serif;
+  margin-left: 5%;
+  padding: 1%;
+  font-size: 2vw;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  color: #111;
+}
+
+/* .header::first-letter {
+    color: #00509d;
+} */
+
+.title_zone {
+  width: 100%;
+  display: flex-wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 7%;
+}
+
+.title {
+  font-family: "Poppins", sans-serif;
+  padding: 0 30vw 0 30vw;
+  font-size: 2vw;
+  font-weight: 600;
+  letter-spacing: -1px;
+}
+
+.title_desc {
+  padding: 0 30vw 0 30vw;
+  font-size: 1.2vw;
+  font-weight: 500;
+}
+
+.input_zone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 5%;
+}
+
+.category_options {
+  transition: all 0.3s ease-in-out;
+}
+
+select {
+  width: 10vw;
+  height: 5vh;
+  font: 0.9vw;
+  text-rendering: auto;
+  color: -internal-light-dark(black, white);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 5%;
+  padding: 0.3% 1%;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  appearance: auto;
+  box-sizing: border-box;
+  align-items: center;
+  white-space: pre;
+  -webkit-rtl-ordering: logical;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  /* border-radius: 10px;
+    border-width: 0.13vw;
+    border-style: solid;
+    border-color: #222;
+    border-image: initial; */
+}
+
+.input_name {
+  margin-left: 1%;
+}
+
+input {
+  width: 16vw;
+  height: 5vh;
+  text-rendering: auto;
+  color: -internal-light-dark(black, white);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 5%;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  appearance: auto;
+  background-color: #f7f9fd;
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  margin: 0em;
+  font: 400 13.3333px Arial;
+  padding: 0.5vw 0.3vw;
+  border: none;
+  border-radius: 10px 0 0 10px;
+  /* border-width: 2px;
+    border-style: inset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial; */
+}
+
+button {
+  width: 10vw;
+  height: 5vh;
+  color: #fff;
+  font-size: 1vw;
+  font-weight: 700;
+  appearance: auto;
+  text-rendering: auto;
+  color: -internal-light-dark(black, white);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: pointer;
+  background-color: #7399f1;
+  box-sizing: border-box;
+  margin: 0em;
+  padding: 5% 5%;
+  border: none;
+  border-radius: 0 10px 10px 0;
+  transition: all 0.3s ease-in-out;
+  /* border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial; */
+}
+
+button:hover {
+  background-color: #f7f9fd;
+  color: #7399f1;
+  transition: all 0.3s ease-in-out;
+}
+
+.intro_zone {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 10% 30%;
+  text-align: center;
+  justify-content: center;
+}
+
+.step {
+  margin: 1.5%;
+  width: 97%;
+  height: 16vh;
+  background-color: #f7f9fd;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex-wrap;
+  position: relative;
+}
+
+.step_deco {
+  content: "";
+  float: right;
+  /* width: 20%;
+    height: 20%;
+    background-color: #7399f1;
+    z-index: 2; */
+  position: absolute;
+  right: 0;
+  width: 0px;
+  height: 0px;
+  border-bottom: 60px solid transparent;
+  /* border-right: 60px solid #7399f1; */
+}
+
+.step .step_desc {
+  background-color: transparent;
+  font-weight: 600;
+  color: #353535;
+  padding: 5%;
+  padding-top: 16%;
+}
+
+i {
+  padding-top: 7%;
+  background-color: transparent;
+  transform: scale(3, 3);
+  color: #393939;
+}
+
+.loading_zone {
+  display: block;
+  margin: 0 25% 10% 25%;
+  width: 50%;
+  border-radius: 20px;
+  height: max-content;
+  background-color: transparent;
+  display: flex-wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* */
+.slack {
+  position: relative;
+  z-index: 100;
+  margin: 80px auto;
+  width: 96px;
+  height: 96px;
+  /* background: #f5f5f5; */
+  transform: rotate(-15deg);
+}
+
+.slack-dot {
+  display: block;
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  mix-blend-mode: multiply;
+}
+.slack-dot--a {
+  top: 0;
+  left: 0;
+  background-color: #3eb991;
+  -webkit-animation: slack-animation--a 2s infinite;
+  animation: slack-animation--a 2s infinite;
+  transform: translateX(18px);
+}
+.slack-dot--b {
+  top: 0;
+  right: 0;
+  background-color: #6ecadc;
+  -webkit-animation: slack-animation--b 2s infinite;
+  animation: slack-animation--b 2s infinite;
+  transform: translateY(18px);
+}
+.slack-dot--c {
+  bottom: 0;
+  right: 0;
+  background-color: #e9a820;
+  -webkit-animation: slack-animation--c 2s infinite;
+  animation: slack-animation--c 2s infinite;
+  transform: translateX(-18px);
+}
+.slack-dot--d {
+  bottom: 0;
+  left: 0;
+  background-color: #e01563;
+  -webkit-animation: slack-animation--d 2s infinite;
+  animation: slack-animation--d 2s infinite;
+  transform: translateY(-18px);
+}
+
+@-webkit-keyframes slack-animation--a {
+  0% {
+    top: 0;
+    bottom: auto;
+    height: 18px;
+  }
+  33% {
+    top: 0;
+    bottom: auto;
+    height: 96px;
+  }
+  34% {
+    top: auto;
+    bottom: 0;
+    height: 96px;
+  }
+  66% {
+    top: auto;
+    bottom: 0;
+    height: 18px;
+  }
+  100% {
+    top: auto;
+    bottom: 78px;
+    height: 18px;
+  }
+}
+
+@keyframes slack-animation--a {
+  0% {
+    top: 0;
+    bottom: auto;
+    height: 18px;
+  }
+  33% {
+    top: 0;
+    bottom: auto;
+    height: 96px;
+  }
+  34% {
+    top: auto;
+    bottom: 0;
+    height: 96px;
+  }
+  66% {
+    top: auto;
+    bottom: 0;
+    height: 18px;
+  }
+  100% {
+    top: auto;
+    bottom: 78px;
+    height: 18px;
+  }
+}
+@-webkit-keyframes slack-animation--b {
+  0% {
+    right: 0;
+    left: auto;
+    width: 18px;
+  }
+  33% {
+    right: 0;
+    left: auto;
+    width: 96px;
+  }
+  34% {
+    right: auto;
+    left: 0;
+    width: 96px;
+  }
+  66% {
+    right: auto;
+    left: 0;
+    width: 18px;
+  }
+  100% {
+    right: auto;
+    left: 78px;
+    width: 18px;
+  }
+}
+@keyframes slack-animation--b {
+  0% {
+    right: 0;
+    left: auto;
+    width: 18px;
+  }
+  33% {
+    right: 0;
+    left: auto;
+    width: 96px;
+  }
+  34% {
+    right: auto;
+    left: 0;
+    width: 96px;
+  }
+  66% {
+    right: auto;
+    left: 0;
+    width: 18px;
+  }
+  100% {
+    right: auto;
+    left: 78px;
+    width: 18px;
+  }
+}
+@-webkit-keyframes slack-animation--c {
+  0% {
+    bottom: 0;
+    top: auto;
+    height: 18px;
+  }
+  33% {
+    bottom: 0;
+    top: auto;
+    height: 96px;
+  }
+  34% {
+    bottom: auto;
+    top: 0px;
+    height: 96px;
+  }
+  66% {
+    bottom: auto;
+    top: 0px;
+    height: 18px;
+  }
+  100% {
+    bottom: auto;
+    top: 78px;
+    height: 18px;
+  }
+}
+@keyframes slack-animation--c {
+  0% {
+    bottom: 0;
+    top: auto;
+    height: 18px;
+  }
+  33% {
+    bottom: 0;
+    top: auto;
+    height: 96px;
+  }
+  34% {
+    bottom: auto;
+    top: 0px;
+    height: 96px;
+  }
+  66% {
+    bottom: auto;
+    top: 0px;
+    height: 18px;
+  }
+  100% {
+    bottom: auto;
+    top: 78px;
+    height: 18px;
+  }
+}
+@-webkit-keyframes slack-animation--d {
+  0% {
+    left: 0;
+    right: auto;
+    width: 18px;
+  }
+  33% {
+    left: 0;
+    right: auto;
+    width: 96px;
+  }
+  34% {
+    left: auto;
+    right: 0px;
+    width: 96px;
+  }
+  66% {
+    left: auto;
+    right: 0px;
+    width: 18px;
+  }
+  100% {
+    left: auto;
+    right: 78px;
+    width: 18px;
+  }
+}
+@keyframes slack-animation--d {
+  0% {
+    left: 0;
+    right: auto;
+    width: 18px;
+  }
+  33% {
+    left: 0;
+    right: auto;
+    width: 96px;
+  }
+  34% {
+    left: auto;
+    right: 0px;
+    width: 96px;
+  }
+  66% {
+    left: auto;
+    right: 0px;
+    width: 18px;
+  }
+  100% {
+    left: auto;
+    right: 78px;
+    width: 18px;
+  }
+}
+
+.loading_effect_zone {
+  padding: 5% 5% 1% 5%;
+}
+
+.loading_txt {
+  padding: 0 0 5% 0;
+  font-size: 1.2vw;
+}
+
+.result_zone {
+  display: block;
+  margin: 2% 0 10% 0;
+  display: flex-wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.result_txt {
+  font-weight: 600;
+  font-size: 1vw;
+}
+
+.wordcloud_zone {
+  overflow: hidden;
+  margin: 3% 30%;
+  border-radius: 10px;
+  padding: 3%;
+  display: flex-end;
+  background-color: #fff;
+  justify-content: center;
+  align-items: center;
+}
+
+.wordcloud_zone img {
+  width: 100%;
+}
+
+.wordcloud_name {
+  font-size: 1.1vw;
+  font-weight: 700;
+  padding-bottom: 2%;
+}
+
+.wordcloud_desc {
+  padding-top: 3%;
+  font-size: 0.8vw;
+}
+
+.rty_btn {
+  border-radius: 10px;
+  height: 55px;
+  padding: 1%;
+  vertical-align: middle;
+}
+
+::-webkit-scrollbar { display: none; }
+
+.similarity_top5 {
+  padding-top: 2%;
+  font-size: 0.9vw;
+}
+
+.similarity_top5 div {
+  padding-top: 1%;
+}
