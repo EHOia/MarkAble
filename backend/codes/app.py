@@ -3,6 +3,7 @@ from flask.json import JSONEncoder
 from pymongo import MongoClient
 from flask_restx import reqparse, Api, Resource  # Api 구현을 위한 Api 객체 import
 from flask_cors import CORS
+import pickle as p
 
 # AI모델을 읽어오기위한 라이브러리
 # 개인개발하실떄에는 제가 ## 표시한 부분을 주석처리하고 하시면 덜 무거워집니다.
