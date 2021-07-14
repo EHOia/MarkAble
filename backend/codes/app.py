@@ -16,7 +16,7 @@ app.config['JSON_AS_ASCII'] = False
 
 api = Api(app)  # Flask 객체에 Api 객체 등록
 
-CORS(app) #다른 포트번호에 대한 보안 제거 
+CORS(app) #다른 포트번호에 대한 보안 제거
 
 parser = reqparse.RequestParser()
 
@@ -35,7 +35,7 @@ collect2 = db.ai
 # Embbeding 모델 읽어오기.
 module_url = 'https://tfhub.dev/google/universal-sentence-encoder-multilingual/3' ##
 model = hub.load(module_url) ##
-#api 구현 
+#api 구현
 @api.route('/api')
 class index(Resource):
     def get(self):
@@ -73,7 +73,7 @@ class saveTrademark(Resource):
         
         results = collect.find_one({"title":title, "category":category})
 
-        if results != None: #아예 중복되는 데이터가 있는 경우 
+        if results != None: #아예 중복되는 데이터가 있는 경우
             print(results)
             return jsonify({
                 "status": 201,
@@ -82,14 +82,14 @@ class saveTrademark(Resource):
                 "message": "데이터 등록 성공"
             })
                 
-        else: #중복 없으면 insert  
-            top_k_sim, top_k_title, _ = cal_similarity(model, title, word_cloud=True, top_k=5) ## 
+        else: #중복 없으면 insert
+            top_k_sim, top_k_title, _ = cal_similarity(model, title, word_cloud=True, top_k=5) ##
 
             doc = {
             "title" : title,
             "category" : category,
-            "top_k_sim" : top_k_sim,##
-            "top_k_title":top_k_title##
+            "top_k_sim" : top_k_sim, ##
+            "top_k_title":top_k_title ##
             }
 
             collect.insert(doc)
@@ -100,8 +100,8 @@ class saveTrademark(Resource):
                 "results": {
                     "title" : title,
                     "category" : category,
-                    "top_k_sim" : top_k_sim,##
-                    "top_k_title":top_k_title##
+                    "top_k_sim" : top_k_sim, ##
+                    "top_k_title":top_k_title ##
                 },
                 "message": "데이터 등록 성공"
             })
