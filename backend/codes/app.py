@@ -1,21 +1,22 @@
 from flask import Flask, json, jsonify, make_response
 from flask.json import JSONEncoder
 from pymongo import MongoClient
-from flask_restx import reqparse, Api, Resource  # Api 구현을 위한 Api 객체 import
+from flask_restx import reqparse, Api, Resource, Namespace  # Api 구현을 위한 Api 객체 import
 from flask_cors import CORS
 import pickle as p
 
 # AI모델을 읽어오기위한 라이브러리
 # 개인개발하실떄에는 제가 ## 표시한 부분을 주석처리하고 하시면 덜 무거워집니다.
-import tensorflow_hub as hub ##
-import tensorflow as tf ##
-import tensorflow_text ##
-from ai import cal_similarity ##
+#import tensorflow_hub as hub ##
+#import tensorflow as tf ##
+#import tensorflow_text ##
+#from ai import cal_similarity ##
 
 app = Flask(__name__)  # Flask 객체 선언, 파라미터로 어플리케이션 패키지의 이름을 넣어줌.
 app.config['JSON_AS_ASCII'] = False
 
 api = Api(app)  # Flask 객체에 Api 객체 등록
+ns = api.namespace('trademark', description= '상표 데이터에 대한 api')
 
 CORS(app) #다른 포트번호에 대한 보안 제거
 
@@ -34,15 +35,17 @@ collect = db.trademark
 collect2 = db.ai
 
 # Embbeding 모델 읽어오기.
-module_url = 'https://tfhub.dev/google/universal-sentence-encoder-multilingual/3' ##
-model = hub.load(module_url) ##
+#module_url = 'https://tfhub.dev/google/universal-sentence-encoder-multilingual/3' ##
+#model = hub.load(module_url) ##
+
+
 #api 구현
-@api.route('/api')
+@ns.route('/api')
 class index(Resource):
     def get(self):
         return "Hello World!"
 
-@api.route('/api/show_data')
+@ns.route('/api/show_data')
 class showData(Resource):
     def get(self):
         s = ''
@@ -57,15 +60,15 @@ class showData(Resource):
         #print(s)
         return s
 
-@api.route('/api/data_transmit')
+@ns.route('/api/data_transmit')
 class saveTrademark(Resource):
     parser.add_argument('title',type=str, default='', help='상표명')
     parser.add_argument('category',type=int, default=0, help='카테고리번호')
 
-    @api.expect(parser)
-    @api.response(201,'success')
-    @api.response(400,'bad request')
-    @api.response(500,'server error')
+    @ns.expect(parser)
+    @ns.response(201,'success')
+    @ns.response(400,'bad request')
+    @ns.response(500,'server error')
 
     def post(self):
         args = parser.parse_args()
@@ -84,13 +87,13 @@ class saveTrademark(Resource):
             })
                 
         else: #중복 없으면 insert
-            top_k_sim, top_k_title, _ = cal_similarity(model, title, word_cloud=True, top_k=5) ##
+ #           top_k_sim, top_k_title, _ = cal_similarity(model, title, word_cloud=True, top_k=5) ##
 
             doc = {
             "title" : title,
             "category" : category,
-            "top_k_sim" : top_k_sim, ##
-            "top_k_title":top_k_title ##
+ #           "top_k_sim" : top_k_sim, ##
+ #          "top_k_title":top_k_title ##
             }
 
             collect.insert(doc)
@@ -101,8 +104,8 @@ class saveTrademark(Resource):
                 "results": {
                     "title" : title,
                     "category" : category,
-                    "top_k_sim" : top_k_sim, ##
-                    "top_k_title":top_k_title ##
+ #                   "top_k_sim" : top_k_sim, ##
+ #                  "top_k_title":top_k_title ##
                 },
                 "message": "데이터 등록 성공"
             })
