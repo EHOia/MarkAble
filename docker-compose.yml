@@ -61,17 +61,12 @@ services:
       - backend
     restart: "on-failure"
 
-#   ai:
-#     build:
-#       context: .
-#       dockerfile: ./AI/Dockerfile
-#     expose:
-#       - 8887
-#     ports:
-#       - "8887:8887"
-#     volumes:
-#       - ./AI/codes:/usr/src/app
-#     stdin_open: true
-#     tty: true
-
-  
+  elasticsearch:
+    build: elasticsearch/
+    volumes:
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    ports:
+      - "9200:9200"
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "XPACK_SECURITY_ENABLED=false"

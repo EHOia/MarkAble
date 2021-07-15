@@ -1,11 +1,8 @@
 numpy>=1.19.2
-scikit-learn
-opencv-python
 pandas
 wordcloud
 matplotlib
 flask
 gunicorn
-pymongo
 jsonify
 mongoengine
