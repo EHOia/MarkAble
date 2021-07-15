@@ -27,5 +27,5 @@ RUN pip3 install flask_cors
 # tell the port number the container should expose
 EXPOSE 5000
 
-CMD ["python", "calculate_sim.py"]
+#CMD ["python", "calculate_sim.py"]
 CMD [ "python3", "app.py" ]

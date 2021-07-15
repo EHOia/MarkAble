@@ -44,6 +44,11 @@ services:
     ports:
       - "27017:27017"
 
+  mongo-seed:
+    build: ./mongo-seed
+    links:
+      - mongo_db
+
   nginx:
     image: nginx:latest
     ports:
