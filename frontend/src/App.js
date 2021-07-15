@@ -162,7 +162,7 @@ function App() {
             <input
               className={styles.category_input}
               type="text"
-              placeholder="🔍 &nbsp;유사군코드 입력"
+              placeholder="유사군코드 입력"
               value={category}
               onChange={categoryText} // onChange는 input 안의 값이 변경될 때에 발생
             />
