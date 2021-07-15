@@ -1,8 +1,7 @@
 # Base image
-FROM tensorflow/tensorflow:2.4.1
+FROM ubuntu:20.04
 
 WORKDIR /usr/src/app
-# upgrade pip
 
 RUN apt-get update -y && \
     apt-get install -y python3-pip python3-dev \
@@ -17,8 +16,6 @@ RUN pip install --upgrade pip
 # install Python modules needed by the Python app
 COPY /backend/requirements.txt /usr/src/app
 RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
-RUN pip install --upgrade tensorflow-hub
-Run pip install -U tensorflow-text==2.4.1
 RUN pip3 install flask-restx
 RUN pip3 install pymongo
 RUN pip3 install flask_cors
