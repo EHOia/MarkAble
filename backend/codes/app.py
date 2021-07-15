@@ -16,7 +16,7 @@ app = Flask(__name__)  # Flask 객체 선언, 파라미터로 어플리케이션
 app.config['JSON_AS_ASCII'] = False
 
 api = Api(app)  # Flask 객체에 Api 객체 등록
-ns = api.namespace('trademark', description= '상표 데이터에 대한 api')
+ns = api.namespace('trademark', description= '상표 데이터 테스트 api', path='')
 
 CORS(app) #다른 포트번호에 대한 보안 제거
 
