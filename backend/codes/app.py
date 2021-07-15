@@ -63,7 +63,7 @@ class showData(Resource):
 @ns.route('/api/data_transmit')
 class saveTrademark(Resource):
     parser.add_argument('title',type=str, default='', help='상표명')
-    parser.add_argument('category',type=int, default=0, help='카테고리번호')
+    parser.add_argument('code',type=str, default='', help='유사군코드')
 
     @ns.expect(parser)
     @ns.response(201,'success')
@@ -73,9 +73,9 @@ class saveTrademark(Resource):
     def post(self):
         args = parser.parse_args()
         title = args['title']
-        category = args['category']
+        code = args['code']
         
-        results = collect.find_one({"title":title, "category":category})
+        results = collect.find_one({"title":title, "code":code})
 
         if results != None: #아예 중복되는 데이터가 있는 경우
             print(results)
@@ -91,7 +91,7 @@ class saveTrademark(Resource):
 
             doc = {
             "title" : title,
-            "category" : category,
+            "code" : code,
  #           "top_k_sim" : top_k_sim, ##
  #          "top_k_title":top_k_title ##
             }
@@ -103,7 +103,7 @@ class saveTrademark(Resource):
                 "success": True,
                 "results": {
                     "title" : title,
-                    "category" : category,
+                    "code" : code,
  #                   "top_k_sim" : top_k_sim, ##
  #                  "top_k_title":top_k_title ##
                 },
