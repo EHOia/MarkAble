@@ -779,7 +779,10 @@ ul li {
 }
 
 .rank {
+  font-size: 1vw;
+  padding-right: 3vw;
 }
 
 .mark_name {
+  font-size: 1vw;
 }
