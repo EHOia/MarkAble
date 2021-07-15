@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from flask_restx import reqparse, Api, Resource, Namespace  # Api 구현을 위한 Api 객체 import
 from flask_cors import CORS
 import pickle
-
+from elastic_func import search_similar_text
 app = Flask(__name__)  # Flask 객체 선언, 파라미터로 어플리케이션 패키지의 이름을 넣어줌.
 app.config['JSON_AS_ASCII'] = False
 
@@ -26,6 +26,8 @@ db = conn.vitaminc
 # collection 생성
 collect = db.trademark
 collect2 = db.ai
+
+collect_elastic = db.sampledata
 
 #api 구현
 @ns.route('/api')
@@ -75,10 +77,13 @@ class saveTrademark(Resource):
             })
                 
         else: #중복 없으면 insert
-
+            mongo_res = collect_elastic.find({'similar_group':{"$eq": code}})
+            sim_titles, scores = search_similar_text(title, mongo_res, code)
             doc = {
             "title" : title,
             "code" : code,
+            'similar_titles': sim_titles,
+            'scores' : scores
             }
 
             collect.insert(doc)
@@ -89,6 +94,8 @@ class saveTrademark(Resource):
                 "results": {
                     "title" : title,
                     "code" : code,
+                    'similar_titles': sim_titles,
+                    'scores' : scores
                 },
                 "message": "데이터 등록 성공"
             })

@@ -12,6 +12,7 @@ services:
       - "5000:5000"
     links:  
       - mongo_db:mongo_db
+      - elasticsearch:elasticsearch
     depends_on:
       - mongo_db
     restart: always  
@@ -44,7 +45,7 @@ services:
     ports:
       - "27017:27017"
 
-  mongo-seed:
+  mongo-seed: # 처음에 빌드할때 실행시킨이후에 주석처리하기!
     build: ./mongo-seed
     links:
       - mongo_db
