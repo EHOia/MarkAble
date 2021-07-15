@@ -39,22 +39,30 @@ function App() {
   const codeText = e => {
     setCode(e.target.value);
   };
-
+  
   // (공통) input-zone 백엔드에 데이터 주기
   const sendData = () => {
-    setMode("result");
-    let form = new FormData();
-    form.append("title", text);
-    form.append("code", code);
+    if ( code === '' ) {
+      alert("유사군코드를 반드시 입력해주세요.")
+    }
+    else if ( text === '' ){
+      alert( "상표명을 반드시 입력해주세요." );
+    }
+    else {
+      setMode("result");
+      let form = new FormData();
+      form.append("title", text);
+      form.append("code", code);
 
-    axios
-      .post(`http://127.0.0.1:5000/trademark/api/data_transmit`, form)
-      .then(response => {
-        console.log("response : ", JSON.stringify(response, null, 2));
-      })
-      .catch(error => {
-        console.log("failed", error);
+      axios
+        .post(`http://127.0.0.1:5000/trademark/api/data_transmit`, form)
+        .then(response => {
+          console.log("response : ", JSON.stringify(response, null, 2));
+        })
+        .catch(error => {
+          console.log("failed", error);
       });
+    }
   };
 
   // Loading Effect
