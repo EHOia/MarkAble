@@ -28,7 +28,7 @@ function App() {
 
   // text : 현재값 / setText : 변경할 값
   const [text, setText] = useState("");
-  const [category, setCategory] = useState("");
+  const [code, setCode] = useState("");
 
   // 상표명 입력받는 변수
   const processText = e => {
@@ -36,8 +36,8 @@ function App() {
   };
 
   // 상품 카테고리 입력받는 변수
-  const categoryText = e => {
-    setCategory(e.target.value);
+  const codeText = e => {
+    setCode(e.target.value);
   };
 
   // (공통) input-zone 백엔드에 데이터 주기
@@ -45,10 +45,10 @@ function App() {
     setMode("result");
     let form = new FormData();
     form.append("title", text);
-    form.append("category", category);
+    form.append("code", code);
 
     axios
-      .post(`http://127.0.0.1:5000/api/data_transmit`, form)
+      .post(`http://127.0.0.1:5000/trademark/api/data_transmit`, form)
       .then(response => {
         console.log("response : ", JSON.stringify(response, null, 2));
       })
@@ -163,8 +163,8 @@ function App() {
               className={styles.category_input}
               type="text"
               placeholder="유사군코드 입력"
-              value={category}
-              onChange={categoryText} // onChange는 input 안의 값이 변경될 때에 발생
+              value={code}
+              onChange={codeText} // onChange는 input 안의 값이 변경될 때에 발생
             />
           </p>
         </div>
