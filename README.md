@@ -9,4 +9,4 @@
 
 **2️⃣  시스템 아키텍쳐**
 
-![image](https://user-images.githubusercontent.com/52441697/125874366-e3866ee9-945e-4c95-88ea-1330230bff88.png)
+![image](ttps://user-images.githubusercontent.com/75110752/125884906-a63aa74f-4301-4097-84d4-3bba4aef1acd.png)
