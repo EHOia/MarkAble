@@ -25,8 +25,6 @@ db = conn.vitaminc
 
 # collection 생성
 collect = db.trademark
-collect2 = db.ai
-
 collect_elastic = db.sampledata
 
 # api 구현
