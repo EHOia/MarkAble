@@ -134,22 +134,21 @@ function App() {
     }
   }
 
-  var _article = null;
-  if (mode === "result") {
-    _article = <ResultZone></ResultZone>;
+  class InputZone extends Component {
+    render() {
+      return (
+        <div className={styles.input_zone}>
+          <CategoryOptions />
+          <InputName />
+          <CheckButton />
+        </div>
+      );
+    }
   }
 
-  return (
-    <div className="App">
-      {/* title-zone */}
-      <div className={styles.title_zone}>
-        <div onClick={toWelcomeChange}>
-          <Title></Title>
-        </div>
-      </div>
-
-      {/* input-zone : scene1 */}
-      <div className={styles.input_zone}>
+  class CategoryOptions extends Component {
+    render () {
+      return (
         <div className={styles.category_options}>
           <p>
             <input
@@ -160,7 +159,27 @@ function App() {
               onChange={codeText}
             />
           </p>
+          
+      </div>
+      )
+    }
+  }
+
+  class CheckButton extends Component {
+    render () {
+      return (
+        <div className={styles.similarity_check_btn}>
+          <p>
+            <button onClick={sendData}>Check similarity</button>
+          </p>
         </div>
+      )
+    }
+  }
+
+  class InputName extends Component {
+    render () {
+      return (
         <div className={styles.input_name}>
           <p>
             <input
@@ -170,14 +189,30 @@ function App() {
               onChange={processText}
             />
           </p>
+          
         </div>
-        <div className={styles.similarity_check_btn}>
-          <p>
-            <button onClick={sendData}>Check similarity</button>
-          </p>
+      )
+    }
+  }
+  var _article = null;
+  if (mode === "result") {
+    _article = <ResultZone></ResultZone>;
+  }
+
+  var _inputZone = null;
+  if (mode === "welcome") {
+    _inputZone = <InputZone />
+  }
+
+  return (
+    <div className="App">
+      {/* title-zone */}
+      <div className={styles.title_zone}>
+        <div onClick={toWelcomeChange}>
+          <Title></Title>
         </div>
       </div>
-
+      {_inputZone}
       {_article}
     </div>
   );
