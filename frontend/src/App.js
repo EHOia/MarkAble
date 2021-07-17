@@ -19,11 +19,18 @@ function App() {
     setCode(e.target.value);
   };
 
+  function validateCode(code) {
+    var codeReg = new RegExp(/[g|s|S|G]\d{4}/);
+    return codeReg.test(code);
+  }
+
   const sendData = () => {
     if (code === "") {
       alert("유사군코드를 입력해주세요.");
     } else if (text === "") {
       alert("상표명을 입력해주세요.");
+    } else if (!validateCode(code)) {
+      alert("올바른 유사군코드를 입력해주세요.");
     } else {
       setMode("result");
       let form = new FormData();
@@ -42,8 +49,7 @@ function App() {
       axios
         .get(`http://127.0.0.1:5000/trademark/api/show_data`)
         .then(response => {
-          console.log(JSON.stringify(response.data, null, 2));
-          // console.log(response.data);
+          console.log(response.data);
         })
         .catch(error => {
           console.log("failed", error);
@@ -217,7 +223,7 @@ function App() {
     _article = <ResultZone></ResultZone>;
   }
 
-  var _inputZone = null;
+  // var _inputZone = null;
   if (mode === "welcome") {
     _article = (
       <div className={styles.input_zone}>
