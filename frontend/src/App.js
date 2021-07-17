@@ -5,7 +5,6 @@ import styles from "./style.module.css";
 
 import Title from "./components/Title";
 import MostSimilarityTxt from "./components/MostSimilarityTxt";
-import ListTitle from "./components/ListTitle";
 
 function App() {
   const [mode, setMode] = useState("welcome");
@@ -20,11 +19,18 @@ function App() {
     setCode(e.target.value);
   };
 
+  function validateCode(code) {
+    var codeReg = new RegExp(/[g|s|S|G]\d{4}/);
+    return codeReg.test(code);
+  }
+
   const sendData = () => {
     if (code === "") {
       alert("유사군코드를 입력해주세요.");
     } else if (text === "") {
       alert("상표명을 입력해주세요.");
+    } else if (!validateCode(code)) {
+      alert("올바른 유사군코드를 입력해주세요.");
     } else {
       setMode("result");
       let form = new FormData();
@@ -39,11 +45,22 @@ function App() {
         .catch(error => {
           console.log("failed", error);
         });
+
+      axios
+        .get(`http://127.0.0.1:5000/trademark/api/show_data`)
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log("failed", error);
+        });
     }
   };
 
   const toWelcomeChange = () => {
     setMode("welcome");
+    setText("");
+    setCode("");
   };
 
   class ResultZone extends Component {
@@ -94,6 +111,16 @@ function App() {
     }
   }
 
+  class ListTitle extends Component {
+    render() {
+      return (
+        <div className={styles.list_title}>
+          📝 List of Similar Trademarks of &nbsp;{text}
+        </div>
+      );
+    }
+  }
+
   class SimilarList extends Component {
     render() {
       return (
@@ -134,21 +161,14 @@ function App() {
     }
   }
 
-  class InputZone extends Component {
-    render() {
-      return (
-        <div className={styles.input_zone}>
-          <CategoryOptions />
-          <InputName />
-          <CheckButton />
-        </div>
-      );
-    }
+  var _article = null;
+  if (mode === "result") {
+    _article = <ResultZone></ResultZone>;
   }
 
-  class CategoryOptions extends Component {
-    render () {
-      return (
+  if (mode === "welcome") {
+    _article = (
+      <div className={styles.input_zone}>
         <div className={styles.category_options}>
           <p>
             <input
@@ -156,52 +176,27 @@ function App() {
               type="text"
               placeholder="유사군코드 입력"
               value={code}
-              onChange={codeText}
+              onChange={codeText} // onChange는 input 안의 값이 변경될 때에 발생
             />
           </p>
-          
-      </div>
-      )
-    }
-  }
-
-  class CheckButton extends Component {
-    render () {
-      return (
-        <div className={styles.similarity_check_btn}>
-          <p>
-            <button onClick={sendData}>Check similarity</button>
-          </p>
         </div>
-      )
-    }
-  }
-
-  class InputName extends Component {
-    render () {
-      return (
         <div className={styles.input_name}>
           <p>
             <input
               type="text"
               placeholder="상표명 입력"
               value={text}
-              onChange={processText}
+              onChange={processText} // onChange는 input 안의 값이 변경될 때에 발생
             />
           </p>
-          
         </div>
-      )
-    }
-  }
-  var _article = null;
-  if (mode === "result") {
-    _article = <ResultZone></ResultZone>;
-  }
-
-  var _inputZone = null;
-  if (mode === "welcome") {
-    _inputZone = <InputZone />
+        <div className={styles.similarity_check_btn}>
+          <p>
+            <button onClick={sendData}>Check similarity</button>
+          </p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -212,7 +207,6 @@ function App() {
           <Title></Title>
         </div>
       </div>
-      {_inputZone}
       {_article}
     </div>
   );
