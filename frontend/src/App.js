@@ -53,6 +53,8 @@ function App() {
 
   const toWelcomeChange = () => {
     setMode("welcome");
+    setText("");
+    setCode("");
   };
 
   class ResultZone extends Component {
@@ -153,71 +155,11 @@ function App() {
     }
   }
 
-  // class InputZone extends Component {
-  //   render() {
-  //     return (
-  //       <div className={styles.input_zone}>
-  //         <CategoryOptions />
-  //         <InputName />
-  //         <CheckButton />
-  //       </div>
-  //     );
-  //   }
-  // }
-
-  // class CategoryOptions extends Component {
-  //   render() {
-  //     return (
-  //       <div className={styles.category_options}>
-  //         <p>
-  //           <input
-  //             className={styles.category_input}
-  //             type="text"
-  //             placeholder="유사군코드 입력"
-  //             value={code}
-  //             onChange={codeText}
-  //           />
-  //         </p>
-  //       </div>
-  //     );
-  //   }
-  // }
-
-  // class CheckButton extends Component {
-  //   render() {
-  //     return (
-  //       <div className={styles.similarity_check_btn}>
-  //         <p>
-  //           <button onClick={sendData}>Check similarity</button>
-  //         </p>
-  //       </div>
-  //     );
-  //   }
-  // }
-
-  // class InputName extends Component {
-  //   render() {
-  //     return (
-  //       <div className={styles.input_name}>
-  //         <p>
-  //           <input
-  //             type="text"
-  //             placeholder="상표명 입력"
-  //             value={text}
-  //             onChange={processText}
-  //           />
-  //         </p>
-  //       </div>
-  //     );
-  //   }
-  // }
-
   var _article = null;
   if (mode === "result") {
     _article = <ResultZone></ResultZone>;
   }
 
-  var _inputZone = null;
   if (mode === "welcome") {
     _article = (
       <div className={styles.input_zone}>
@@ -259,7 +201,6 @@ function App() {
           <Title></Title>
         </div>
       </div>
-      {/* {_inputZone} */}
       {_article}
     </div>
   );
