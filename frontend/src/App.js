@@ -5,7 +5,6 @@ import styles from "./style.module.css";
 
 import Title from "./components/Title";
 import MostSimilarityTxt from "./components/MostSimilarityTxt";
-import ListTitle from "./components/ListTitle";
 
 function App() {
   const [mode, setMode] = useState("welcome");
@@ -35,6 +34,16 @@ function App() {
         .post(`http://127.0.0.1:5000/trademark/api/data_transmit`, form)
         .then(response => {
           console.log("response : ", JSON.stringify(response, null, 2));
+        })
+        .catch(error => {
+          console.log("failed", error);
+        });
+
+      axios
+        .get(`http://127.0.0.1:5000/trademark/api/show_data`)
+        .then(response => {
+          console.log(JSON.stringify(response.data, null, 2));
+          // console.log(response.data);
         })
         .catch(error => {
           console.log("failed", error);
@@ -94,6 +103,16 @@ function App() {
     }
   }
 
+  class ListTitle extends Component {
+    render() {
+      return (
+        <div className={styles.list_title}>
+          📝 List of Similar Trademarks of &nbsp;{text}
+        </div>
+      );
+    }
+  }
+
   class SimilarList extends Component {
     render() {
       return (
@@ -134,66 +153,65 @@ function App() {
     }
   }
 
-  class InputZone extends Component {
-    render() {
-      return (
-        <div className={styles.input_zone}>
-          <CategoryOptions />
-          <InputName />
-          <CheckButton />
-        </div>
-      );
-    }
-  }
+  // class InputZone extends Component {
+  //   render() {
+  //     return (
+  //       <div className={styles.input_zone}>
+  //         <CategoryOptions />
+  //         <InputName />
+  //         <CheckButton />
+  //       </div>
+  //     );
+  //   }
+  // }
 
-  class CategoryOptions extends Component {
-    render () {
-      return (
-        <div className={styles.category_options}>
-          <p>
-            <input
-              className={styles.category_input}
-              type="text"
-              placeholder="유사군코드 입력"
-              value={code}
-              onChange={codeText}
-            />
-          </p>
-          
-      </div>
-      )
-    }
-  }
+  // class CategoryOptions extends Component {
+  //   render() {
+  //     return (
+  //       <div className={styles.category_options}>
+  //         <p>
+  //           <input
+  //             className={styles.category_input}
+  //             type="text"
+  //             placeholder="유사군코드 입력"
+  //             value={code}
+  //             onChange={codeText}
+  //           />
+  //         </p>
+  //       </div>
+  //     );
+  //   }
+  // }
 
-  class CheckButton extends Component {
-    render () {
-      return (
-        <div className={styles.similarity_check_btn}>
-          <p>
-            <button onClick={sendData}>Check similarity</button>
-          </p>
-        </div>
-      )
-    }
-  }
+  // class CheckButton extends Component {
+  //   render() {
+  //     return (
+  //       <div className={styles.similarity_check_btn}>
+  //         <p>
+  //           <button onClick={sendData}>Check similarity</button>
+  //         </p>
+  //       </div>
+  //     );
+  //   }
+  // }
 
-  class InputName extends Component {
-    render () {
-      return (
-        <div className={styles.input_name}>
-          <p>
-            <input
-              type="text"
-              placeholder="상표명 입력"
-              value={text}
-              onChange={processText}
-            />
-          </p>
-          
-        </div>
-      )
-    }
-  }
+  // class InputName extends Component {
+  //   render() {
+  //     return (
+  //       <div className={styles.input_name}>
+  //         <p>
+  //           <input
+  //             type="text"
+  //             placeholder="상표명 입력"
+  //             value={text}
+  //             onChange={processText}
+  //           />
+  //         </p>
+  //       </div>
+  //     );
+  //   }
+  // }
+
   var _article = null;
   if (mode === "result") {
     _article = <ResultZone></ResultZone>;
@@ -201,7 +219,36 @@ function App() {
 
   var _inputZone = null;
   if (mode === "welcome") {
-    _inputZone = <InputZone />
+    _article = (
+      <div className={styles.input_zone}>
+        <div className={styles.category_options}>
+          <p>
+            <input
+              className={styles.category_input}
+              type="text"
+              placeholder="유사군코드 입력"
+              value={code}
+              onChange={codeText} // onChange는 input 안의 값이 변경될 때에 발생
+            />
+          </p>
+        </div>
+        <div className={styles.input_name}>
+          <p>
+            <input
+              type="text"
+              placeholder="상표명 입력"
+              value={text}
+              onChange={processText} // onChange는 input 안의 값이 변경될 때에 발생
+            />
+          </p>
+        </div>
+        <div className={styles.similarity_check_btn}>
+          <p>
+            <button onClick={sendData}>Check similarity</button>
+          </p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -212,7 +259,7 @@ function App() {
           <Title></Title>
         </div>
       </div>
-      {_inputZone}
+      {/* {_inputZone} */}
       {_article}
     </div>
   );
