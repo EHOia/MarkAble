@@ -1,12 +1,21 @@
-from flask import Flask, json, jsonify, make_response
-from flask.json import JSONEncoder
+from flask import Flask, jsonify, Response
 from pymongo import MongoClient
-from flask_restx import reqparse, Api, Resource, Namespace # Api 구현을 위한 Api 객체 import
+from flask_restx import reqparse, Api, Resource # Api 구현을 위한 Api 객체 import
 from flask_cors import CORS
 from elastic_func import search_similar_text
+from prometheus_flask_exporter import PrometheusMetrics 
+from prometheus_client import Counter, Histogram # 사용할 타입 import 
+import prometheus_client
+import time 
 
 app = Flask(__name__) # Flask 객체 선언, 파라미터로 어플리케이션 패키지의 이름을 넣어줌.
+metrics = PrometheusMetrics(app)
+metrics.info("flask_app_info", "App Info, this can be anything you want", version="1.0.0")
 app.config['JSON_AS_ASCII'] = False
+
+graphs = {}
+graphs['c'] = Counter('python_request_operations_total','The total number of processed requests')
+graphs['h'] = Histogram('python_request_duration_seconds','Histogram for the duration in seconds', buckets=(1,2,5,6,10,float('inf')))
 
 api = Api(app) # Flask 객체에 Api 객체 등록
 ns = api.namespace('trademark', description= '상표 데이터 테스트 api', path='')
@@ -26,6 +35,14 @@ db = conn.vitaminc
 # collection 생성
 collect = db.trademark
 collect_elastic = db.sampledata
+
+# prometheus counter 
+@app.route("/metrics")
+def requests_count():
+    res = []
+    for k,v in graphs.items():
+        res.append(prometheus_client.generate_latest(v))
+    return Response(res, mimetype="text/plain")
 
 # api 구현
 @ns.route('/api')
@@ -58,6 +75,13 @@ class saveTrademark(Resource):
     @ns.response(500,'server error')
 
     def post(self):
+        start = time.time()
+        graphs['c'].inc()
+
+        time.sleep(0.500)
+        end = time.time()
+        graphs['h'].observe(end-start)
+
         args = parser.parse_args()
         title = args['title']
         code = args['code']
