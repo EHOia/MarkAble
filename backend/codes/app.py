@@ -99,12 +99,12 @@ class saveTrademark(Resource):
                 
         else: # 중복 없으면 insert
             mongo_res = collect_elastic.find({'similar_group':{"$eq": code}})
-            sim_titles, scores = search_similar_text(title, mongo_res, code)
+            score, meta_data = search_similar_text(title, mongo_res, code)
             doc = {
-            "title" : title,
+            "query_title" : title,
             "code" : code,
-            'similar_titles': sim_titles,
-            'scores' : scores
+            'score' : score,
+            'meta_data' : meta_data
             }
 
             collect.insert(doc)
@@ -113,10 +113,10 @@ class saveTrademark(Resource):
                 "status": 201,
                 "success": True,
                 "results": {
-                    "title" : title,
+                    "query_title" : title,
                     "code" : code,
-                    'similar_titles': sim_titles,
-                    'scores' : scores
+                    'score' : score,
+                    'meta_data' : meta_data
                 },
                 "message": "데이터 등록 성공"
             })
