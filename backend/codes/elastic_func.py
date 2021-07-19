@@ -1,6 +1,6 @@
 import pickle
-import elasticsearch_dsl as dsl
 from elasticsearch import Elasticsearch
+from langdetect import detect
 
 with open('./setting.pckl', 'rb') as fil:
     mapping = pickle.load(fil)
@@ -18,19 +18,25 @@ def search_similar_text(query_title, mongo_res, code):
                                         'similar_group':hit['similar_group']})
         es.indices.refresh()
     
-    S = dsl.Search(using=es, index=index_name)
-    s = S.query(
-        'multi_match',
-        query=query_title,
-        fuzziness='auto',
-        fields=['title']
-    )
-    
-    sim_titles = []
-    scores = []
-    for match in s.execute():
-        sim_titles.append(match.title)
-        scores.append(match.meta.score)
+    if detect(query_title) == 'ko':
+        tokenizer = 'title.nori'
+    else:
+        tokenizer = 'title'
         
-    return sim_titles, scores
-
+    body = {
+        'query': {
+            "multi_match":{
+                'query':  query_title,
+                'fields': [tokenizer]
+            }
+        }
+    }
+    res = es.search(index=index_name, body=body)
+    
+    score = []
+    meta_data = []
+    for match in res['hits']['hits']:
+        score.append(match['_score'])
+        meta_data.append(match['_source'])
+        
+    return score, meta_data
