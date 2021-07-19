@@ -86,7 +86,7 @@ class saveTrademark(Resource):
         title = args['title']
         code = args['code']
         
-        results = collect.find_one({"title":title, "code":code})
+        results = collect.find_one({"query_title":title, "code":code})
 
         if results != None: # 아예 중복되는 데이터가 있는 경우
             print(results)
