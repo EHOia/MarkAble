@@ -154,7 +154,9 @@ function App() {
         <ul>
           <li>
             <div className={styles.rank}>1</div>
-            <div className={styles.mark_name}>Coca-Cola</div>
+            <div>
+              {data}
+            </div>
           </li>
           <li>
             <div className={styles.rank}>2</div>
