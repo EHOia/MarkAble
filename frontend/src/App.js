@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { useState, useEffect ,Component } from "react";
 import axios from "axios";
 
 import styles from "./style.module.css";
@@ -10,6 +10,7 @@ function App() {
   const [mode, setMode] = useState("welcome");
   const [text, setText] = useState("");
   const [code, setCode] = useState("");
+  const[data, setData] = useState("");
 
   const processText = e => {
     setText(e.target.value);
@@ -45,17 +46,19 @@ function App() {
         .catch(error => {
           console.log("failed", error);
         });
-
-      axios
-        .get(`http://127.0.0.1:5000/trademark/api/show_data`)
-        .then(response => {
-          console.log(response.data);
-        })
-        .catch(error => {
-          console.log("failed", error);
-        });
     }
   };
+
+  useEffect(() => {
+    axios.get(`http://127.0.0.1:5000/trademark/api/show_data`)
+      .then(response=>setData(response.data))
+      .catch(error => {
+        console.log("failed", error);
+      });
+  }, []);
+
+
+
 
   const toWelcomeChange = () => {
     setMode("welcome");
@@ -138,23 +141,25 @@ function App() {
         <ul>
           <li>
             <div className={styles.rank}>1</div>
-            <div className={styles.mark_name}>Coca-Cola</div>
+            <div>
+              {data}
+            </div>
           </li>
           <li>
             <div className={styles.rank}>2</div>
-            <div className={styles.mark_name}>COLO</div>
+            <div className={styles.mark_name}>similar_titles2</div>
           </li>
           <li>
             <div className={styles.rank}>3</div>
-            <div className={styles.mark_name}>CORA</div>
+            <div className={styles.mark_name}>similar_titles3</div>
           </li>
           <li>
             <div className={styles.rank}>4</div>
-            <div className={styles.mark_name}>JONNY COTA</div>
+            <div className={styles.mark_name}>similar_titles4</div>
           </li>
           <li>
             <div className={styles.rank}>5</div>
-            <div className={styles.mark_name}>COL D'ORCIA</div>
+            <div className={styles.mark_name}>similar_titles5</div>
           </li>
         </ul>
       );
