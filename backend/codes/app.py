@@ -34,7 +34,7 @@ db = conn.vitaminc
 
 # collection 생성
 collect = db.trademark
-collect_elastic = db.sampledata
+# collect_elastic = db.sampledata
 
 # prometheus counter 
 @app.route("/metrics")
@@ -98,8 +98,7 @@ class saveTrademark(Resource):
             })
                 
         else: # 중복 없으면 insert
-            mongo_res = collect_elastic.find({'similar_group':{"$eq": code}})
-            score, meta_data = search_similar_text(title, mongo_res, code)
+            score, meta_data = search_similar_text(title, code)
             doc = {
             "query_title" : title,
             "code" : code,
