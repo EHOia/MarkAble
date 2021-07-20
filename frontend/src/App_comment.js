@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { useState, useEffect ,Component } from "react";
 import axios from "axios";
 
 /* import CSS */
@@ -31,6 +31,7 @@ function App() {
   // text : 현재값 / setText : 변경할 값
   const [text, setText] = useState("");
   const [code, setCode] = useState("");
+  const[data, setData] = useState("");
 
   // 상표명 입력받는 변수
   const processText = e => {
@@ -64,6 +65,14 @@ function App() {
         });
     }
   };
+
+  useEffect(() => {
+    axios.get(`http://127.0.0.1:5000/trademark/api/show_data`)
+      .then(response=>setData(response.data))
+      .catch(error => {
+        console.log("failed", error);
+      });
+  }, []);
 
   // Loading Effect
   // const Loading = () => {
@@ -145,7 +154,9 @@ function App() {
         <ul>
           <li>
             <div className={styles.rank}>1</div>
-            <div className={styles.mark_name}>Coca-Cola</div>
+            <div>
+              {data}
+            </div>
           </li>
           <li>
             <div className={styles.rank}>2</div>

@@ -45,10 +45,10 @@ services:
     ports:
       - "27017:27017"
 
-  mongo-seed: # 처음에 빌드할때 실행시킨이후에 주석처리하기!
-    build: ./mongo-seed
-    links:
-      - mongo_db
+  # mongo-seed: # 처음에 빌드할때 실행시킨이후에 주석처리하기!
+  #   build: ./mongo-seed
+  #   links:
+  #     - mongo_db
 
   nginx:
     image: nginx:latest
@@ -71,3 +71,32 @@ services:
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - "XPACK_SECURITY_ENABLED=false"
+  
+  prometheus:
+    image: prom/prometheus:latest
+    user: root
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - ./prometheus/data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    ports:
+      - 9090:9090
+    restart: always
+
+  grafana:
+    image: grafana/grafana
+    user: root
+    depends_on:
+      - prometheus
+    ports:
+      - 3001:3000
+    volumes:
+      - ./grafana/data:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    env_file:
+      - ./grafana/config.monitoring
+    restart: always

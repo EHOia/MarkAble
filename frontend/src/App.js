@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useEffect ,Component } from "react";
 import axios from "axios";
 
 import styles from "./style.module.css";
@@ -10,7 +10,7 @@ function App() {
   const [mode, setMode] = useState("welcome");
   const [text, setText] = useState("");
   const [code, setCode] = useState("");
-  const [data, setData] = useState("");
+  const[data, setData] = useState("");
 
   const processText = e => {
     setText(e.target.value);
@@ -156,19 +156,19 @@ function App() {
           </li>
           <li>
             <div className={styles.rank}>2</div>
-            <div className={styles.mark_name}>COLO</div>
+            <div className={styles.mark_name}>similar_titles2</div>
           </li>
           <li>
             <div className={styles.rank}>3</div>
-            <div className={styles.mark_name}>CORA</div>
+            <div className={styles.mark_name}>similar_titles3</div>
           </li>
           <li>
             <div className={styles.rank}>4</div>
-            <div className={styles.mark_name}>JONNY COTA</div>
+            <div className={styles.mark_name}>similar_titles4</div>
           </li>
           <li>
             <div className={styles.rank}>5</div>
-            <div className={styles.mark_name}>COL D'ORCIA</div>
+            <div className={styles.mark_name}>similar_titles5</div>
           </li>
         </ul>
       );
