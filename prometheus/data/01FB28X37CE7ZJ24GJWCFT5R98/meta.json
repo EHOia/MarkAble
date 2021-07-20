@@ -1,0 +1,17 @@
+{
+	"ulid": "01FB28X37CE7ZJ24GJWCFT5R98",
+	"minTime": 1626782400000,
+	"maxTime": 1626789600000,
+	"stats": {
+		"numSamples": 304281,
+		"numSeries": 1137,
+		"numChunks": 2534
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01FB28X37CE7ZJ24GJWCFT5R98"
+		]
+	},
+	"version": 1
+}

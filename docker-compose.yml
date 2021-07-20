@@ -45,10 +45,10 @@ services:
     ports:
       - "27017:27017"
 
-  # mongo-seed: # 처음에 빌드할때 실행시킨이후에 주석처리하기!
-  #   build: ./mongo-seed
-  #   links:
-  #     - mongo_db
+  mongo-seed: # 처음에 빌드할때 실행시킨이후에 주석처리하기!
+    build: ./mongo-seed
+    links:
+      - mongo_db
 
   nginx:
     image: nginx:latest
