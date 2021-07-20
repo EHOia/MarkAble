@@ -1,5 +1,6 @@
-from elasticsearch import Elasticsearch
+from elasticsearch import helpers, Elasticsearch
 from langdetect import detect
+import json
 
 # Define mapping
 settings = {
@@ -44,24 +45,21 @@ settings = {
       "enroll_num":{
         "type": "keyword",
       },
-    #   "enroll_statement":{
-    #     "type": "keyword",
-    #   }
+      "enroll_statement":{
+        "type": "keyword",
+      }
     }
   }
 }
 
-def search_similar_text(query_title, mongo_res, code):
+def search_similar_text(query_title, similar_group):
     
-    index_name = code.lower()
     es = Elasticsearch('elasticsearch:9200')
-    if not es.indices.exists(index=index_name):
-        es.indices.create(index=index_name, body=settings)
-        for hit in mongo_res:
-            es.index(index=index_name, body={'title':hit['title'],
-                                        'enroll_num':hit['enroll_num'],
-                                        'category':hit['category'],
-                                        'similar_group':hit['similar_group']})
+    if not es.indices.exists(index='trademark'):  # Elasticsearch 내부에 db가 존재하지않으면 insert
+        es.indices.create(index='trademark', body=settings)        
+        with open('./2020_data.json', 'r') as file:
+            data = json.load(file)    
+        helpers.bulk(es, actions=data, index='trademark')
         es.indices.refresh()
     
     if detect(query_title) == 'ko':
@@ -70,14 +68,29 @@ def search_similar_text(query_title, mongo_res, code):
         tokenizer = 'title'
         
     body = {
-        'query': {
-            "multi_match":{
-                'query':  query_title,
-                'fields': [tokenizer]
-            }
+      "query": {
+        "bool" : {
+          "must": [
+              {
+                  "multi_match": {
+                      "query": query_title,
+                      "fuzziness": "auto",
+                      'fields':[
+                          tokenizer
+                      ]
+                  }
+              },
+              {
+                  'match': {
+                      'similar_group': similar_group
+                  }
+              }
+
+          ],
         }
+      }
     }
-    res = es.search(index=index_name, body=body)
+    res = es.search(index='trademark', body=body)
     
     score = []
     meta_data = []
