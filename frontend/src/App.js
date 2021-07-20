@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { useState, useEffect, Component } from "react";
 import axios from "axios";
 
 import styles from "./style.module.css";
@@ -10,6 +10,7 @@ function App() {
   const [mode, setMode] = useState("welcome");
   const [text, setText] = useState("");
   const [code, setCode] = useState("");
+  const [data, setData] = useState("");
 
   const processText = e => {
     setText(e.target.value);
@@ -49,13 +50,26 @@ function App() {
       axios
         .get(`http://127.0.0.1:5000/trademark/api/show_data`)
         .then(response => {
-          console.log(response.data);
+          // console.log("response : ", JSON.stringify(response, null, 2));
+          setData(response.data);
         })
         .catch(error => {
           console.log("failed", error);
         });
     }
   };
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://127.0.0.1:5000/trademark/api/show_data`)
+  //     .then(response => {
+  //       // console.log("response : ", JSON.stringify(response, null, 2));
+  //       setData(response.data);
+  //     })
+  //     .catch(error => {
+  //       console.log("failed", error);
+  //     });
+  // }, []);
 
   const toWelcomeChange = () => {
     setMode("welcome");
@@ -138,7 +152,7 @@ function App() {
         <ul>
           <li>
             <div className={styles.rank}>1</div>
-            <div className={styles.mark_name}>Coca-Cola</div>
+            <div>{data}</div>
           </li>
           <li>
             <div className={styles.rank}>2</div>
