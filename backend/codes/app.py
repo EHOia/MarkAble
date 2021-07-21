@@ -66,7 +66,7 @@ class keywordMapping(Resource):
         keyword = args['keyword']
         api_key = args['api_key']
         
-        result = get_assignprodcut_dict(keyword, api_key)
+        results = get_assignprodcut_dict(keyword, api_key)
 
         return jsonify({
                 "status": 200,
