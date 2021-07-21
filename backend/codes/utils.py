@@ -113,4 +113,4 @@ def get_assignprodcut_dict(product_name, your_api_key):
   content = reponse.content
   dict_type = xmltodict.parse(content)
   body = dict_type['response']['body']
-  return [{'name': x['name'], 'similiar_code':x['simm']}for x in body['items']['trademarkAsignProductSearchInfo']] 
+  return [{'name': x['name'], 'similiar_code':x['simm'],'category':x['classsification']}for x in body['items']['trademarkAsignProductSearchInfo']] 
