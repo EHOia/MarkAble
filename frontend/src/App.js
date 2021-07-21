@@ -1,4 +1,4 @@
-import React, { useState, useEffect ,Component } from "react";
+import React, { useState, useEffect, Component } from "react";
 import axios from "axios";
 
 import styles from "./style.module.css";
@@ -6,13 +6,17 @@ import styles from "./style.module.css";
 import Title from "./components/Title";
 import MostSimilarityTxt from "./components/MostSimilarityTxt";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faCircleo } from "@fortawesome/free-solid-svg-icons";
+import { faCircle } from "@fortawesome/free-regular-svg-icons";
+
 function App() {
   const [mode, setMode] = useState("welcome");
   const [text, setText] = useState("");
   const [code, setCode] = useState("");
   const [data, setData] = useState("");
-  const [state, setState] = useState("undifined")
-  const [list, setList] = useState("none")
+  const [state, setState] = useState("undifined");
+  const [list, setList] = useState("none");
 
   const processText = e => {
     setText(e.target.value);
@@ -32,9 +36,9 @@ function App() {
       alert("유사군코드가 선택되지 않았습니다.");
     } else if (text === "") {
       alert("상표명을 입력해주세요.");
-    // } else if (!validateCode(code)) {
-    //   alert("올바른 유사군코드를 입력해주세요.");
-     } else {
+      // } else if (!validateCode(code)) {
+      //   alert("올바른 유사군코드를 입력해주세요.");
+    } else {
       setMode("result");
       let form = new FormData();
       form.append("title", text);
@@ -75,7 +79,7 @@ function App() {
 
   const toWelcomeChange = () => {
     setMode("welcome");
-    setState("undefined")
+    setState("undefined");
     setText("");
     setCode("");
     setList("none");
@@ -180,42 +184,110 @@ function App() {
   }
 
   const getList = () => {
-    setList("obtained")
-  }
+    setList("obtained");
+  };
 
-
-  
   const getCode = () => {
-    setMode("welcome")
-    setState("defined")
-    setCode("G0602") // *****나중에 매핑테이블 오면 클릭한 글자로 가져가게 변수 바꾸기
-  }
+    setMode("welcome");
+    setState("defined");
+    setCode("G0602"); // *****나중에 매핑테이블 오면 클릭한 글자로 가져가게 변수 바꾸기
+  };
 
-  const searchCode = () =>{
+  const searchCode = () => {
     setMode("search");
-  }
+  };
 
   var _list = null;
-  if (list === "obtained"){
+  if (list === "obtained") {
     _list = (
       <div>
-        금속 가방
-        <i onClick={getCode}>
-          G0602
-        </i>
+        {/* 금속 가방
+        <i onClick={getCode}>G0602</i> */}
+        <div className={styles.table_block}>
+          <div className={styles.table}>
+            <table>
+              <thead>
+                <tr>
+                  <th className={styles.th1}>류</th>
+                  <th className={styles.th2}>상품명</th>
+                  <th className={styles.th3}>유사군코드</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr onClick={getCode}>
+                  <td className={styles.td1} id="td1">
+                    1
+                  </td>
+                  <td id="td2">공업용콜라겐</td>
+                  <td id="td3">G1001</td>
+                </tr>
+                <tr>
+                  <td className={styles.td1} id="td1">
+                    1
+                  </td>
+                  <td id="td2">의료용콜라겐</td>
+                  <td id="td3">G1004</td>
+                </tr>
+                <tr>
+                  <td className={styles.td1} id="td1">
+                    1
+                  </td>
+                  <td id="td2">콜라주</td>
+                  <td id="td3">G5202</td>
+                </tr>
+                <tr>
+                  <td className={styles.td1} id="td1">
+                    1
+                  </td>
+                  <td id="td2">가공된콜라드그린</td>
+                  <td id="td3">G0204</td>
+                </tr>
+                <tr>
+                  <td className={styles.td1} id="td1">
+                    1
+                  </td>
+                  <td id="td2">공업용콜라겐</td>
+                  <td id="td3">G1001</td>
+                </tr>
+                <tr>
+                  <td className={styles.td1} id="td1">
+                    1
+                  </td>
+                  <td id="td2">의료용콜라겐</td>
+                  <td id="td3">G1004</td>
+                </tr>
+                <tr>
+                  <td className={styles.td1} id="td1">
+                    1
+                  </td>
+                  <td id="td2">콜라주</td>
+                  <td id="td3">G5202</td>
+                </tr>
+                <tr>
+                  <td className={styles.td1} id="td1">
+                    1
+                  </td>
+                  <td id="td2">가공된콜라드그린</td>
+                  <td id="td3">G0204</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-    )
+    );
   }
 
   var _post = null;
   _post = (
-    <button onClick={searchCode}>업종 선택</button>
-    )
+    <button className={styles.code_inquery} onClick={searchCode}>
+      <FontAwesomeIcon icon={faCircle} className="circle" />
+      유사군코드 조회
+    </button>
+  );
 
-  if (state === "defined"){
-    _post = (
-    <p>{code}</p>
-    )
+  if (state === "defined") {
+    _post = <p>{code}</p>;
   }
 
   var _article = null;
@@ -238,9 +310,7 @@ function App() {
           </p>
         </div> */}
         <div className={styles.similarity_check_btn}>
-          <p>
-            {_post}
-          </p>
+          <p>{_post}</p>
         </div>
         <div className={styles.input_name}>
           <p>
@@ -261,26 +331,23 @@ function App() {
     );
   }
 
-  if (mode=="search"){
+  if (mode == "search") {
     _article = (
+      <div>
         <div className={styles.input_zone}>
           <div className={styles.input_name}>
-          <p>
-            <input
-              type="text"
-              placeholder="업종을 입력하세요."
-              
-            />
-          </p>
+            <p>
+              <input type="text" placeholder="상품 명칭을 입력하세요." />
+            </p>
           </div>
           <div className={styles.similarity_check_btn}>
             <p>
-              <button onClick={getList}>search</button>
+              <button onClick={getList}>유사군코드 조회</button>
             </p>
           </div>
-          {_list}
         </div>
-                
+        <div className={styles.list_zone}>{_list}</div>
+      </div>
     );
   }
 
@@ -293,7 +360,6 @@ function App() {
         </div>
       </div>
       {_article}
-
     </div>
   );
 }
