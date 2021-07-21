@@ -126,6 +126,72 @@ a:-webkit-any-link {
   margin-top: 2%;
 }
 
+.list_zone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  margin-top: 2%;
+  margin-bottom: 10%;
+}
+
+.table_block {
+  width: 40vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table {
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 0;
+}
+
+.table th {
+  padding: 5% 0 5% 0;
+}
+
+.table thead {
+  font-size: 0.9vw !important;
+  padding-bottom: 5%;
+}
+
+.table thead .th1 {
+  width: 4vw;
+  padding-left: 4%;
+}
+
+.table thead .th2 {
+  width: 18vw;
+}
+
+.table thead .th3 {
+  width: 8vw;
+}
+
+.table td {
+  font-size: 0.85vw !important;
+  padding: 4% 0 4% 0;
+}
+
+.table .td1 {
+  font-size: 0.85vw !important;
+  padding: 4% 0 4% 4%;
+}
+
+.table tbody tr {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border-radius: 10px;
+  padding-bottom: 4%;
+}
+
+.table tbody tr:hover {
+  background-color: #7a9ef213;
+}
+
 .category_options {
   transition: all 0.3s ease-in-out;
 }
@@ -268,6 +334,35 @@ button:hover {
   to {
     color: #8360c3dd;
   }
+}
+
+svg {
+  overflow: visible;
+  margin-right: 0.5vw;
+  color: rgb(255, 95, 95);
+}
+
+.code_inquery {
+  border-radius: 10px;
+  background: transparent !important;
+  color: #555;
+  font-family: "Noto Sans KR", sans-serif !important;
+}
+
+.code_inquery:hover {
+  color: #555;
+  animation-name: none;
+}
+
+.code_complete {
+  font-size: 0.98vw;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  color: #555;
+}
+
+.code_complete svg {
+  color: rgb(134, 132, 255) !important;
 }
 
 .intro_zone {
