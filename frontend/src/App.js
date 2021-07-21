@@ -14,9 +14,12 @@ function App() {
   const [mode, setMode] = useState("welcome");
   const [text, setText] = useState("");
   const [code, setCode] = useState("");
-  const [data, setData] = useState("");
   const [state, setState] = useState("undifined");
   const [list, setList] = useState("none");
+
+  const [score, setScore] = useState(0);
+  const [list1, setList1] = useState("");
+  const [list2, setList2] = useState("");
 
   const processText = e => {
     setText(e.target.value);
@@ -48,20 +51,30 @@ function App() {
         .post(`http://127.0.0.1:5000/trademark/api/data_transmit`, form)
         .then(response => {
           console.log("response : ", JSON.stringify(response, null, 2));
+
+          console.log(response["data"]["results"]);
+
+          var data_array = response["data"]["results"].split("[");
+          setScore(data_array[1].split(",")[0]);
+
+          var data_array1 = response["data"]["results"].split("'title': ");
+          console.log(data_array1[1].split(",")[0]);
+          setList1(data_array1[1].split(",")[0]);
+          setList2(data_array1[2].split(",")[0]);
         })
         .catch(error => {
           console.log("failed", error);
         });
 
-      axios
-        .get(`http://127.0.0.1:5000/trademark/api/show_data`)
-        .then(response => {
-          // console.log("response : ", JSON.stringify(response, null, 2));
-          setData(response.data);
-        })
-        .catch(error => {
-          console.log("failed", error);
-        });
+      // axios
+      //   .get(`http://127.0.0.1:5000/trademark/api/show_data`)
+      //   .then(response => {
+      //     // console.log("response : ", JSON.stringify(response, null, 2));
+      //     setData(response.data);
+      //   })
+      //   .catch(error => {
+      //     console.log("failed", error);
+      //   });
     }
   };
 
@@ -119,7 +132,7 @@ function App() {
 
   class MostSimilarityNum extends Component {
     render() {
-      return <div className={styles.most_similarity_num}>86.53%</div>;
+      return <div className={styles.most_similarity_num}>{score}</div>;
     }
   }
 
@@ -137,7 +150,7 @@ function App() {
     render() {
       return (
         <div className={styles.list_title}>
-          📝 List of Similar Trademarks of &nbsp;{text}
+          📝 List of Similar Trademarks of &nbsp;"{text}"
         </div>
       );
     }
@@ -160,11 +173,11 @@ function App() {
         <ul>
           <li>
             <div className={styles.rank}>1</div>
-            <div>{data}</div>
+            <div className={styles.mark_name}>{list1}</div>
           </li>
           <li>
             <div className={styles.rank}>2</div>
-            <div className={styles.mark_name}>similar_titles2</div>
+            <div className={styles.mark_name}>{list2}</div>
           </li>
           <li>
             <div className={styles.rank}>3</div>
