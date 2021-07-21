@@ -10,7 +10,8 @@ function App() {
   const [mode, setMode] = useState("welcome");
   const [text, setText] = useState("");
   const [code, setCode] = useState("");
-  const[data, setData] = useState("");
+  const [data, setData] = useState("");
+  const [search, setSearch] = useState("undifined")
 
   const processText = e => {
     setText(e.target.value);
@@ -20,19 +21,19 @@ function App() {
     setCode(e.target.value);
   };
 
-  function validateCode(code) {
-    var codeReg = new RegExp(/[g|s|S|G]\d{4}/);
-    return codeReg.test(code);
-  }
+  // function validateCode(code) {
+  //   var codeReg = new RegExp(/[g|s|S|G]\d{4}/);
+  //   return codeReg.test(code);
+  // }
 
   const sendData = () => {
     if (code === "") {
-      alert("유사군코드를 입력해주세요.");
+      alert("유사군코드가 선택되지 않았습니다.");
     } else if (text === "") {
       alert("상표명을 입력해주세요.");
-    } else if (!validateCode(code)) {
-      alert("올바른 유사군코드를 입력해주세요.");
-    } else {
+    // } else if (!validateCode(code)) {
+    //   alert("올바른 유사군코드를 입력해주세요.");
+     } else {
       setMode("result");
       let form = new FormData();
       form.append("title", text);
@@ -73,6 +74,7 @@ function App() {
 
   const toWelcomeChange = () => {
     setMode("welcome");
+    setSearch("undefined")
     setText("");
     setCode("");
   };
@@ -174,6 +176,25 @@ function App() {
       );
     }
   }
+  const getCode = () => {
+    setMode("welcome")
+    setSearch("defined")
+  }
+
+  const searchCode = () =>{
+    setMode("search");
+  }
+
+  var _post = null;
+  _post = (
+    <button onClick={searchCode}>유사도코드 검색</button>
+    )
+
+  if (search === "defined"){
+    _post = (
+    <p>{code}</p>
+    )
+  }
 
   var _article = null;
   if (mode === "result") {
@@ -183,7 +204,7 @@ function App() {
   if (mode === "welcome") {
     _article = (
       <div className={styles.input_zone}>
-        <div className={styles.category_options}>
+        {/* <div className={styles.category_options}>
           <p>
             <input
               className={styles.category_input}
@@ -192,6 +213,11 @@ function App() {
               value={code}
               onChange={codeText} // onChange는 input 안의 값이 변경될 때에 발생
             />
+          </p>
+        </div> */}
+        <div className={styles.similarity_check_btn}>
+          <p>
+            {_post}
           </p>
         </div>
         <div className={styles.input_name}>
@@ -210,6 +236,28 @@ function App() {
           </p>
         </div>
       </div>
+    );
+  }
+
+  if (mode=="search"){
+    _article = (
+        <div className={styles.input_zone}>
+          <div className={styles.input_name}>
+          <p>
+            <input
+              type="text"
+              placeholder="상표 관련 단어 입력"
+              value={code}
+              onChange={codeText} // onChange는 input 안의 값이 변경될 때에 발생
+            />
+          </p>
+          </div>
+          <div className={styles.similarity_check_btn}>
+            <p>
+              <button onClick={getCode}>검색 완료</button>
+            </p>
+          </div>
+        </div>
     );
   }
 
