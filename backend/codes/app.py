@@ -2,7 +2,7 @@ from flask import Flask, jsonify, Response
 from pymongo import MongoClient
 from flask_restx import reqparse, Api, Resource # Api 구현을 위한 Api 객체 import
 from flask_cors import CORS
-from elastic_func import search_similar_text
+from utils import search_similar_text, get_assignprodcut_dict
 from prometheus_flask_exporter import PrometheusMetrics 
 from prometheus_client import Counter, Histogram # 사용할 타입 import 
 import prometheus_client
@@ -54,7 +54,8 @@ class index(Resource):
 @ns.route('/api/keyword_transmit')
 class keywordMapping(Resource):
     keywordParser.add_argument('keyword',type=str, default= '', help='상품 키워드')
-
+    keywordParser.add_argument('api_key',type=str, default= '', help='REST API KEY')
+    
     @ns.expect(keywordParser)
     @ns.response(200,'success')
     @ns.response(400,'bad request')
@@ -63,8 +64,9 @@ class keywordMapping(Resource):
     def post(self):
         args = keywordParser.parse_args()
         keyword = args['keyword']
-
-        results = '' ## elastic search 사용해서 매핑된 결과 받아옴 (json 형식)
+        api_key = args['api_key']
+        
+        result = get_assignprodcut_dict(keyword, api_key)
 
         return jsonify({
                 "status": 200,

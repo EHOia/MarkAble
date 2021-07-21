@@ -11,3 +11,5 @@ elasticsearch_dsl
 prometheus-client
 prometheus_flask_exporter
 langdetect
+requests
+xmltodict

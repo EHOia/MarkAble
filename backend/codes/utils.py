@@ -1,6 +1,8 @@
 from elasticsearch import helpers, Elasticsearch
 from langdetect import detect
 import json
+import requests
+import xmltodict
 
 # Define mapping
 settings = {
@@ -100,3 +102,15 @@ def search_similar_text(query_title, similar_group):
         meta_data.append(match['_source'])
         
     return score, meta_data
+
+def get_assignprodcut_dict(product_name, your_api_key):
+  url1 = "http://plus.kipris.or.kr" \
+       "/openapi/rest/trademarkInfoSearchService/trademarkAsignProductSearchInfo"
+  searchword = product_name
+  url2 = "?searchWord=" + searchword
+  url3 = "&accessKey="+your_api_key
+  reponse = requests.get(url1+url2+url3)
+  content = reponse.content
+  dict_type = xmltodict.parse(content)
+  body = dict_type['response']['body']
+  return [{'name': x['name'], 'similiar_code':x['simm']}for x in body['items']['trademarkAsignProductSearchInfo']] 
