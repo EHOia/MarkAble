@@ -50,18 +50,6 @@ def requests_count():
 class index(Resource):
     def get(self):
         return "Hello World!"
-    
-@ns.route('/api/get_product_similar_code')
-class get_similar_codes(Resource):
-    parser.add_argument('product_category',type=str, default='', help='상품 종류')
-    parser.add_argument('api_key',type=str, default='', help='API KEY')
-    @ns.expect(parser)
-    @ns.response(201,'success')
-    @ns.response(400,'bad request')
-    @ns.response(500,'server error')
-    def post(self):
-        start = time.time()
-        graphs['c'].inc()
 
 @ns.route('/api/keyword_transmit')
 class keywordMapping(Resource):
