@@ -2,7 +2,7 @@ from flask import Flask, jsonify, Response
 from pymongo import MongoClient
 from flask_restx import reqparse, Api, Resource # Api 구현을 위한 Api 객체 import
 from flask_cors import CORS
-from elastic_func import search_similar_text
+from utils import search_similar_text, get_assignprodcut_dict
 from prometheus_flask_exporter import PrometheusMetrics 
 from prometheus_client import Counter, Histogram # 사용할 타입 import 
 import prometheus_client
@@ -49,7 +49,35 @@ def requests_count():
 class index(Resource):
     def get(self):
         return "Hello World!"
+    
+@ns.route('/api/get_product_similar_code')
+class get_similar_codes(Resource):
+    parser.add_argument('product_category',type=str, default='', help='상품 종류')
+    parser.add_argument('api_key',type=str, default='', help='API KEY')
+    @ns.expect(parser)
+    @ns.response(201,'success')
+    @ns.response(400,'bad request')
+    @ns.response(500,'server error')
+    def post(self):
+        start = time.time()
+        graphs['c'].inc()
 
+        time.sleep(0.500)
+        end = time.time()
+        graphs['h'].observe(end-start)
+
+        args = parser.parse_args()
+        product_category = args['product_category']
+        api_key = args['api_key']
+        result = get_assignprodcut_dict(product_category, api_key)
+        return jsonify({
+            "status": 201,
+            "success": True,
+            "results": str(result),
+            "message": "데이터 등록 성공"
+        })
+        
+        
 @ns.route('/api/show_data')
 class showData(Resource):
     def get(self):
