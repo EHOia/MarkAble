@@ -22,7 +22,8 @@ ns = api.namespace('trademark', description= '상표 데이터 테스트 api', p
 
 CORS(app) # 다른 포트번호에 대한 보안 제거
 
-parser = reqparse.RequestParser()
+keywordParser = reqparse.RequestParser()
+dataParser = reqparse.RequestParser()
 
 # db 연동
 host = "mongo_db" # 단독실행시 localhost / docker실행시 mongo_db
@@ -62,42 +63,36 @@ class get_similar_codes(Resource):
         start = time.time()
         graphs['c'].inc()
 
-        time.sleep(0.500)
-        end = time.time()
-        graphs['h'].observe(end-start)
+@ns.route('/api/keyword_transmit')
+class keywordMapping(Resource):
+    keywordParser.add_argument('keyword',type=str, default= '', help='상품 키워드')
+    keywordParser.add_argument('api_key',type=str, default= '', help='REST API KEY')
+    
+    @ns.expect(keywordParser)
+    @ns.response(200,'success')
+    @ns.response(400,'bad request')
+    @ns.response(500,'server error')
 
-        args = parser.parse_args()
-        product_category = args['product_category']
+    def post(self):
+        args = keywordParser.parse_args()
+        keyword = args['keyword']
         api_key = args['api_key']
-        result = get_assignprodcut_dict(product_category, api_key)
+        
+        result = get_assignprodcut_dict(keyword, api_key)
+
         return jsonify({
-            "status": 201,
-            "success": True,
-            "results": str(result),
-            "message": "데이터 등록 성공"
-        })
-        
-        
-@ns.route('/api/show_data')
-class showData(Resource):
-    def get(self):
-        s = ''
-        isFirst = True
-        results = collect.find()
-        for result in results:
-            if isFirst == True:
-                s += str(result)
-                isFirst = False
-            else:
-                s = s + ', '+ str(result)
-        return s
+                "status": 200,
+                "success": True,
+                "results": results,
+                "message": "키워드 매칭 성공"
+            })
 
 @ns.route('/api/data_transmit')
 class saveTrademark(Resource):
-    parser.add_argument('title',type=str, default='', help='상표명')
-    parser.add_argument('code',type=str, default='', help='유사군코드')
+    dataParser.add_argument('title',type=str, default='', help='상표명')
+    dataParser.add_argument('code',type=str, default='', help='유사군코드')
 
-    @ns.expect(parser)
+    @ns.expect(dataParser)
     @ns.response(201,'success')
     @ns.response(400,'bad request')
     @ns.response(500,'server error')
@@ -110,7 +105,7 @@ class saveTrademark(Resource):
         end = time.time()
         graphs['h'].observe(end-start)
 
-        args = parser.parse_args()
+        args = dataParser.parse_args()
         title = args['title']
         code = args['code']
         
@@ -147,3 +142,17 @@ class saveTrademark(Resource):
                 },
                 "message": "데이터 등록 성공"
             })
+    
+@ns.route('/api/show_data')
+class showData(Resource):
+    def get(self):
+        s = ''
+        isFirst = True
+        results = collect.find()
+        for result in results:
+            if isFirst == True:
+                s += str(result)
+                isFirst = False
+            else:
+                s = s + ', '+ str(result)
+        return s
