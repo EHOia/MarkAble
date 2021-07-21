@@ -346,11 +346,23 @@ svg {
   border-radius: 10px;
   background: transparent !important;
   color: #555;
+  font-family: "Noto Sans KR", sans-serif !important;
 }
 
 .code_inquery:hover {
   color: #555;
   animation-name: none;
+}
+
+.code_complete {
+  font-size: 0.98vw;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  color: #555;
+}
+
+.code_complete svg {
+  color: rgb(134, 132, 255) !important;
 }
 
 .intro_zone {

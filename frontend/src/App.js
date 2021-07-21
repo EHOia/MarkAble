@@ -18,8 +18,11 @@ function App() {
   const [list, setList] = useState("none");
 
   const [score, setScore] = useState(0);
-  const [list1, setList1] = useState("");
-  const [list2, setList2] = useState("");
+  const [list1, setList1] = useState("none");
+  const [list2, setList2] = useState("none");
+  const [list3, setList3] = useState("none");
+  const [list4, setList4] = useState("none");
+  const [list5, setList5] = useState("none");
 
   const processText = e => {
     setText(e.target.value);
@@ -181,15 +184,15 @@ function App() {
           </li>
           <li>
             <div className={styles.rank}>3</div>
-            <div className={styles.mark_name}>similar_titles3</div>
+            <div className={styles.mark_name}>{list3}</div>
           </li>
           <li>
             <div className={styles.rank}>4</div>
-            <div className={styles.mark_name}>similar_titles4</div>
+            <div className={styles.mark_name}>{list4}</div>
           </li>
           <li>
             <div className={styles.rank}>5</div>
-            <div className={styles.mark_name}>similar_titles5</div>
+            <div className={styles.mark_name}>{list5}</div>
           </li>
         </ul>
       );
@@ -294,13 +297,18 @@ function App() {
   var _post = null;
   _post = (
     <button className={styles.code_inquery} onClick={searchCode}>
-      <FontAwesomeIcon icon={faCircle} className="circle" />
+      <FontAwesomeIcon icon={faCircle} />
       유사군코드 조회
     </button>
   );
 
   if (state === "defined") {
-    _post = <p>{code}</p>;
+    _post = (
+      <span className={styles.code_complete}>
+        <FontAwesomeIcon icon={faCircle} className="circle" />
+        {code}
+      </span>
+    );
   }
 
   var _article = null;
