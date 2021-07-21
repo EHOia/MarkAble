@@ -37,6 +37,10 @@ db = conn.vitaminc
 collect = db.trademark
 # collect_elastic = db.sampledata
 
+f = open('./api_key.txt','r')
+key = f.read()
+f.close()
+
 # prometheus counter 
 @app.route("/metrics")
 def requests_count():
@@ -54,7 +58,7 @@ class index(Resource):
 @ns.route('/api/keyword_transmit')
 class keywordMapping(Resource):
     keywordParser.add_argument('keyword',type=str, default= '', help='상품 키워드')
-    keywordParser.add_argument('api_key',type=str, default= '', help='REST API KEY')
+    keywordParser.add_argument('api_key',type=str, default= key, help='REST API KEY')
     
     @ns.expect(keywordParser)
     @ns.response(200,'success')

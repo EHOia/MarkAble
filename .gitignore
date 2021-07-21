@@ -1,1 +1,4 @@
 .DS_Store
+prometheus/data/
+mongo/db/
+backend/codes/api_key.txt
