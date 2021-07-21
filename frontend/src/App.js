@@ -11,7 +11,8 @@ function App() {
   const [text, setText] = useState("");
   const [code, setCode] = useState("");
   const [data, setData] = useState("");
-  const [search, setSearch] = useState("undifined")
+  const [state, setState] = useState("undifined")
+  const [list, setList] = useState("none")
 
   const processText = e => {
     setText(e.target.value);
@@ -74,9 +75,10 @@ function App() {
 
   const toWelcomeChange = () => {
     setMode("welcome");
-    setSearch("undefined")
+    setState("undefined")
     setText("");
     setCode("");
+    setList("none");
   };
 
   class ResultZone extends Component {
@@ -176,21 +178,41 @@ function App() {
       );
     }
   }
+
+  const getList = () => {
+    setList("obtained")
+  }
+
+
+  
   const getCode = () => {
     setMode("welcome")
-    setSearch("defined")
+    setState("defined")
+    setCode("G0602") // *****나중에 매핑테이블 오면 클릭한 글자로 가져가게 변수 바꾸기
   }
 
   const searchCode = () =>{
     setMode("search");
   }
 
+  var _list = null;
+  if (list === "obtained"){
+    _list = (
+      <div>
+        금속 가방
+        <i onClick={getCode}>
+          G0602
+        </i>
+      </div>
+    )
+  }
+
   var _post = null;
   _post = (
-    <button onClick={searchCode}>유사도코드 검색</button>
+    <button onClick={searchCode}>업종 선택</button>
     )
 
-  if (search === "defined"){
+  if (state === "defined"){
     _post = (
     <p>{code}</p>
     )
@@ -246,18 +268,19 @@ function App() {
           <p>
             <input
               type="text"
-              placeholder="상표 관련 단어 입력"
-              value={code}
-              onChange={codeText} // onChange는 input 안의 값이 변경될 때에 발생
+              placeholder="업종을 입력하세요."
+              
             />
           </p>
           </div>
           <div className={styles.similarity_check_btn}>
             <p>
-              <button onClick={getCode}>검색 완료</button>
+              <button onClick={getList}>search</button>
             </p>
           </div>
+          {_list}
         </div>
+                
     );
   }
 
@@ -270,6 +293,7 @@ function App() {
         </div>
       </div>
       {_article}
+
     </div>
   );
 }
