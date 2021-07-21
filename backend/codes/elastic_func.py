@@ -68,6 +68,7 @@ def search_similar_text(query_title, similar_group):
         tokenizer = 'title'
         
     body = {
+      'size': '5',
       "query": {
         "bool" : {
           "must": [
