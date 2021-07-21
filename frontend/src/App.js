@@ -64,6 +64,9 @@ function App() {
           console.log(data_array1[1].split(",")[0]);
           setList1(data_array1[1].split(",")[0]);
           setList2(data_array1[2].split(",")[0]);
+          setList3(data_array1[3].split(",")[0]);
+          setList4(data_array1[4].split(",")[0]);
+          setList5(data_array1[5].split(",")[0]);
         })
         .catch(error => {
           console.log("failed", error);
