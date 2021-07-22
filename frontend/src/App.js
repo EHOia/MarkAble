@@ -247,6 +247,7 @@ function App() {
   }
 
   const getList = () => {
+    setLoading(true);
     setList("obtained");
     let keywordform = new FormData();
     keywordform.append("keyword", keyword);
