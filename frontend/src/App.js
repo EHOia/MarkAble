@@ -50,12 +50,12 @@ function App() {
   const [category8, setCategory8] = useState("");
   const [name8, setName8] = useState("");
   const [similar_code8, setSimilarCode8] = useState("");
-  // const [category9, setCategory9] = useState("");
-  // const [name9, setName9] = useState("");
-  // const [similar_code9, setSimilarCode9] = useState("");
-  // const [category10, setCategory10] = useState("");
-  // const [name10, setName10] = useState("");
-  // const [similar_code10, setSimilarCode10] = useState("");
+  const [category9, setCategory9] = useState("");
+  const [name9, setName9] = useState("");
+  const [similar_code9, setSimilarCode9] = useState("");
+  const [category10, setCategory10] = useState("");
+  const [name10, setName10] = useState("");
+  const [similar_code10, setSimilarCode10] = useState("");
 
   const processText = e => {
     setText(e.target.value);
@@ -267,6 +267,12 @@ function App() {
           setCategory8("");
           setName8("");
           setSimilarCode8("");
+          setCategory9("");
+          setName9("");
+          setSimilarCode9("");
+          setCategory10("");
+          setName10("");
+          setSimilarCode10("");
 
           var data_split = JSON.stringify(response["data"]["results"]);
           
@@ -302,9 +308,47 @@ function App() {
           setName8(data_split.split("name")[8].split(",")[0].split("\"")[2]);
           setSimilarCode8(data_split.split("similiar_code")[8].split(",")[0].split("\"")[2]);
 
+          setCategory9(data_split.split("category")[9].split(",")[0].split("\"")[2]);
+          setName9(data_split.split("name")[9].split(",")[0].split("\"")[2]);
+          setSimilarCode9(data_split.split("similiar_code")[9].split(",")[0].split("\"")[2]);
+
+          setCategory10(data_split.split("category")[10].split(",")[0].split("\"")[2]);
+          setName10(data_split.split("name")[10].split(",")[0].split("\"")[2]);
+          setSimilarCode10(data_split.split("similiar_code")[10].split(",")[0].split("\"")[2]);
+
         })
         .catch(error => {
           console.log("failed", error);
+          setCategory1("");
+          setName1("");
+          setSimilarCode1("");
+          setCategory2("");
+          setName2("");
+          setSimilarCode2("");
+          setCategory3("");
+          setName3("");
+          setSimilarCode3("");
+          setCategory4("");
+          setName4("");
+          setSimilarCode4("");
+          setCategory5("");
+          setName5("");
+          setSimilarCode5("");
+          setCategory6("");
+          setName6("");
+          setSimilarCode6("");
+          setCategory7("");
+          setName7("");
+          setSimilarCode7("");
+          setCategory8("");
+          setName8("");
+          setSimilarCode8("");
+          setCategory9("");
+          setName9("");
+          setSimilarCode9("");
+          setCategory10("");
+          setName10("");
+          setSimilarCode10("");
         });
   };
 
@@ -356,6 +400,18 @@ function App() {
     setCode(similar_code8);
   };
 
+  const getCode9 = () => {
+    setMode("welcome");
+    setState("defined");
+    setCode(similar_code9);
+  };
+
+  const getCode10 = () => {
+    setMode("welcome");
+    setState("defined");
+    setCode(similar_code10);
+  };
+
   const searchCode = () => {
     setMode("search");
     setKeyword("");
@@ -370,9 +426,9 @@ function App() {
             <table>
               <thead>
                 <tr>
-                  <th className={styles.th1}>류</th>
-                  <th className={styles.th2}>상품명</th>
-                  <th className={styles.th3}>유사군코드</th>
+                  <th className={styles.th1}>Category</th>
+                  <th className={styles.th2}>Name</th>
+                  <th className={styles.th3}>Similar group code</th>
                 </tr>
               </thead>
               <tbody>
@@ -382,57 +438,71 @@ function App() {
                   <td className={styles.td1} id="td1">
                     {category1}
                   </td>
-                  <td id="td2">{name1}</td>
-                  <td id="td3">{similar_code1}</td>
+                  <td className={styles.td2} id="td2">{name1}</td>
+                  <td className={styles.td3} id="td3">{similar_code1}</td>
                 </tr>
                 <tr onClick={getCode2}>
                   <td className={styles.td1} id="td1">
                   {category2}
                   </td>
-                  <td id="td2">{name2}</td>
-                  <td id="td3">{similar_code2}</td>
+                  <td className={styles.td2} id="td2">{name2}</td>
+                  <td className={styles.td3} id="td3">{similar_code2}</td>
                 </tr>
                 <tr onClick={getCode3}>
                   <td className={styles.td1} id="td1">
                   {category3}
                   </td>
-                  <td id="td2">{name3}</td>
-                  <td id="td3">{similar_code3}</td>
+                  <td className={styles.td2} id="td2">{name3}</td>
+                  <td className={styles.td3} id="td3">{similar_code3}</td>
                 </tr>
                 <tr onClick={getCode4}>
                   <td className={styles.td1} id="td1">
                   {category4}
                   </td>
-                  <td id="td2">{name4}</td>
-                  <td id="td3">{similar_code4}</td>
+                  <td className={styles.td2} id="td2">{name4}</td>
+                  <td className={styles.td3} id="td3">{similar_code4}</td>
                 </tr>
                 <tr onClick={getCode5}>
                   <td className={styles.td1} id="td1">
                   {category5}
                   </td>
-                  <td id="td2">{name5}</td>
-                  <td id="td3">{similar_code5}</td>
+                  <td className={styles.td2} id="td2">{name5}</td>
+                  <td className={styles.td3} id="td3">{similar_code5}</td>
                 </tr>
                 <tr onClick={getCode6}>
                   <td className={styles.td1} id="td1">
                   {category6}
                   </td>
-                  <td id="td2">{name6}</td>
-                  <td id="td3">{similar_code6}</td>
+                  <td className={styles.td2} id="td2">{name6}</td>
+                  <td className={styles.td3} id="td3">{similar_code6}</td>
                 </tr>
                 <tr onClick={getCode7}>
                   <td className={styles.td1} id="td1">
                   {category7}
                   </td>
-                  <td id="td2">{name7}</td>
-                  <td id="td3">{similar_code7}</td>
+                  <td className={styles.td2} id="td2">{name7}</td>
+                  <td className={styles.td3} id="td3">{similar_code7}</td>
                 </tr>
                 <tr onClick={getCode8}>
                   <td className={styles.td1} id="td1">
                   {category8}
                   </td>
-                  <td id="td2">{name8}</td>
-                  <td id="td3">{similar_code8}</td>
+                  <td className={styles.td2} id="td2">{name8}</td>
+                  <td className={styles.td3} id="td3">{similar_code8}</td>
+                </tr>
+                <tr onClick={getCode9}>
+                  <td className={styles.td1} id="td1">
+                  {category9}
+                  </td>
+                  <td className={styles.td2} id="td2">{name9}</td>
+                  <td className={styles.td3} id="td3">{similar_code9}</td>
+                </tr>
+                <tr onClick={getCode10}>
+                  <td className={styles.td1} id="td1">
+                  {category10}
+                  </td>
+                  <td className={styles.td2} id="td2">{name10}</td>
+                  <td className={styles.td3} id="td3">{similar_code10}</td>
                 </tr>
               </tbody>
             </table>
@@ -443,18 +513,38 @@ function App() {
   }
 
   var _post = null;
+  var _circle = null;
   _post = (
     <button className={styles.code_inquery} onClick={searchCode}>
-      <FontAwesomeIcon icon={faCheckCircle} />
+      
       유사군코드 조회
+      <FontAwesomeIcon icon={faCheckCircle} />
     </button>
   );
+
+  _circle = (
+    <FontAwesomeIcon icon={faCheckCircle} /> 
+  )
+
+  if (text === "") {
+    _circle = (
+    <FontAwesomeIcon icon={faCheckCircle} /> 
+  )
+  }
+  else {
+    _circle = (
+    <span className={styles.green_circle}>
+      <FontAwesomeIcon icon={faCheckCircle} /> 
+    </span>
+  )
+  }
 
   if (state === "defined") {
     _post = (
       <span className={styles.code_complete}>
-        <FontAwesomeIcon icon={faCheckCircle} className="circle" />
+        
         {code}
+        <FontAwesomeIcon icon={faCheckCircle} className="circle" />
       </span>
     );
   }
@@ -478,12 +568,14 @@ function App() {
               value={text}
               onKeyPress={onKeyPress1}
               onChange={processText} 
-            />
+            /> 
+            {/* <FontAwesomeIcon icon={faCheckCircle} />  */}
+            {_circle}
           </p>
         </div>
         <div className={styles.similarity_check_btn}>
           <p>
-            <button onClick={sendData}>Check similarity</button>
+            <button onClick={sendData}>유사도검사</button>
           </p>
         </div>
       </div>
@@ -498,7 +590,7 @@ function App() {
             <p>
               <input type="text" value={keyword}
               onKeyPress={onKeyPress2}
-              onChange={processKeyword} placeholder="상품 명칭을 입력하세요." />
+              onChange={processKeyword} placeholder="상품 명칭 입력" />
             </p>
           </div>
           <div className={styles.similarity_check_btn}>
