@@ -16,7 +16,7 @@ function App() {
   const [state, setState] = useState("undifined");
   const [list, setList] = useState("none");
 
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState("");
   const [list1, setList1] = useState("none");
   const [list2, setList2] = useState("none");
   const [list3, setList3] = useState("none");
@@ -100,7 +100,7 @@ function App() {
           var data_split = JSON.stringify(response["data"]["results"]);
           console.log(data_split);
 
-          setScore(0);
+          setScore("");
           setList1("none");
           setList2("none");
           setList3("none");
@@ -108,11 +108,21 @@ function App() {
           setList5("none");
 
           var score_split = data_split.split("score");
-          setScore(score_split[1].split(",")[0].split("[")[1].split("]")[0]);
+          if (score_split[1].split(",")[0].split("[")[1].split("]")[0] === ""){
+            setScore("No Similar Name");
+          }
+          else {
+            setScore(score_split[1].split(",")[0].split("[")[1].split("]")[0]);
+          }
 
           var list_split = data_split.split("title");
-          console.log(list_split[1].split(",")[0].split(":")[1]);
-          setList1(list_split[1].split(",")[0].split(":")[1].split("}")[0]);
+
+          if (text === list_split[1].split(",")[0].split(":")[1].split("}")[0].split("\"")[1]){
+            setList1("none");
+          } else {
+            setList1(list_split[1].split(",")[0].split(":")[1].split("}")[0]);
+          }
+          
           setList2(list_split[2].split(",")[0].split(":")[1].split("}")[0]);
           setList3(list_split[3].split(",")[0].split(":")[1].split("}")[0]);
           setList4(list_split[4].split(",")[0].split(":")[1].split("}")[0]);
