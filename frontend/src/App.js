@@ -56,17 +56,29 @@ function App() {
           console.log("response : ", JSON.stringify(response, null, 2));
 
           console.log(response["data"]["results"]);
+          // var data_split = response["data"]["results"];
+          var data_split = JSON.stringify(response["data"]["results"]);
+          console.log(data_split);
 
-          var data_array = response["data"]["results"].split("[");
-          setScore(data_array[1].split(",")[0]);
+          setScore(0);
+          setList1("none");
+          setList2("none");
+          setList3("none");
+          setList4("none");
+          setList5("none");
 
-          var data_array1 = response["data"]["results"].split("'title': ");
-          console.log(data_array1[1].split(",")[0]);
-          setList1(data_array1[1].split(",")[0]);
-          setList2(data_array1[2].split(",")[0]);
-          setList3(data_array1[3].split(",")[0]);
-          setList4(data_array1[4].split(",")[0]);
-          setList5(data_array1[5].split(",")[0]);
+          // var score_split = response["data"]["results"].split("[");
+          var score_split = data_split.split("score");
+          setScore(score_split[1].split(",")[0].split("[")[1].split("]")[0]);
+
+          // var list_split = response["data"]["results"].split("'title': ");
+          var list_split = data_split.split("title");
+          console.log(list_split[1].split(",")[0].split(":")[1]);
+          setList1(list_split[1].split(",")[0].split(":")[1].split("}")[0]);
+          setList2(list_split[2].split(",")[0].split(":")[1].split("}")[0]);
+          setList3(list_split[3].split(",")[0].split(":")[1].split("}")[0]);
+          setList4(list_split[4].split(",")[0].split(":")[1].split("}")[0]);
+          setList5(list_split[5].split(",")[0].split(":")[1].split("}")[0]);
         })
         .catch(error => {
           console.log("failed", error);
