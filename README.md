@@ -35,7 +35,7 @@ docker-compose.yml 파일이있는 폴더(root 폴더)에서 다음을 실행
 docker-compose build
 ```
 
-## **4. 실행 **
+## **4  실행**
 
 docker-compose.yml 파일이있는 폴더(root 폴더)에서 다음을 실행
 
