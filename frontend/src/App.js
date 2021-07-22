@@ -65,6 +65,17 @@ function App() {
     setKeyword(e.target.value);
   }
 
+  const onKeyPress1 = (e) => {
+    if (e.key === 'Enter'){
+      sendData();
+    }
+  }
+
+  const onKeyPress2 = (e) => {
+    if (e.key === 'Enter'){
+      getList();
+    }
+  }
   // const codeText = e => {
   //   setCode(e.target.value);
   // };
@@ -465,6 +476,7 @@ function App() {
               type="text"
               placeholder="상표명 입력"
               value={text}
+              onKeyPress={onKeyPress1}
               onChange={processText} 
             />
           </p>
@@ -485,6 +497,7 @@ function App() {
           <div className={styles.input_name}>
             <p>
               <input type="text" value={keyword}
+              onKeyPress={onKeyPress2}
               onChange={processKeyword} placeholder="상품 명칭을 입력하세요." />
             </p>
           </div>
