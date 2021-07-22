@@ -5,6 +5,7 @@ import styles from "./style.module.css";
 
 import Title from "./components/Title";
 import MostSimilarityTxt from "./components/MostSimilarityTxt";
+import Loading from "./components/Loading";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-regular-svg-icons";
@@ -15,6 +16,7 @@ function App() {
   const [code, setCode] = useState("");
   const [state, setState] = useState("undifined");
   const [list, setList] = useState("none");
+  const [loading, setLoading] = useState("true");
 
   const [score, setScore] = useState("");
   const [list1, setList1] = useState("none");
@@ -127,6 +129,8 @@ function App() {
           setList3(list_split[3].split(",")[0].split(":")[1].split("}")[0]);
           setList4(list_split[4].split(",")[0].split(":")[1].split("}")[0]);
           setList5(list_split[5].split(",")[0].split(":")[1].split("}")[0]);
+
+          setLoading(false)
         })
         .catch(error => {
           console.log("failed", error);
@@ -141,6 +145,7 @@ function App() {
     setText("");
     setCode("");
     setList("none");
+    setLoading("true")
   };
 
   class ResultZone extends Component {
@@ -326,6 +331,7 @@ function App() {
           setName10(data_split.split("name")[10].split(",")[0].split("\"")[2]);
           setSimilarCode10(data_split.split("similiar_code")[10].split(",")[0].split("\"")[2]);
 
+          setLoading(false)
         })
         .catch(error => {
           console.log("failed", error);
@@ -431,6 +437,7 @@ function App() {
   if (list === "obtained") {
     _list = (
       <div>
+        {loading ? <Loading /> :
         <div className={styles.table_block}>
           <div className={styles.table}>
             <table>
@@ -518,6 +525,7 @@ function App() {
             </table>
           </div>
         </div>
+  }
       </div>
     );
   }
@@ -609,6 +617,7 @@ function App() {
             </p>
           </div>
         </div>
+        
         <div className={styles.list_zone}>{_list}</div>
       </div>
     );
