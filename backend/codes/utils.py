@@ -54,7 +54,7 @@ settings = {
   }
 }
 
-def search_similar_text(query_title, similar_group):
+def search_similar_text(query_titl, similar_group):
     
     es = Elasticsearch('elasticsearch:9200')
     if not es.indices.exists(index='trademark'):  # Elasticsearch 내부에 db가 존재하지않으면 insert
@@ -64,7 +64,7 @@ def search_similar_text(query_title, similar_group):
         helpers.bulk(es, actions=data, index='trademark')
         es.indices.refresh()
     
-    if detect(query_title) == 'ko':
+    if detect(query_titl) == 'ko':
         tokenizer = 'title.nori'
     else:
         tokenizer = 'title'
@@ -76,7 +76,7 @@ def search_similar_text(query_title, similar_group):
           "must": [
               {
                   "multi_match": {
-                      "query": query_title,
+                      "query": query_titl,
                       "fuzziness": "auto",
                       'fields':[
                           tokenizer
