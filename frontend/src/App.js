@@ -109,6 +109,8 @@ function App() {
           setList4("none");
           setList5("none");
 
+          setLoading(false);
+
           var score_split = data_split.split("score");
           if (score_split[1].split(",")[0].split("[")[1].split("]")[0] === ""){
             setScore("No Similar Name");
@@ -129,8 +131,6 @@ function App() {
           setList3(list_split[3].split(",")[0].split(":")[1].split("}")[0]);
           setList4(list_split[4].split(",")[0].split(":")[1].split("}")[0]);
           setList5(list_split[5].split(",")[0].split(":")[1].split("}")[0]);
-
-          setLoading(false)
         })
         .catch(error => {
           console.log("failed", error);
@@ -331,7 +331,7 @@ function App() {
           setName10(data_split.split("name")[10].split(",")[0].split("\"")[2]);
           setSimilarCode10(data_split.split("similiar_code")[10].split(",")[0].split("\"")[2]);
 
-          setLoading(false)
+          setLoading(false);
         })
         .catch(error => {
           console.log("failed", error);
@@ -370,60 +370,70 @@ function App() {
 
   const getCode1 = () => {
     setMode("welcome");
+    setLoading(true);
     setState("defined");
     setCode(similar_code1);
   };
 
   const getCode2 = () => {
     setMode("welcome");
+    setLoading(true);
     setState("defined");
     setCode(similar_code2);
   };
 
   const getCode3 = () => {
     setMode("welcome");
+    setLoading(true);
     setState("defined");
     setCode(similar_code3);
   };
 
   const getCode4 = () => {
     setMode("welcome");
+    setLoading(true);
     setState("defined");
     setCode(similar_code4);
   };
 
   const getCode5 = () => {
     setMode("welcome");
+    setLoading(true);
     setState("defined");
     setCode(similar_code5);
   };
 
   const getCode6 = () => {
     setMode("welcome");
+    setLoading(true);
     setState("defined");
     setCode(similar_code6);
   };
 
   const getCode7 = () => {
     setMode("welcome");
+    setLoading(true);
     setState("defined");
     setCode(similar_code7);
   };
 
   const getCode8 = () => {
     setMode("welcome");
+    setLoading(true);
     setState("defined");
     setCode(similar_code8);
   };
 
   const getCode9 = () => {
     setMode("welcome");
+    setLoading(true);
     setState("defined");
     setCode(similar_code9);
   };
 
   const getCode10 = () => {
     setMode("welcome");
+    setLoading(true);
     setState("defined");
     setCode(similar_code10);
   };
@@ -569,7 +579,12 @@ function App() {
 
   var _article = null;
   if (mode === "result") {
-    _article = <ResultZone></ResultZone>;
+    _article = (
+    <div>
+      {loading ? <Loading /> : 
+      <ResultZone />}
+    </div>
+    );
   }
 
   if (mode === "welcome") {
