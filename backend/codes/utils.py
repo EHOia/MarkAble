@@ -54,54 +54,55 @@ settings = {
   }
 }
 
-def search_similar_text(query_titl, similar_group):
+def es_load_data():
+  es = Elasticsearch('elasticsearch:9200')
+  if not es.indices.exists(index='trademark'):  # Elasticsearch 내부에 db가 존재하지않으면 insert
+    es.indices.create(index='trademark', body=settings)        
+    with open('./2020_data.json', 'r') as file:
+        data = json.load(file)    
+    helpers.bulk(es, actions=data, index='trademark')
+    es.indices.refresh()
+def search_similar_text(query_title, similar_group):
     
-    es = Elasticsearch('elasticsearch:9200')
-    if not es.indices.exists(index='trademark'):  # Elasticsearch 내부에 db가 존재하지않으면 insert
-        es.indices.create(index='trademark', body=settings)        
-        with open('./2020_data.json', 'r') as file:
-            data = json.load(file)    
-        helpers.bulk(es, actions=data, index='trademark')
-        es.indices.refresh()
-    
-    if detect(query_titl) == 'ko':
-        tokenizer = 'title.nori'
-    else:
-        tokenizer = 'title'
+  es = Elasticsearch('elasticsearch:9200')
+  
+  if detect(query_title) == 'ko':
+      tokenizer = 'title.nori'
+  else:
+      tokenizer = 'title'
         
-    body = {
-      'size': '5',
-      "query": {
-        "bool" : {
-          "must": [
-              {
-                  "multi_match": {
-                      "query": query_titl,
-                      "fuzziness": "auto",
-                      'fields':[
-                          tokenizer
-                      ]
-                  }
-              },
-              {
-                  'match': {
-                      'similar_group': similar_group
-                  }
-              }
+  body = {
+    'size': '100',
+    "query": {
+      "bool" : {
+        "must": [
+            {
+                "multi_match": {
+                    "query": query_title,
+                    "fuzziness": "1",
+                    'fields':[
+                        tokenizer
+                    ]
+                }
+            },
+            {
+                'match': {
+                    'similar_group': similar_group
+                }
+            }
 
-          ],
-        }
+        ],
       }
     }
-    res = es.search(index='trademark', body=body)
+  }
+  res = es.search(index='trademark', body=body)
+  score = []
+  meta_data = []
+  for match in res['hits']['hits']:
+    score.append(match['_score'])
+    meta_data.append(match['_source'])
     
-    score = []
-    meta_data = []
-    for match in res['hits']['hits']:
-        score.append(match['_score'])
-        meta_data.append(match['_source'])
-        
-    return score, meta_data
+  return score, meta_data
 
 def get_assignprodcut_dict(product_name, your_api_key):
   url1 = "http://plus.kipris.or.kr" \
