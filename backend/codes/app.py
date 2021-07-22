@@ -2,7 +2,7 @@ from flask import Flask, jsonify, Response
 from pymongo import MongoClient
 from flask_restx import reqparse, Api, Resource # Api 구현을 위한 Api 객체 import
 from flask_cors import CORS
-from utils import search_similar_text, get_assignprodcut_dict
+from utils import *
 from prometheus_flask_exporter import PrometheusMetrics 
 from prometheus_client import Counter, Histogram # 사용할 타입 import 
 import prometheus_client
@@ -40,6 +40,8 @@ collect = db.trademark
 f = open('./api_key.txt','r')
 key = f.read()
 f.close()
+
+es_load_data() # load data to elasticsearch db
 
 # prometheus counter 
 @app.route("/metrics")
