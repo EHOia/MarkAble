@@ -117,10 +117,10 @@ class saveTrademark(Resource):
         else: # 중복 없으면 insert
             score, meta_data = search_similar_text(title, code)
             doc = {
-            "query_title" : title,
-            "code" : code,
-            'score' : score,
-            'meta_data' : meta_data
+            'code' : code,
+            'meta_data' : meta_data,
+            'query_title' : title,
+            'score' : score
             }
 
             if meta_data: #존재하는 값에 대해서만 insert
