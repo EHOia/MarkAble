@@ -121,7 +121,8 @@ class saveTrademark(Resource):
             'meta_data' : meta_data
             }
 
-            collect.insert(doc)
+            if meta_data: #존재하는 값에 대해서만 insert
+                collect.insert(doc)
 
             return jsonify({
                 "status": 201,
