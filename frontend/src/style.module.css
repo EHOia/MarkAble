@@ -48,7 +48,7 @@
 }
 
 body {
-  background-color: #edf2fb;
+  background-color: #83c5be13;
 }
 
 a {
@@ -69,7 +69,7 @@ a:-webkit-any-link {
 
 .header {
   width: 13%;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", "Noto Sans KR", sans-serif;
   margin-left: 5%;
   padding: 1%;
   font-size: 2vw;
@@ -94,7 +94,7 @@ a:-webkit-any-link {
 }
 
 .title {
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", "Noto Sans KR", sans-serif;
   width: 40vw;
   font-size: 2.1vw;
   font-weight: 800;
@@ -102,9 +102,9 @@ a:-webkit-any-link {
 }
 
 .text_gradient {
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Poppins", "Noto Sans KR", sans-serif !important;
   font-weight: 900;
-  background-image: linear-gradient(45deg, #8360c3 25%, #7a9ef2);
+  background-image: linear-gradient(45deg, #11998e 25%, #38ef7d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
@@ -131,7 +131,7 @@ a:-webkit-any-link {
   justify-content: center;
   align-items: center;
   text-align: left;
-  margin-top: 2%;
+  margin-top: 1.5%;
   margin-bottom: 10%;
 }
 
@@ -150,46 +150,77 @@ a:-webkit-any-link {
 }
 
 .table th {
-  padding: 5% 0 5% 0;
+  padding: 2% 0 2% 0;
 }
 
 .table thead {
-  font-size: 0.9vw !important;
-  padding-bottom: 5%;
+  font-size: 0.75vw !important;
+  padding-bottom: 3%;
+  background-color: #ffffffcc;
+  color: #454545;
 }
 
 .table thead .th1 {
-  width: 4vw;
-  padding-left: 4%;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 10vw;
+  text-align: center;
+  font-family: "Poppins", "Noto Sans KR", sans-serif !important;
+  font-weight: 600;
 }
 
 .table thead .th2 {
-  width: 18vw;
+  width: 27vw;
+  font-family: "Poppins", "Noto Sans KR", sans-serif !important;
+  font-weight: 600;
+  padding: 0 0 0 2%;
 }
 
 .table thead .th3 {
-  width: 8vw;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 15vw;
+  font-family: "Poppins", "Noto Sans KR", sans-serif !important;
+  text-align: center;
+  font-weight: 600;
 }
 
 .table td {
-  font-size: 0.85vw !important;
-  padding: 4% 0 4% 0;
+  font-size: 0.8vw !important;
+  padding: 2% 0 2% 0;
 }
 
 .table .td1 {
-  font-size: 0.85vw !important;
-  padding: 4% 0 4% 4%;
+  font-family: "Poppins", "Noto Sans KR", sans-serif !important;
+  font-size: 0.8vw !important;
+  padding: 2% 0 2% 0%;
+  text-align: center;
+}
+
+.table .td2 {
+  font-family: "Poppins", "Noto Sans KR", sans-serif !important;
+  font-size: 0.8vw !important;
+  padding: 0 0 0 2%;
+  color: #444;
+}
+
+.table .td3 {
+  font-family: "Poppins", "Noto Sans KR", sans-serif !important;
+  font-size: 0.8vw !important;
+  text-align: center;
 }
 
 .table tbody tr {
+  font-family: "Poppins", "Noto Sans KR", sans-serif;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  border-radius: 10px;
-  padding-bottom: 4%;
+  padding-bottom: 2.5%;
+  border-bottom: 1px solid #55555522;
 }
 
 .table tbody tr:hover {
-  background-color: #7a9ef213;
+  background-color: #52b78844;
+  font-weight: 500;
 }
 
 .category_options {
@@ -226,15 +257,11 @@ select {
     border-image: initial; */
 }
 
-.input_name {
-  margin-left: 1%;
-}
-
 input {
-  width: 16vw;
+  width: 9vw;
   height: 5vh;
   text-rendering: auto;
-  color: -internal-light-dark(black, white);
+  color: #333;
   letter-spacing: normal;
   word-spacing: normal;
   text-transform: none;
@@ -243,11 +270,13 @@ input {
   display: inline-block;
   text-align: start;
   appearance: auto;
-  background-color: #f7f9fd;
+  background-color: transparent;
   -webkit-rtl-ordering: logical;
   cursor: text;
   margin: 0em;
-  font: 400 13.3333px Arial;
+  font-size: 0.98vw;
+  font-family: "Poppins", "Noto Sans KR", sans-serif;
+  font-weight: 500;
   padding: 0.5vw 0.3vw;
   border: none;
   border-radius: 10px 0 0 10px;
@@ -255,6 +284,25 @@ input {
     border-style: inset;
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
     border-image: initial; */
+}
+
+input::placeholder {
+  color : #ced4da;
+}
+
+
+.input_name {
+  margin-left: 1%;
+  font-size : 0.9vw;
+}
+
+.input_name svg{
+  margin-right: 1vw;
+  font-size : 0.98vw;
+}
+
+.input_name input{
+  width: 12vw;
 }
 
 .category_input {
@@ -281,14 +329,13 @@ input {
 }
 
 button {
-  width: 10vw;
+  width: 8vw;
   height: 5vh;
-  color: #f7f9fd;
-  font-size: 0.9vw;
+  color: #52b788cc;
+  font-size: 0.8vw;
   font-weight: 700;
   appearance: auto;
   text-rendering: auto;
-  color: -internal-light-dark(black, white);
   letter-spacing: normal;
   word-spacing: normal;
   text-transform: none;
@@ -298,71 +345,57 @@ button {
   text-align: center;
   align-items: flex-start;
   cursor: pointer;
-  background-color: #7399f1dd;
+  background-color: transparent;
   box-sizing: border-box;
-  margin: 0em;
+  margin-left: 2vw;
   padding: 5% 5%;
-  border: none;
-  border-radius: 0 10px 10px 0;
-  transition: all 0.3s ease-in-out;
-  /* border-width: 2px;
-    border-style: outset;
-    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-    border-image: initial; */
+  border: 2px solid #52b788cc;
+  border-radius: 100px;
+  transition: all 0.2s ease-in-out;
+  font-family: "Noto Sans KR", sans-serif !important;
 }
 
 button:hover {
-  background-color: #f7f9fd;
-  color: #7399f1;
-  transition: all 0.3s ease-in-out;
-  animation-name: colorchange;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  animation-duration: 1000ms;
-  animation-fill-mode: forwards;
-}
-
-@keyframes colorchange {
-  from {
-    color: #7399f1;
-  }
-
-  /* 50% {
-    color: #7399f1;
-  } */
-
-  to {
-    color: #8360c3dd;
-  }
+  background-color: #52b788ee;
+  color: #fff;
+  transition: all 0.2s ease-in-out;
 }
 
 svg {
   overflow: visible;
-  margin-right: 0.5vw;
+  margin-left: 0.5vw;
   color: rgb(255, 95, 95);
+  transition: all 0.2s ease-in-out;
+}
+
+.green_circle svg {
+  color: #52b788 !important;
 }
 
 .code_inquery {
+  width: 10vw;
   border-radius: 10px;
   background: transparent !important;
   color: #555;
   font-family: "Noto Sans KR", sans-serif !important;
+  border: none;
+  font-size: 0.9vw;
+  margin-left: 0;
 }
 
 .code_inquery:hover {
-  color: #555;
-  animation-name: none;
+  color: #333;
 }
 
 .code_complete {
   font-size: 0.98vw;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", "Noto Sans KR", sans-serif;
   font-weight: 500;
   color: #555;
 }
 
 .code_complete svg {
-  color: rgb(134, 132, 255) !important;
+  color: #52b788 !important;
 }
 
 .intro_zone {
@@ -426,276 +459,6 @@ i {
   align-items: center;
   text-align: center;
 }
-
-/* */
-/* .slack {
-  position: relative;
-  z-index: 100;
-  margin: 80px auto;
-  width: 96px;
-  height: 96px; */
-/* background: #f5f5f5; */
-/* transform: rotate(-15deg);
-}
-
-.slack-dot {
-  display: block;
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  border-radius: 9px;
-  mix-blend-mode: multiply;
-}
-.slack-dot--a {
-  top: 0;
-  left: 0;
-  background-color: #3eb991;
-  -webkit-animation: slack-animation--a 2s infinite;
-  animation: slack-animation--a 2s infinite;
-  transform: translateX(18px);
-}
-.slack-dot--b {
-  top: 0;
-  right: 0;
-  background-color: #6ecadc;
-  -webkit-animation: slack-animation--b 2s infinite;
-  animation: slack-animation--b 2s infinite;
-  transform: translateY(18px);
-}
-.slack-dot--c {
-  bottom: 0;
-  right: 0;
-  background-color: #e9a820;
-  -webkit-animation: slack-animation--c 2s infinite;
-  animation: slack-animation--c 2s infinite;
-  transform: translateX(-18px);
-}
-.slack-dot--d {
-  bottom: 0;
-  left: 0;
-  background-color: #e01563;
-  -webkit-animation: slack-animation--d 2s infinite;
-  animation: slack-animation--d 2s infinite;
-  transform: translateY(-18px);
-}
-
-@-webkit-keyframes slack-animation--a {
-  0% {
-    top: 0;
-    bottom: auto;
-    height: 18px;
-  }
-  33% {
-    top: 0;
-    bottom: auto;
-    height: 96px;
-  }
-  34% {
-    top: auto;
-    bottom: 0;
-    height: 96px;
-  }
-  66% {
-    top: auto;
-    bottom: 0;
-    height: 18px;
-  }
-  100% {
-    top: auto;
-    bottom: 78px;
-    height: 18px;
-  }
-}
-
-@keyframes slack-animation--a {
-  0% {
-    top: 0;
-    bottom: auto;
-    height: 18px;
-  }
-  33% {
-    top: 0;
-    bottom: auto;
-    height: 96px;
-  }
-  34% {
-    top: auto;
-    bottom: 0;
-    height: 96px;
-  }
-  66% {
-    top: auto;
-    bottom: 0;
-    height: 18px;
-  }
-  100% {
-    top: auto;
-    bottom: 78px;
-    height: 18px;
-  }
-}
-@-webkit-keyframes slack-animation--b {
-  0% {
-    right: 0;
-    left: auto;
-    width: 18px;
-  }
-  33% {
-    right: 0;
-    left: auto;
-    width: 96px;
-  }
-  34% {
-    right: auto;
-    left: 0;
-    width: 96px;
-  }
-  66% {
-    right: auto;
-    left: 0;
-    width: 18px;
-  }
-  100% {
-    right: auto;
-    left: 78px;
-    width: 18px;
-  }
-}
-@keyframes slack-animation--b {
-  0% {
-    right: 0;
-    left: auto;
-    width: 18px;
-  }
-  33% {
-    right: 0;
-    left: auto;
-    width: 96px;
-  }
-  34% {
-    right: auto;
-    left: 0;
-    width: 96px;
-  }
-  66% {
-    right: auto;
-    left: 0;
-    width: 18px;
-  }
-  100% {
-    right: auto;
-    left: 78px;
-    width: 18px;
-  }
-}
-@-webkit-keyframes slack-animation--c {
-  0% {
-    bottom: 0;
-    top: auto;
-    height: 18px;
-  }
-  33% {
-    bottom: 0;
-    top: auto;
-    height: 96px;
-  }
-  34% {
-    bottom: auto;
-    top: 0px;
-    height: 96px;
-  }
-  66% {
-    bottom: auto;
-    top: 0px;
-    height: 18px;
-  }
-  100% {
-    bottom: auto;
-    top: 78px;
-    height: 18px;
-  }
-}
-@keyframes slack-animation--c {
-  0% {
-    bottom: 0;
-    top: auto;
-    height: 18px;
-  }
-  33% {
-    bottom: 0;
-    top: auto;
-    height: 96px;
-  }
-  34% {
-    bottom: auto;
-    top: 0px;
-    height: 96px;
-  }
-  66% {
-    bottom: auto;
-    top: 0px;
-    height: 18px;
-  }
-  100% {
-    bottom: auto;
-    top: 78px;
-    height: 18px;
-  }
-}
-@-webkit-keyframes slack-animation--d {
-  0% {
-    left: 0;
-    right: auto;
-    width: 18px;
-  }
-  33% {
-    left: 0;
-    right: auto;
-    width: 96px;
-  }
-  34% {
-    left: auto;
-    right: 0px;
-    width: 96px;
-  }
-  66% {
-    left: auto;
-    right: 0px;
-    width: 18px;
-  }
-  100% {
-    left: auto;
-    right: 78px;
-    width: 18px;
-  }
-}
-@keyframes slack-animation--d {
-  0% {
-    left: 0;
-    right: auto;
-    width: 18px;
-  }
-  33% {
-    left: 0;
-    right: auto;
-    width: 96px;
-  }
-  34% {
-    left: auto;
-    right: 0px;
-    width: 96px;
-  }
-  66% {
-    left: auto;
-    right: 0px;
-    width: 18px;
-  }
-  100% {
-    left: auto;
-    right: 78px;
-    width: 18px;
-  }
-} */
 
 .loading_effect_zone {
   padding: 5% 5% 1% 5%;
@@ -844,7 +607,7 @@ i {
   display: flex;
   flex-direction: row;
   width: 50%;
-  background-color: #7e88df10;
+  background-color: #83c5be99;
   border-radius: 0 0 20px 20px;
   position: relative;
   margin-bottom: 10%;
