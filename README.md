@@ -28,8 +28,33 @@ c. Kipris API KEY 세팅.
 3. [kipris plus](https://plus.kipris.or.kr/portal/main.do) 메인페이지 데이터서비스 -> OpenAPI -> 상표출원속보 API 신청
 4. backend/codes/api_key.txt 파일생성후, api_key.txt에 본인의 REST API KEY 복사해서 붙여넣기.
 
-d. 실행
+d. 빌드
 
-1. docker-compose build (최초 실행시에만)
-2. docker-compose up 
+docker-compose.yml 파일이있는 폴더(root 폴더)에서 다음을 실행
+```shell
+docker-compose build
+```
 
+## **4. 실행 **
+
+docker-compose.yml 파일이있는 폴더(root 폴더)에서 다음을 실행
+
+```shell
+docker-compose up
+```
+
+컨테이너별 Port들 
+
+Tool | port |
+--- | --- | 
+ElasticSearch | 9200 |
+Frontend | 3000 |
+Backend | 5000 |
+prometheus | 9090 |
+
+
+실행이후 컨테이너 삭제
+
+```shell
+docker-compose down
+```
