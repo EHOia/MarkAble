@@ -103,7 +103,7 @@ class saveTrademark(Resource):
         title = args['title']
         code = args['code']
         
-        results = collect.find_one({"query_titl":title, "code":code})
+        results = collect.find_one({"query_title":title, "code":code})
 
         if results != None: # 아예 중복되는 데이터가 있는 경우
             print(results)
@@ -117,7 +117,7 @@ class saveTrademark(Resource):
         else: # 중복 없으면 insert
             score, meta_data = search_similar_text(title, code)
             doc = {
-            "query_titl" : title,
+            "query_title" : title,
             "code" : code,
             'score' : score,
             'meta_data' : meta_data
@@ -130,7 +130,7 @@ class saveTrademark(Resource):
                 "status": 201,
                 "success": True,
                 "results": {
-                    "query_titl" : title,
+                    "query_title" : title,
                     "code" : code,
                     'score' : score,
                     'meta_data' : meta_data

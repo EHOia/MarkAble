@@ -66,20 +66,20 @@ def search_similar_text(query_title, similar_group):
     
   es = Elasticsearch('elasticsearch:9200')
   
-  if detect(query_titl) == 'ko':
+  if detect(query_title) == 'ko':
       tokenizer = 'title.nori'
   else:
       tokenizer = 'title'
         
   body = {
-    'size': '5',
+    'size': '100',
     "query": {
       "bool" : {
         "must": [
             {
                 "multi_match": {
                     "query": query_title,
-                    "fuzziness": "auto",
+                    "fuzziness": "1",
                     'fields':[
                         tokenizer
                     ]
@@ -96,13 +96,12 @@ def search_similar_text(query_title, similar_group):
     }
   }
   res = es.search(index='trademark', body=body)
-  
   score = []
   meta_data = []
   for match in res['hits']['hits']:
-      score.append(match['_score'])
-      meta_data.append(match['_source'])
-      
+    score.append(match['_score'])
+    meta_data.append(match['_source'])
+    
   return score, meta_data
 
 def get_assignprodcut_dict(product_name, your_api_key):
