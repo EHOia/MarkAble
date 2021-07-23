@@ -106,15 +106,15 @@ services:
   #       source: ./ELK/logstash/pipeline
   #       target: /usr/share/logstash/pipeline
   #       read_only: true
-    ports:
-      - "5001:5001/tcp"
-      - "5001:5001/udp"
-      - "9600:9600"
-    environment:
-      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-    depends_on:
-      - elasticsearch
-    restart: always  
+  #   ports:
+  #     - "5001:5001/tcp"
+  #     - "5001:5001/udp"
+  #     - "9600:9600"
+  #   environment:
+  #     LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+  #   depends_on:
+  #     - elasticsearch
+  #   restart: always  
 
   prometheus:
     image: prom/prometheus:latest
