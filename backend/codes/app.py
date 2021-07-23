@@ -41,7 +41,8 @@ f = open('./api_key.txt','r')
 key = f.read()
 f.close()
 
-es_load_data() # load data to elasticsearch db
+# es_load_data() # load data to elasticsearch db
+es_make_index()
 
 # prometheus counter 
 @app.route("/metrics")
