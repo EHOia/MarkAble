@@ -45,10 +45,10 @@ services:
     ports:
       - "27017:27017"
 
-#   mongo-seed: # 현재 (2021_07_21 기준으로 사용하지않음)
-#     build: ./mongo-seed
-#     links:
-#       - mongo_db
+  mongo-seed: # 현재 다시 사용 -> 주석풀고 실행 후 다시 주석처리!
+    build: ./mongo-seed
+    links:
+      - mongo_db
 
   nginx:
     image: nginx:latest
