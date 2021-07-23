@@ -62,6 +62,13 @@ def es_load_data():
         data = json.load(file)    
     helpers.bulk(es, actions=data, index='trademark')
     es.indices.refresh()
+    
+def es_make_index():
+  es = Elasticsearch('elasticsearch:9200')
+  if not es.indices.exists(index='test'):  # Elasticsearch 내부에 db가 존재하지않으면 insert
+    es.indices.create(index='test', body=settings)        
+    es.indices.refresh()
+    
 def search_similar_text(query_title, similar_group):
     
   es = Elasticsearch('elasticsearch:9200')
@@ -72,7 +79,7 @@ def search_similar_text(query_title, similar_group):
       tokenizer = 'title'
         
   body = {
-    'size': '100',
+    'size': '5',
     "query": {
       "bool" : {
         "must": [

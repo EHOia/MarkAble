@@ -15,6 +15,7 @@ services:
       - elasticsearch:elasticsearch
     depends_on:
       - mongo_db
+      - elasticsearch
     restart: always  
     volumes:
       - ./backend/codes:/usr/src/app
@@ -63,15 +64,68 @@ services:
     restart: "on-failure"
 
   elasticsearch:
-    build: elasticsearch/
+    build: 
+      context: ./ELK/elasticsearch/
+      dockerfile: elastic.Dockerfile
     volumes:
-      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - type: bind
+        source: ./ELK/elasticsearch/config/elasticsearch.yml
+        target: /usr/share/elasticsearch/config/elasticsearch.yml
+        read_only: true
+      - /usr/share/elasticsearch/data
     ports:
       - "9200:9200"
+      - "9300:9300"
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - "XPACK_SECURITY_ENABLED=false"
-  
+
+  # kibana:
+  #   image: docker.elastic.co/kibana/kibana:7.13.3
+  #   container_name: kibana
+  #   ports:
+  #     - 5601:5601
+  #   environment:
+  #     ELASTICSEARCH_URL: http://elasticsearch:9200
+  #     ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+
+  kibana:
+    build:
+      context: ./ELK/kibana/
+      dockerfile: kibana.Dockerfile
+    volumes:
+      - type: bind
+        source: ./ELK/kibana/config/kibana.yml
+        target: /usr/share/kibana/config/kibana.yml
+        read_only: true
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+
+  logstash:
+    build:
+      context: ./ELK/logstash/
+      dockerfile: logstash.Dockerfile
+    volumes:
+      - type: bind
+        source: ./ELK/logstash/config/logstash.yml
+        target: /usr/share/logstash/config/logstash.yml
+        read_only: true
+      - type: bind
+        source: ./ELK/logstash/pipeline
+        target: /usr/share/logstash/pipeline
+        read_only: true
+    ports:
+      - "5001:5001/tcp"
+      - "5001:5001/udp"
+      - "9600:9600"
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    depends_on:
+      - elasticsearch
+    restart: always  
+
   prometheus:
     image: prom/prometheus:latest
     user: root
