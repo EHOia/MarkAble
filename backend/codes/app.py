@@ -7,6 +7,7 @@ from prometheus_flask_exporter import PrometheusMetrics
 from prometheus_client import Counter, Histogram # 사용할 타입 import 
 import prometheus_client
 import time 
+from elasticsearch import helpers, Elasticsearch
 
 app = Flask(__name__) # Flask 객체 선언, 파라미터로 어플리케이션 패키지의 이름을 넣어줌.
 metrics = PrometheusMetrics(app)
@@ -105,41 +106,23 @@ class saveTrademark(Resource):
         args = dataParser.parse_args()
         title = args['title']
         code = args['code']
-        
-        results = collect.find_one({"query_titl":title, "code":code})
 
-        if results != None: # 아예 중복되는 데이터가 있는 경우
-            print(results)
-            return jsonify({
-                "status": 201,
-                "success": True,
-                "results": str(results),
-                "message": "데이터 등록 성공"
-            })
-                
-        else: # 중복 없으면 insert
-            score, meta_data = search_similar_text(title, code)
-            doc = {
-            'code' : code,
-            'meta_data' : meta_data,
-            'query_titl' : title,
-            'score' : score
-            }
+        score, meta_data = search_similar_text(title, code)
 
-            if meta_data: #존재하는 값에 대해서만 insert
-                collect.insert(doc)
+        es = Elasticsearch('elasticsearch:9200')
+        # kiban 가져온후 다시 es.delete_by_query(index='subdata', doc_type="_doc", body='{"query":{"match_all":{}}}')  
 
-            return jsonify({
-                "status": 201,
-                "success": True,
-                "results": {
-                    "query_titl" : title,
-                    "code" : code,
-                    'score' : score,
-                    'meta_data' : meta_data
-                },
-                "message": "데이터 등록 성공"
-            })
+        return jsonify({
+            "status": 201,
+            "success": True,
+            "results": {
+                "query_titl" : title,
+                "code" : code,
+                'score' : score,
+                'meta_data' : meta_data
+            },
+            "message": "데이터 등록 성공"
+        })
     
 @ns.route('/api/show_data')
 class showData(Resource):
