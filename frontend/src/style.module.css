@@ -644,3 +644,12 @@ ul li {
 .mark_name {
   font-size: 1vw;
 }
+
+.project_name {
+    font-family: "Poppins", "Noto Sans KR", sans-serif !important;
+    font-weight: 570;
+    width: 95%;
+    font-size: 1.7vw;
+    margin-left: 3.2%;
+    margin-top: 2%;
+  }
