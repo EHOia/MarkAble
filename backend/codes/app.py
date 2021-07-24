@@ -35,13 +35,15 @@ db = conn.vitaminc
 
 # collection 생성
 collect = db.trademark
-# collect_elastic = db.sampledata
+collect_elastic = db.year_data
 
 f = open('./api_key.txt','r')
 key = f.read()
 f.close()
 
-es_load_data() # load data to elasticsearch db
+# Migrate mongo trademark data to elasticsearch
+mongo_res = collect_elastic.find({}, {'_id': False})
+es_load_data(mongo_res) # load data to elasticsearch db
 # es_make_index()
 
 # prometheus counter 

@@ -79,19 +79,19 @@ services:
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - "XPACK_SECURITY_ENABLED=false"
-  # kibana:
-  #   build:
-  #     context: ./ELK/kibana/
-  #     dockerfile: kibana.Dockerfile
-  #   volumes:
-  #     - type: bind
-  #       source: ./ELK/kibana/config/kibana.yml
-  #       target: /usr/share/kibana/config/kibana.yml
-  #       read_only: true
-  #   ports:
-  #     - "5601:5601"
-  #   depends_on:
-  #     - elasticsearch
+  kibana:
+    build:
+      context: ./ELK/kibana/
+      dockerfile: kibana.Dockerfile
+    volumes:
+      - type: bind
+        source: ./ELK/kibana/config/kibana.yml
+        target: /usr/share/kibana/config/kibana.yml
+        read_only: true
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
 
   # logstash:
   #   build:
@@ -111,10 +111,9 @@ services:
   #     - "5001:5001/udp"
   #     - "9600:9600"
   #   environment:
-  #     LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+  #     LS_JAVA_OPTS: "-Xmx1024m -Xms1024m"
   #   depends_on:
   #     - elasticsearch
-  #   restart: always  
 
   prometheus:
     image: prom/prometheus:latest
