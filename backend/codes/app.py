@@ -109,9 +109,6 @@ class saveTrademark(Resource):
 
         score, meta_data = search_similar_text(title, code)
 
-        es = Elasticsearch('elasticsearch:9200')
-        # kiban 가져온후 다시 es.delete_by_query(index='subdata', doc_type="_doc", body='{"query":{"match_all":{}}}')  
-
         return jsonify({
             "status": 201,
             "success": True,

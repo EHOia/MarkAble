@@ -122,6 +122,7 @@ def search_similar_text(query_title, similar_group):
 
   if not es.indices.exists(index='subdata'):  # Elasticsearch 내부에 db가 존재하지않으면 insert
     es.indices.create(index='subdata')
+  es.delete_by_query(index='subdata', doc_type="_doc", body='{"query":{"match_all":{}}}')
   es.index(index='subdata',body=doc)
   es.indices.refresh(index='subdata')
   #인덱스 내부 전체 doc 제거 es.delete_by_query(index='subdata', doc_type="_doc", body='{"query":{"match_all":{}}}')
