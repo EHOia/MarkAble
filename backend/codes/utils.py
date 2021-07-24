@@ -105,12 +105,26 @@ def search_similar_text(query_title, similar_group):
   }
   res = es.search(index='trademark', body=body)
   score = []
+  es_score = []
   meta_data = []
   for match in res['hits']['hits']:
     score.append(match['_score'])
+    es_score.append((match['_source']['title'],match['_score']))
     meta_data.append(match['_source'])
-    
-  return score, meta_data
+
+
+  doc = {
+    "data_info":meta_data,
+  }
+
+  if not es.indices.exists(index='subdata'):  # Elasticsearch 내부에 db가 존재하지않으면 insert
+    es.indices.create(index='subdata')
+  es.delete_by_query(index='subdata', doc_type="_doc", body='{"query":{"match_all":{}}}')
+  es.index(index='subdata',body=doc)
+  es.indices.refresh(index='subdata')
+  #인덱스 내부 전체 doc 제거 es.delete_by_query(index='subdata', doc_type="_doc", body='{"query":{"match_all":{}}}')
+
+  return score, meta_data , es_score
 
 def get_assignprodcut_dict(product_name, your_api_key):
   url1 = "http://plus.kipris.or.kr" \
