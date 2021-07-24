@@ -11,7 +11,7 @@
 
 ![image](https://user-images.githubusercontent.com/75110752/126807539-15a486b0-5594-41e6-be4d-a75d5ec2beb9.png)
 
-## **3  설치**
+## **3️⃣  설치**
 
 a. 도커 설치.
 
@@ -35,7 +35,7 @@ docker-compose.yml 파일이있는 폴더(root 폴더)에서 다음을 실행
 docker-compose build
 ```
 
-## **4  실행**
+## **4️⃣  실행**
 
 docker-compose.yml 파일이있는 폴더(root 폴더)에서 다음을 실행
 
