@@ -8,7 +8,7 @@ class Title extends Component {
     return (
       <div className={styles.title}>
         Welcome{" "}
-        <span className={styles.text_gradient}>TRADEMARK VERIFICATION</span>
+        <span className={styles.text_gradient}>MARK SURE</span>
       </div>
     );
   }

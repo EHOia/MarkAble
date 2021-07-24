@@ -641,14 +641,11 @@ function App() {
 
   return (
     <div className="App">
-      <div className={styles.project_name}>
-        MARK SURE
         <div className={styles.title_zone}>
           <div onClick={toWelcomeChange}>
             <Title></Title>
           </div>
         </div>
-      </div>
       {_article}
     </div>
   );

@@ -7,7 +7,7 @@ class MostSimilarityTxt extends Component {
   render() {
     return (
       <div className={styles.most_similarity_txt}>
-        Highest similarity probability
+        Highest similarity score
       </div>
     );
   }
