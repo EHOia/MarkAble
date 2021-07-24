@@ -7,12 +7,16 @@ from prometheus_flask_exporter import PrometheusMetrics
 from prometheus_client import Counter, Histogram # 사용할 타입 import 
 import prometheus_client
 import time 
-from elasticsearch import helpers, Elasticsearch
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+import os,os.path
 
 app = Flask(__name__) # Flask 객체 선언, 파라미터로 어플리케이션 패키지의 이름을 넣어줌.
 metrics = PrometheusMetrics(app)
 metrics.info("flask_app_info", "App Info, this can be anything you want", version="1.0.0")
 app.config['JSON_AS_ASCII'] = False
+
+font_path = 'NanumGothic.ttf'
 
 graphs = {}
 graphs['c'] = Counter('python_request_operations_total','The total number of processed requests')
@@ -54,6 +58,26 @@ def requests_count():
     for k,v in graphs.items():
         res.append(prometheus_client.generate_latest(v))
     return Response(res, mimetype="text/plain")
+
+def make_cloud_image(tags,file_name):
+    file = 'output.png'
+    if os.path.isfile(file):
+        os.remove("./output.png")
+     # 만들고자 하는 워드 클라우드의 기본 설정을 진행합니다.
+    word_cloud = WordCloud(
+        font_path=font_path,
+        width=800,
+        height=800,
+        background_color="white",
+    )
+    # 추출된 단어 빈도수 목록을 이용해 워드 클라우드 객체를 초기화 합니다.
+    word_cloud = word_cloud.generate_from_frequencies(tags)
+    # 워드 클라우드를 이미지로 그립니다.
+    fig = plt.figure(figsize=(10, 10))
+    plt.imshow(word_cloud)
+    plt.axis("off")
+    # 만들어진 이미지 객체를 파일 형태로 저장합니다.
+    fig.savefig("{0}.png".format(file_name))
 
 # api 구현
 @ns.route('/api')
@@ -107,7 +131,12 @@ class saveTrademark(Resource):
         title = args['title']
         code = args['code']
 
-        score, meta_data = search_similar_text(title, code)
+        score, meta_data, es_score = search_similar_text(title, code)
+        item = {}
+        for k,v in es_score:
+            item[k] = int(v)*2
+
+        make_cloud_image(item, "output")
 
         return jsonify({
             "status": 201,
