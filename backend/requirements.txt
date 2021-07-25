@@ -13,3 +13,4 @@ prometheus_flask_exporter
 langdetect
 requests
 xmltodict
+boto3
