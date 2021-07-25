@@ -109,33 +109,52 @@ class saveTrademark(Resource):
         title = args['title']
         code = args['code']
 
-        score, meta_data, es_score = search_similar_text(title, code)
-        item = {}
-        for k,v in es_score:
-            item[k] = int(v*100)
+        results = collect.find_one({"query_titl":title, "code":code})
+        
+        if results != None : # DB에 이미 존재하는 데이터인경우
+            return jsonify({
+                "status": 201,
+                "success": True,
+                "results": str(results),
+                "message": "데이터 등록 성공"
+            })
+         
+        else : # 중복 없을 경우 es 실행 
 
-        make_cloud_image(item)
-        url = upload_s3_image(aws_access_key, aws_secret_key)
-        dic = {
-                "query_title" : title,
-                "code" : code,
-                'score' : score,
-                'meta_data' : meta_data,
-                'url' : url
-        }
-        collect.insert(dic)
-        return jsonify({
-            "status": 201,
-            "success": True,
-            "results": {
-                "query_title" : title,
-                "code" : code,
-                'score' : score,
-                'meta_data' : meta_data,
-                'url' : url
-            },
-            "message": "데이터 등록 성공"
-        })
+            # elasticsearch 실행 
+            score, meta_data, es_score = search_similar_text(title, code)
+            
+            # wordcloud 생성 
+            item = {}
+            for k,v in es_score:
+                item[k] = int(v*100)
+            make_cloud_image(item)
+
+            # s3 버킷에 넣기 
+            url = upload_s3_image(aws_access_key, aws_secret_key)
+
+            dic = {
+                    "query_titl" : title,
+                    "code" : code,
+                    'score' : score,
+                    'meta_data' : meta_data,
+                    'url' : url
+            }
+            #db에 결과 데이터 insert 
+            collect.insert(dic)
+
+            return jsonify({
+                "status": 201,
+                "success": True,
+                "results": {
+                    "query_titl" : title,
+                    "code" : code,
+                    'score' : score,
+                    'meta_data' : meta_data,
+                    'url' : url
+                },
+                "message": "데이터 등록 성공"
+            })
     
 @ns.route('/api/show_data')
 class showData(Resource):
