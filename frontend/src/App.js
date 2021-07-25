@@ -6,6 +6,7 @@ import styles from "./style.module.css";
 import Title from "./components/Title";
 import MostSimilarityTxt from "./components/MostSimilarityTxt";
 import Loading from "./components/Loading";
+import Banner from "./components/Banner";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-regular-svg-icons";
@@ -590,7 +591,8 @@ function App() {
 
   if (mode === "welcome") {
     _article = (
-      <div className={styles.input_zone}>
+      <div>
+        <div className={styles.input_zone}>
         <div className={styles.similarity_check_btn}>
           <p>{_post}</p>
         </div>
@@ -612,6 +614,8 @@ function App() {
             <button onClick={sendData}>유사도검사</button>
           </p>
         </div>
+        </div>
+        <Banner />
       </div>
     );
   }

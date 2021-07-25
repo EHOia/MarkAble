@@ -653,3 +653,29 @@ ul li {
     margin-left: 3.2%;
     margin-top: 2%;
   }
+
+
+  .banner {
+    font-family: "Poppins", "Noto Sans KR", sans-serif;
+    font-size: 10px;
+    line-height: 50px;
+    color: #52b788ee;
+    align-content:stretch;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .banner table {
+      table-layout: fixed;
+      margin-left: auto;
+      margin-right: auto;
+      width: 500px;
+      height: 200px;
+      border-collapse: seperate;
+      border-spacing: 5px;
+  }
+  .banner td {
+      padding-right: 30px;
+      padding-left: 30px;
+      text-align: center;
+  }
