@@ -3,6 +3,11 @@ from langdetect import detect
 import json
 import requests
 import xmltodict
+from wordcloud import WordCloud
+import boto3
+from time import localtime, strftime
+import os
+# import matplotlib.pyplot as plt
 
 # Define mapping
 settings = {
@@ -54,14 +59,34 @@ settings = {
   }
 }
 
-# def es_load_data(): # elasticsearch data_load using json
-#   es = Elasticsearch('elasticsearch:9200')
-#   if not es.indices.exists(index='trademark'):  # Elasticsearch 내부에 db가 존재하지않으면 insert
-#     es.indices.create(index='trademark', body=settings)        
-#     with open('./2020_data.json', 'r') as file:
-#         data = json.load(file)    
-#     helpers.bulk(es, actions=data, index='trademark')
-#     es.indices.refresh()
+def make_cloud_image(tags, file_path='image.png', font_path='NanumGothic.ttf'):
+    if os.path.isfile(file_path):
+        os.remove(file_path)
+     # 만들고자 하는 워드 클라우드의 기본 설정을 진행합니다.
+    word_cloud = WordCloud(
+        font_path=font_path,
+        width=800,
+        height=800,
+        background_color="white",
+    )
+    # 추출된 단어 빈도수 목록을 이용해 워드 클라우드 객체를 초기화 합니다.
+    word_cloud = word_cloud.generate_from_frequencies(tags)
+    word_cloud.to_file(file_path)
+
+def upload_s3_image(access_key, secret_key, image_path='image.png', location='ap-northeast-2'):
+  s3 = boto3.resource(
+  service_name='s3',
+  region_name=location,
+  aws_access_key_id=access_key,
+  aws_secret_access_key=secret_key
+  )
+  bucket_name = 'trademark-images-db'
+  upload_time = strftime("%Y_%m_%d_%H:%M:%S", localtime())
+  key_name = 'wordcloud/' + upload_time + '_image.png'
+  s3.Bucket(bucket_name).upload_file(Filename=image_path, Key=key_name)
+  url = "https://s3-%s.amazonaws.com/%s/%s"%(location, bucket_name, key_name)
+  return url
+  
 
 def es_load_data(mongo_res): # elasticsearch data_load using json
   es = Elasticsearch('elasticsearch:9200')
@@ -80,7 +105,7 @@ def search_similar_text(query_title, similar_group):
       tokenizer = 'title'
         
   body = {
-    'size': '5',
+    'size': '50',
     "query": {
       "bool" : {
         "must": [
@@ -107,22 +132,11 @@ def search_similar_text(query_title, similar_group):
   score = []
   es_score = []
   meta_data = []
-  for match in res['hits']['hits']:
-    score.append(match['_score'])
+  for idx, match in enumerate(res['hits']['hits']):
+    if idx <= 4:
+      score.append(match['_score'])
+      meta_data.append(match['_source'])
     es_score.append((match['_source']['title'],match['_score']))
-    meta_data.append(match['_source'])
-
-
-  doc = {
-    "data_info":meta_data,
-  }
-
-  if not es.indices.exists(index='subdata'):  # Elasticsearch 내부에 db가 존재하지않으면 insert
-    es.indices.create(index='subdata')
-  es.delete_by_query(index='subdata', doc_type="_doc", body='{"query":{"match_all":{}}}')
-  es.index(index='subdata',body=doc)
-  es.indices.refresh(index='subdata')
-  #인덱스 내부 전체 doc 제거 es.delete_by_query(index='subdata', doc_type="_doc", body='{"query":{"match_all":{}}}')
 
   return score, meta_data , es_score
 
