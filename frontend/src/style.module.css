@@ -598,8 +598,8 @@ ul li {
 
   .banner {
     font-family: "Poppins", "Noto Sans KR", sans-serif;
-    font-size: 10px;
-    line-height: 50px;
+    font-size: 1.7vw;
+    line-height: 3vw;
     color: #52b788ee;
     align-content:stretch;
     align-items: center;
@@ -607,11 +607,8 @@ ul li {
   }
 
   .banner table {
-      table-layout: fixed;
       margin-left: auto;
       margin-right: auto;
-      width: 500px;
-      height: 200px;
       border-collapse: seperate;
       border-spacing: 5px;
   }
