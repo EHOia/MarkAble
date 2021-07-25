@@ -20,6 +20,7 @@ function App() {
   const [loading, setLoading] = useState("true");
 
   const [score, setScore] = useState("");
+  const [url, setUrl] = useState("");
   const [list1, setList1] = useState("none");
   const [list2, setList2] = useState("none");
   const [list3, setList3] = useState("none");
@@ -104,6 +105,7 @@ function App() {
           console.log(data_split);
 
           setScore("");
+          setUrl("");
           setList1("none");
           setList2("none");
           setList3("none");
@@ -113,11 +115,15 @@ function App() {
           setLoading(false);
 
           var score_split = data_split.split("score");
+          var url_split = data_split.split("url");
+          setUrl(url_split);
           if (score_split[1].split(",")[0].split("[")[1].split("]")[0] === ""){
             setScore("No Similar Name");
+            setUrl("");
           }
           else {
             setScore(score_split[1].split(",")[0].split("[")[1].split("]")[0]);
+            setUrl(url_split[1].split("\"")[2]);
           }
 
           var list_split = data_split.split("title");
@@ -153,6 +159,7 @@ function App() {
     render() {
       return (
         <div className={styles.result_zone}>
+          <img className={styles.result_url} src={url}></img>
           <ReportZone1></ReportZone1>
           <ReportZone2></ReportZone2>
         </div>
@@ -183,7 +190,8 @@ function App() {
 
   class MostSimilarityNum extends Component {
     render() {
-      return <div className={styles.most_similarity_num}>{score}</div>;
+      return <div className={styles.most_similarity_num}>{score}</div>
+      ;
     }
   }
 

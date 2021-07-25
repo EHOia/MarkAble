@@ -554,6 +554,13 @@ i {
   margin-bottom: 10%;
 }
 
+.result_url {
+  margin-bottom: 3%;
+  display: flex;
+  width: 30%;
+  position: relative;
+}
+
 .similar_list {
   margin: 5%;
 }
