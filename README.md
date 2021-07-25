@@ -9,7 +9,7 @@
 
 ## **2️⃣  시스템 아키텍쳐**
 
-![image](https://user-images.githubusercontent.com/75110752/126807539-15a486b0-5594-41e6-be4d-a75d5ec2beb9.png)
+![image](https://user-images.githubusercontent.com/75110752/126906344-987e72df-96d7-4b94-a7d3-e349dde21571.png)
 
 ## **3️⃣  설치**
 
