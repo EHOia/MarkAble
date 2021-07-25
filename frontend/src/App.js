@@ -61,6 +61,8 @@ function App() {
   const [name10, setName10] = useState("");
   const [similar_code10, setSimilarCode10] = useState("");
 
+  var _list = null;
+
   const processText = e => {
     setText(e.target.value);
   };
@@ -268,6 +270,8 @@ function App() {
 
         console.log(response);
 
+        var data_split = JSON.stringify(response["data"]["results"]);
+
         setCategory1("");
         setName1("");
         setSimilarCode1("");
@@ -298,8 +302,6 @@ function App() {
         setCategory10("");
         setName10("");
         setSimilarCode10("");
-
-        var data_split = JSON.stringify(response["data"]["results"]);
 
         if (data_split.split("category")[1] !== undefined) {
           setCategory1(data_split.split("category")[1].split(",")[0].split("\"")[2]);
@@ -366,7 +368,7 @@ function App() {
       .catch(error => {
         console.log("failed", error);
         alert("일치하는 검색 결과가 없습니다!");
-
+        setList("none");
         setLoading(false);
       });
   };
@@ -416,28 +418,48 @@ function App() {
   const getCode7 = () => {
     setMode("welcome");
     setLoading(true);
-    setState("defined");
+    if (similar_code7 === "") {
+      setState("undefined");
+      setLoading(false);
+      setList("none");
+    }
+    else { setState("defined"); }
     setCode(similar_code7);
   };
 
   const getCode8 = () => {
     setMode("welcome");
     setLoading(true);
-    setState("defined");
+    if (similar_code8 === "") {
+      setState("undefined");
+      setLoading(false);
+      setList("none");
+    }
+    else { setState("defined"); }
     setCode(similar_code8);
   };
 
   const getCode9 = () => {
     setMode("welcome");
     setLoading(true);
-    setState("defined");
+    if (similar_code9 === "") {
+      setState("undefined");
+      setLoading(false);
+      setList("none");
+    }
+    else { setState("defined"); }
     setCode(similar_code9);
   };
 
   const getCode10 = () => {
     setMode("welcome");
     setLoading(true);
-    setState("defined");
+    if (similar_code10 === "") {
+      setState("undefined");
+      setLoading(false);
+      setList("none");
+    }
+    else { setState("defined"); }
     setCode(similar_code10);
   };
 
@@ -446,7 +468,6 @@ function App() {
     setKeyword("");
   };
 
-  var _list = null;
   if (list === "obtained") {
     _list = (
       <div>
