@@ -70,13 +70,13 @@ function App() {
   }
 
   const onKeyPress1 = (e) => {
-    if (e.key === 'Enter'){
+    if (e.key === 'Enter') {
       sendData();
     }
   }
 
   const onKeyPress2 = (e) => {
-    if (e.key === 'Enter'){
+    if (e.key === 'Enter') {
       getList();
     }
   }
@@ -117,7 +117,7 @@ function App() {
           var score_split = data_split.split("score");
           var url_split = data_split.split("url");
           setUrl(url_split);
-          if (score_split[1].split(",")[0].split("[")[1].split("]")[0] === ""){
+          if (score_split[1].split(",")[0].split("[")[1].split("]")[0] === "") {
             setScore("No Similar Name");
             setUrl("");
           }
@@ -128,12 +128,12 @@ function App() {
 
           var list_split = data_split.split("title");
 
-          if (text === list_split[1].split(",")[0].split(":")[1].split("}")[0].split("\"")[1]){
+          if (text === list_split[1].split(",")[0].split(":")[1].split("}")[0].split("\"")[1]) {
             setList1("none");
           } else {
             setList1(list_split[1].split(",")[0].split(":")[1].split("}")[0]);
           }
-          
+
           setList2(list_split[2].split(",")[0].split(":")[1].split("}")[0]);
           setList3(list_split[3].split(",")[0].split(":")[1].split("}")[0]);
           setList4(list_split[4].split(",")[0].split(":")[1].split("}")[0]);
@@ -191,7 +191,7 @@ function App() {
   class MostSimilarityNum extends Component {
     render() {
       return <div className={styles.most_similarity_num}>{score}</div>
-      ;
+        ;
     }
   }
 
@@ -261,121 +261,114 @@ function App() {
     let keywordform = new FormData();
     keywordform.append("keyword", keyword);
 
-      axios
-        .post(`http://127.0.0.1:5000/trademark/api/keyword_transmit`, keywordform)
-        .then(response => {
-          console.log("response : ", JSON.stringify(response, null, 2));
+    axios
+      .post(`http://127.0.0.1:5000/trademark/api/keyword_transmit`, keywordform)
+      .then(response => {
+        console.log("response : ", JSON.stringify(response, null, 2));
 
-          console.log(response);
+        console.log(response);
 
-          setCategory1("");
-          setName1("");
-          setSimilarCode1("");
-          setCategory2("");
-          setName2("");
-          setSimilarCode2("");
-          setCategory3("");
-          setName3("");
-          setSimilarCode3("");
-          setCategory4("");
-          setName4("");
-          setSimilarCode4("");
-          setCategory5("");
-          setName5("");
-          setSimilarCode5("");
-          setCategory6("");
-          setName6("");
-          setSimilarCode6("");
-          setCategory7("");
-          setName7("");
-          setSimilarCode7("");
-          setCategory8("");
-          setName8("");
-          setSimilarCode8("");
-          setCategory9("");
-          setName9("");
-          setSimilarCode9("");
-          setCategory10("");
-          setName10("");
-          setSimilarCode10("");
+        setCategory1("");
+        setName1("");
+        setSimilarCode1("");
+        setCategory2("");
+        setName2("");
+        setSimilarCode2("");
+        setCategory3("");
+        setName3("");
+        setSimilarCode3("");
+        setCategory4("");
+        setName4("");
+        setSimilarCode4("");
+        setCategory5("");
+        setName5("");
+        setSimilarCode5("");
+        setCategory6("");
+        setName6("");
+        setSimilarCode6("");
+        setCategory7("");
+        setName7("");
+        setSimilarCode7("");
+        setCategory8("");
+        setName8("");
+        setSimilarCode8("");
+        setCategory9("");
+        setName9("");
+        setSimilarCode9("");
+        setCategory10("");
+        setName10("");
+        setSimilarCode10("");
 
-          var data_split = JSON.stringify(response["data"]["results"]);
-          
+        var data_split = JSON.stringify(response["data"]["results"]);
+
+        if (data_split.split("category")[1] !== undefined) {
           setCategory1(data_split.split("category")[1].split(",")[0].split("\"")[2]);
           setName1(data_split.split("name")[1].split(",")[0].split("\"")[2]);
           setSimilarCode1(data_split.split("similiar_code")[1].split(",")[0].split("\"")[2]);
+        }
 
+        if (data_split.split("category")[2] !== undefined) {
           setCategory2(data_split.split("category")[2].split(",")[0].split("\"")[2]);
           setName2(data_split.split("name")[2].split(",")[0].split("\"")[2]);
           setSimilarCode2(data_split.split("similiar_code")[2].split(",")[0].split("\"")[2]);
+        }
 
+        if (data_split.split("category")[3] !== undefined) {
           setCategory3(data_split.split("category")[3].split(",")[0].split("\"")[2]);
           setName3(data_split.split("name")[3].split(",")[0].split("\"")[2]);
           setSimilarCode3(data_split.split("similiar_code")[3].split(",")[0].split("\"")[2]);
+        }
 
+        if (data_split.split("category")[4] !== undefined) {
           setCategory4(data_split.split("category")[4].split(",")[0].split("\"")[2]);
           setName4(data_split.split("name")[4].split(",")[0].split("\"")[2]);
           setSimilarCode4(data_split.split("similiar_code")[4].split(",")[0].split("\"")[2]);
+        }
 
+        if (data_split.split("category")[5] !== undefined) {
           setCategory5(data_split.split("category")[5].split(",")[0].split("\"")[2]);
           setName5(data_split.split("name")[5].split(",")[0].split("\"")[2]);
           setSimilarCode5(data_split.split("similiar_code")[5].split(",")[0].split("\"")[2]);
+        }
 
+        if (data_split.split("category")[6] !== undefined) {
           setCategory6(data_split.split("category")[6].split(",")[0].split("\"")[2]);
           setName6(data_split.split("name")[6].split(",")[0].split("\"")[2]);
           setSimilarCode6(data_split.split("similiar_code")[6].split(",")[0].split("\"")[2]);
+        }
 
+        if (data_split.split("category")[7] !== undefined) {
           setCategory7(data_split.split("category")[7].split(",")[0].split("\"")[2]);
           setName7(data_split.split("name")[7].split(",")[0].split("\"")[2]);
           setSimilarCode7(data_split.split("similiar_code")[7].split(",")[0].split("\"")[2]);
+        }
 
+        if (data_split.split("category")[8] !== undefined) {
           setCategory8(data_split.split("category")[8].split(",")[0].split("\"")[2]);
           setName8(data_split.split("name")[8].split(",")[0].split("\"")[2]);
           setSimilarCode8(data_split.split("similiar_code")[8].split(",")[0].split("\"")[2]);
+        }
 
+        if (data_split.split("category")[9] !== undefined) {
           setCategory9(data_split.split("category")[9].split(",")[0].split("\"")[2]);
           setName9(data_split.split("name")[9].split(",")[0].split("\"")[2]);
           setSimilarCode9(data_split.split("similiar_code")[9].split(",")[0].split("\"")[2]);
+        }
 
+        if (data_split.split("category")[10] !== undefined) {
           setCategory10(data_split.split("category")[10].split(",")[0].split("\"")[2]);
           setName10(data_split.split("name")[10].split(",")[0].split("\"")[2]);
           setSimilarCode10(data_split.split("similiar_code")[10].split(",")[0].split("\"")[2]);
+        }
 
-          setLoading(false);
-        })
-        .catch(error => {
-          console.log("failed", error);
-          setCategory1("");
-          setName1("");
-          setSimilarCode1("");
-          setCategory2("");
-          setName2("");
-          setSimilarCode2("");
-          setCategory3("");
-          setName3("");
-          setSimilarCode3("");
-          setCategory4("");
-          setName4("");
-          setSimilarCode4("");
-          setCategory5("");
-          setName5("");
-          setSimilarCode5("");
-          setCategory6("");
-          setName6("");
-          setSimilarCode6("");
-          setCategory7("");
-          setName7("");
-          setSimilarCode7("");
-          setCategory8("");
-          setName8("");
-          setSimilarCode8("");
-          setCategory9("");
-          setName9("");
-          setSimilarCode9("");
-          setCategory10("");
-          setName10("");
-          setSimilarCode10("");
-        });
+        setLoading(false);
+      })
+      .catch(error => {
+        console.log("failed", error);
+        alert("일치하는 검색 결과가 없습니다!");
+
+        setLoading(false);
+      });
   };
 
   const getCode1 = () => {
@@ -458,94 +451,94 @@ function App() {
     _list = (
       <div>
         {loading ? <Loading /> :
-        <div className={styles.table_block}>
-          <div className={styles.table}>
-            <table>
-              <thead>
-                <tr>
-                  <th className={styles.th1}>Category</th>
-                  <th className={styles.th2}>Name</th>
-                  <th className={styles.th3}>Similar group code</th>
-                </tr>
-              </thead>
-              <tbody>
-                {/* <tr onClick={getCode, setSimilarCode({similar_code1})}>
+          <div className={styles.table_block}>
+            <div className={styles.table}>
+              <table>
+                <thead>
+                  <tr>
+                    <th className={styles.th1}>Category</th>
+                    <th className={styles.th2}>Name</th>
+                    <th className={styles.th3}>Similar group code</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* <tr onClick={getCode, setSimilarCode({similar_code1})}>
                  */}
-                 <tr onClick={getCode1}>
-                  <td className={styles.td1} id="td1">
-                    {category1}
-                  </td>
-                  <td className={styles.td2} id="td2">{name1}</td>
-                  <td className={styles.td3} id="td3">{similar_code1}</td>
-                </tr>
-                <tr onClick={getCode2}>
-                  <td className={styles.td1} id="td1">
-                  {category2}
-                  </td>
-                  <td className={styles.td2} id="td2">{name2}</td>
-                  <td className={styles.td3} id="td3">{similar_code2}</td>
-                </tr>
-                <tr onClick={getCode3}>
-                  <td className={styles.td1} id="td1">
-                  {category3}
-                  </td>
-                  <td className={styles.td2} id="td2">{name3}</td>
-                  <td className={styles.td3} id="td3">{similar_code3}</td>
-                </tr>
-                <tr onClick={getCode4}>
-                  <td className={styles.td1} id="td1">
-                  {category4}
-                  </td>
-                  <td className={styles.td2} id="td2">{name4}</td>
-                  <td className={styles.td3} id="td3">{similar_code4}</td>
-                </tr>
-                <tr onClick={getCode5}>
-                  <td className={styles.td1} id="td1">
-                  {category5}
-                  </td>
-                  <td className={styles.td2} id="td2">{name5}</td>
-                  <td className={styles.td3} id="td3">{similar_code5}</td>
-                </tr>
-                <tr onClick={getCode6}>
-                  <td className={styles.td1} id="td1">
-                  {category6}
-                  </td>
-                  <td className={styles.td2} id="td2">{name6}</td>
-                  <td className={styles.td3} id="td3">{similar_code6}</td>
-                </tr>
-                <tr onClick={getCode7}>
-                  <td className={styles.td1} id="td1">
-                  {category7}
-                  </td>
-                  <td className={styles.td2} id="td2">{name7}</td>
-                  <td className={styles.td3} id="td3">{similar_code7}</td>
-                </tr>
-                <tr onClick={getCode8}>
-                  <td className={styles.td1} id="td1">
-                  {category8}
-                  </td>
-                  <td className={styles.td2} id="td2">{name8}</td>
-                  <td className={styles.td3} id="td3">{similar_code8}</td>
-                </tr>
-                <tr onClick={getCode9}>
-                  <td className={styles.td1} id="td1">
-                  {category9}
-                  </td>
-                  <td className={styles.td2} id="td2">{name9}</td>
-                  <td className={styles.td3} id="td3">{similar_code9}</td>
-                </tr>
-                <tr onClick={getCode10}>
-                  <td className={styles.td1} id="td1">
-                  {category10}
-                  </td>
-                  <td className={styles.td2} id="td2">{name10}</td>
-                  <td className={styles.td3} id="td3">{similar_code10}</td>
-                </tr>
-              </tbody>
-            </table>
+                  <tr onClick={getCode1}>
+                    <td className={styles.td1} id="td1">
+                      {category1}
+                    </td>
+                    <td className={styles.td2} id="td2">{name1}</td>
+                    <td className={styles.td3} id="td3">{similar_code1}</td>
+                  </tr>
+                  <tr onClick={getCode2}>
+                    <td className={styles.td1} id="td1">
+                      {category2}
+                    </td>
+                    <td className={styles.td2} id="td2">{name2}</td>
+                    <td className={styles.td3} id="td3">{similar_code2}</td>
+                  </tr>
+                  <tr onClick={getCode3}>
+                    <td className={styles.td1} id="td1">
+                      {category3}
+                    </td>
+                    <td className={styles.td2} id="td2">{name3}</td>
+                    <td className={styles.td3} id="td3">{similar_code3}</td>
+                  </tr>
+                  <tr onClick={getCode4}>
+                    <td className={styles.td1} id="td1">
+                      {category4}
+                    </td>
+                    <td className={styles.td2} id="td2">{name4}</td>
+                    <td className={styles.td3} id="td3">{similar_code4}</td>
+                  </tr>
+                  <tr onClick={getCode5}>
+                    <td className={styles.td1} id="td1">
+                      {category5}
+                    </td>
+                    <td className={styles.td2} id="td2">{name5}</td>
+                    <td className={styles.td3} id="td3">{similar_code5}</td>
+                  </tr>
+                  <tr onClick={getCode6}>
+                    <td className={styles.td1} id="td1">
+                      {category6}
+                    </td>
+                    <td className={styles.td2} id="td2">{name6}</td>
+                    <td className={styles.td3} id="td3">{similar_code6}</td>
+                  </tr>
+                  <tr onClick={getCode7}>
+                    <td className={styles.td1} id="td1">
+                      {category7}
+                    </td>
+                    <td className={styles.td2} id="td2">{name7}</td>
+                    <td className={styles.td3} id="td3">{similar_code7}</td>
+                  </tr>
+                  <tr onClick={getCode8}>
+                    <td className={styles.td1} id="td1">
+                      {category8}
+                    </td>
+                    <td className={styles.td2} id="td2">{name8}</td>
+                    <td className={styles.td3} id="td3">{similar_code8}</td>
+                  </tr>
+                  <tr onClick={getCode9}>
+                    <td className={styles.td1} id="td1">
+                      {category9}
+                    </td>
+                    <td className={styles.td2} id="td2">{name9}</td>
+                    <td className={styles.td3} id="td3">{similar_code9}</td>
+                  </tr>
+                  <tr onClick={getCode10}>
+                    <td className={styles.td1} id="td1">
+                      {category10}
+                    </td>
+                    <td className={styles.td2} id="td2">{name10}</td>
+                    <td className={styles.td3} id="td3">{similar_code10}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
-  }
+        }
       </div>
     );
   }
@@ -554,33 +547,33 @@ function App() {
   var _circle = null;
   _post = (
     <button className={styles.code_inquery} onClick={searchCode}>
-      
+
       유사군코드 조회
       <FontAwesomeIcon icon={faCheckCircle} />
     </button>
   );
 
   _circle = (
-    <FontAwesomeIcon icon={faCheckCircle} /> 
+    <FontAwesomeIcon icon={faCheckCircle} />
   )
 
   if (text === "") {
     _circle = (
-    <FontAwesomeIcon icon={faCheckCircle} /> 
-  )
+      <FontAwesomeIcon icon={faCheckCircle} />
+    )
   }
   else {
     _circle = (
-    <span className={styles.green_circle}>
-      <FontAwesomeIcon icon={faCheckCircle} /> 
-    </span>
-  )
+      <span className={styles.green_circle}>
+        <FontAwesomeIcon icon={faCheckCircle} />
+      </span>
+    )
   }
 
   if (state === "defined") {
     _post = (
       <span className={styles.code_complete}>
-        
+
         {code}
         <FontAwesomeIcon icon={faCheckCircle} className="circle" />
       </span>
@@ -590,10 +583,10 @@ function App() {
   var _article = null;
   if (mode === "result") {
     _article = (
-    <div>
-      {loading ? <Loading /> : 
-      <ResultZone />}
-    </div>
+      <div>
+        {loading ? <Loading /> :
+          <ResultZone />}
+      </div>
     );
   }
 
@@ -601,27 +594,27 @@ function App() {
     _article = (
       <div>
         <div className={styles.input_zone}>
-        <div className={styles.similarity_check_btn}>
-          <p>{_post}</p>
-        </div>
-        <div className={styles.input_name}>
-          <p>
-            <input
-              type="text"
-              placeholder="상표명 입력"
-              value={text}
-              onKeyPress={onKeyPress1}
-              onChange={processText} 
-            /> 
-            {/* <FontAwesomeIcon icon={faCheckCircle} />  */}
-            {_circle}
-          </p>
-        </div>
-        <div className={styles.similarity_check_btn}>
-          <p>
-            <button onClick={sendData}>유사도검사</button>
-          </p>
-        </div>
+          <div className={styles.similarity_check_btn}>
+            <p>{_post}</p>
+          </div>
+          <div className={styles.input_name}>
+            <p>
+              <input
+                type="text"
+                placeholder="상표명 입력"
+                value={text}
+                onKeyPress={onKeyPress1}
+                onChange={processText}
+              />
+              {/* <FontAwesomeIcon icon={faCheckCircle} />  */}
+              {_circle}
+            </p>
+          </div>
+          <div className={styles.similarity_check_btn}>
+            <p>
+              <button onClick={sendData}>유사도검사</button>
+            </p>
+          </div>
         </div>
         <Banner />
       </div>
@@ -635,8 +628,8 @@ function App() {
           <div className={styles.input_name}>
             <p>
               <input type="text" value={keyword}
-              onKeyPress={onKeyPress2}
-              onChange={processKeyword} placeholder="상품 명칭 입력" />
+                onKeyPress={onKeyPress2}
+                onChange={processKeyword} placeholder="상품 명칭 입력" />
             </p>
           </div>
           <div className={styles.similarity_check_btn}>
@@ -645,7 +638,7 @@ function App() {
             </p>
           </div>
         </div>
-        
+
         <div className={styles.list_zone}>{_list}</div>
       </div>
     );
@@ -653,11 +646,11 @@ function App() {
 
   return (
     <div className="App">
-        <div className={styles.title_zone}>
-          <div onClick={toWelcomeChange}>
-            <Title></Title>
-          </div>
+      <div className={styles.title_zone}>
+        <div onClick={toWelcomeChange}>
+          <Title></Title>
         </div>
+      </div>
       {_article}
     </div>
   );
