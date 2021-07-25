@@ -131,7 +131,8 @@ class saveTrademark(Resource):
                 "query_title" : title,
                 "code" : code,
                 'score' : score,
-                'meta_data' : meta_data
+                'meta_data' : meta_data,
+                'url' : url
             },
             "message": "데이터 등록 성공"
         })
