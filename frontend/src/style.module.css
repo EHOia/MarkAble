@@ -78,10 +78,6 @@ a:-webkit-any-link {
   color: #111;
 }
 
-/* .header::first-letter {
-    color: #00509d;
-} */
-
 .title_zone {
   width: 100%;
   display: flex;
@@ -280,10 +276,6 @@ input {
   padding: 0.5vw 0.3vw;
   border: none;
   border-radius: 10px 0 0 10px;
-  /* border-width: 2px;
-    border-style: inset;
-    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-    border-image: initial; */
 }
 
 input::placeholder {
@@ -420,16 +412,11 @@ svg {
 .step_deco {
   content: "";
   float: right;
-  /* width: 20%;
-    height: 20%;
-    background-color: #7399f1;
-    z-index: 2; */
   position: absolute;
   right: 0;
   width: 0px;
   height: 0px;
   border-bottom: 60px solid transparent;
-  /* border-right: 60px solid #7399f1; */
 }
 
 .step .step_desc {
@@ -469,52 +456,6 @@ i {
   font-size: 1.2vw;
 }
 
-/* .result_zone {
-  display: block;
-  margin: 2% 0 10% 0;
-  display: flex-wrap;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.result_txt {
-  font-weight: 600;
-  font-size: 1vw;
-}
-
-.wordcloud_zone {
-  overflow: hidden;
-  margin: 3% 30%;
-  border-radius: 10px;
-  padding: 3%;
-  display: flex-end;
-  background-color: #fff;
-  justify-content: center;
-  align-items: center;
-}
-
-.wordcloud_zone img {
-  width: 100%;
-}
-
-.wordcloud_name {
-  font-size: 1.1vw;
-  font-weight: 700;
-  padding-bottom: 2%;
-}
-
-.wordcloud_desc {
-  padding-top: 3%;
-  font-size: 0.8vw;
-}
-
-.rty_btn {
-  border-radius: 10px;
-  height: 55px;
-  padding: 1%;
-  vertical-align: middle;
-} */
 
 ::-webkit-scrollbar {
   display: none;
@@ -562,7 +503,7 @@ i {
   display: flex;
   flex-direction: column;
   width: 50%;
-  background: #ffffff50;
+  background: #c6e6e22d;
   border-radius: 20px 20px 0 0;
   position: relative;
   box-shadow: 0 0 10px 10px #7483a805;
