@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Logo from "../images/logo.jpg";
+import Logo from "../images/logo.png";
 
 /* import CSS */
 import styles from "../style.module.css";
