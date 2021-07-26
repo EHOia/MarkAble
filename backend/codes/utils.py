@@ -135,7 +135,6 @@ def search_similar_text(query_title, similar_group):
   meta_data = []
   for idx, match in enumerate(res['hits']['hits']):
       meta_data.append(match['_source'])
-      if
       es_score.append((match['_source']['title'],match['_score']))
       
   score, es_prob, meta_data = make_prob(query_title, es_score, meta_data)
