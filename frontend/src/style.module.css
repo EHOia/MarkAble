@@ -100,7 +100,6 @@ a:-webkit-any-link {
   margin-bottom: 5%;
   cursor: pointer;
   width: 300px;
-  
 }
 
 .text_gradient {
@@ -356,6 +355,18 @@ button:hover {
   background-color: rgba(11, 82, 140, 0.836);
   color: #fff;
   transition: all 0.2s ease-in-out;
+}
+
+.table_button {
+  left: calc(50% - 6vw);
+  margin-top: 8%;
+  font-family: "Poppins" !important;
+  width: 12vw;
+  position: relative;
+  height: 4vh;
+  line-height: 0.4vw;
+  font-weight: 700;
+  text-align: center;
 }
 
 svg {

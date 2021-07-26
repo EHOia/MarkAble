@@ -6,7 +6,7 @@ import styles from "./style.module.css";
 import Title from "./components/Title";
 import MostSimilarityTxt from "./components/MostSimilarityTxt";
 import Loading from "./components/Loading";
-import Banner from "./components/Banner";
+// import Banner from "./components/Banner";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-regular-svg-icons";
@@ -60,6 +60,8 @@ function App() {
   const [category10, setCategory10] = useState("");
   const [name10, setName10] = useState("");
   const [similar_code10, setSimilarCode10] = useState("");
+  const [many1, setMany1] = useState("");
+  const [many2, setMany2] = useState("");
 
   var _list = null;
 
@@ -146,19 +148,7 @@ function App() {
 
           var list_split = data_split.split("title");
 
-          if (
-            text ===
-            list_split[1]
-              .split(",")[0]
-              .split(":")[1]
-              .split("}")[0]
-              .split('"')[1]
-          ) {
-            setList1("none");
-          } else {
-            setList1(list_split[1].split(",")[0].split(":")[1].split("}")[0]);
-          }
-
+          setList1(list_split[1].split(",")[0].split(":")[1].split("}")[0]);
           setList2(list_split[2].split(",")[0].split(":")[1].split("}")[0]);
           setList3(list_split[3].split(",")[0].split(":")[1].split("}")[0]);
           setList4(list_split[4].split(",")[0].split(":")[1].split("}")[0]);
@@ -175,6 +165,8 @@ function App() {
     setState("undefined");
     setText("");
     setCode("");
+    setMany1("");
+    setMany2("");
     setList("none");
     setLoading("true");
   };
@@ -284,6 +276,8 @@ function App() {
     setList("obtained");
     let keywordform = new FormData();
     keywordform.append("keyword", keyword);
+    setMany1("");
+    setMany2("");
 
     axios
       .post(`http://127.0.0.1:5000/trademark/api/keyword_transmit`, keywordform)
@@ -436,102 +430,181 @@ function App() {
   };
 
   const getCode1 = () => {
-    setMode("welcome");
-    setLoading(true);
+    // setMode("welcome");
+    // setLoading(true);
     setState("defined");
-    setCode(similar_code1);
+    if (many1 === "" && many2 === "") {
+      setMany1(similar_code1);
+    } else if (many1 != "" && many2 === "") {
+      setMany2(similar_code1);
+    } else if (many1 != "" && many2 != "") {
+      setMany1(many2);
+      setMany2(similar_code1);
+    }
   };
 
   const getCode2 = () => {
-    setMode("welcome");
-    setLoading(true);
+    // setMode("welcome");
+    // setLoading(true);
     setState("defined");
-    setCode(similar_code2);
+    if (many1 === "" && many2 === "") {
+      setMany1(similar_code2);
+    } else if (many1 != "" && many2 === "") {
+      setMany2(similar_code2);
+    } else if (many1 != "" && many2 != "") {
+      setMany1(many2);
+      setMany2(similar_code2);
+    }
   };
 
   const getCode3 = () => {
-    setMode("welcome");
-    setLoading(true);
+    // setMode("welcome");
+    // setLoading(true);
     setState("defined");
-    setCode(similar_code3);
+    if (many1 === "" && many2 === "") {
+      setMany1(similar_code3);
+    } else if (many1 != "" && many2 === "") {
+      setMany2(similar_code3);
+    } else if (many1 != "" && many2 != "") {
+      setMany1(many2);
+      setMany2(similar_code3);
+    }
   };
 
   const getCode4 = () => {
-    setMode("welcome");
-    setLoading(true);
+    // setMode("welcome");
+    // setLoading(true);
     setState("defined");
-    setCode(similar_code4);
+    if (many1 === "" && many2 === "") {
+      setMany1(similar_code4);
+    } else if (many1 != "" && many2 === "") {
+      setMany2(similar_code4);
+    } else if (many1 != "" && many2 != "") {
+      setMany1(many2);
+      setMany2(similar_code4);
+    }
   };
 
   const getCode5 = () => {
-    setMode("welcome");
-    setLoading(true);
+    // setMode("welcome");
+    // setLoading(true);
     setState("defined");
-    setCode(similar_code5);
+    if (many1 === "" && many2 === "") {
+      setMany1(similar_code5);
+    } else if (many1 != "" && many2 === "") {
+      setMany2(similar_code5);
+    } else if (many1 != "" && many2 != "") {
+      setMany1(many2);
+      setMany2(similar_code5);
+    }
   };
 
   const getCode6 = () => {
-    setMode("welcome");
-    setLoading(true);
+    // setMode("welcome");
+    // setLoading(true);
     setState("defined");
-    setCode(similar_code6);
+    if (many1 === "" && many2 === "") {
+      setMany1(similar_code6);
+    } else if (many1 != "" && many2 === "") {
+      setMany2(similar_code6);
+    } else if (many1 != "" && many2 != "") {
+      setMany1(many2);
+      setMany2(similar_code6);
+    }
   };
 
   const getCode7 = () => {
-    setMode("welcome");
-    setLoading(true);
+    // setMode("welcome");
+    // setLoading(true);
     if (similar_code7 === "") {
       setState("undefined");
       setLoading(false);
-      setList("none");
+      // setList("none");
     } else {
       setState("defined");
+      if (many1 === "" && many2 === "") {
+        setMany1(similar_code7);
+      } else if (many1 != "" && many2 === "") {
+        setMany2(similar_code7);
+      } else if (many1 != "" && many2 != "") {
+        setMany1(many2);
+        setMany2(similar_code7);
+      }
     }
-    setCode(similar_code7);
   };
 
   const getCode8 = () => {
-    setMode("welcome");
-    setLoading(true);
+    // setMode("welcome");
+    // setLoading(true);
     if (similar_code8 === "") {
       setState("undefined");
       setLoading(false);
-      setList("none");
+      // setList("none");
     } else {
       setState("defined");
+      if (many1 === "" && many2 === "") {
+        setMany1(similar_code8);
+      } else if (many1 != "" && many2 === "") {
+        setMany2(similar_code8);
+      } else if (many1 != "" && many2 != "") {
+        setMany1(many2);
+        setMany2(similar_code8);
+      }
     }
-    setCode(similar_code8);
   };
 
   const getCode9 = () => {
-    setMode("welcome");
-    setLoading(true);
+    // setMode("welcome");
+    // setLoading(true);
     if (similar_code9 === "") {
       setState("undefined");
       setLoading(false);
-      setList("none");
+      // setList("none");
     } else {
       setState("defined");
+      if (many1 === "" && many2 === "") {
+        setMany1(similar_code9);
+      } else if (many1 != "" && many2 === "") {
+        setMany2(similar_code9);
+      } else if (many1 != "" && many2 != "") {
+        setMany1(many2);
+        setMany2(similar_code9);
+      }
     }
-    setCode(similar_code9);
   };
 
   const getCode10 = () => {
-    setMode("welcome");
-    setLoading(true);
+    // setMode("welcome");
+    // setLoading(true);
     if (similar_code10 === "") {
       setState("undefined");
       setLoading(false);
-      setList("none");
+      // setList("none");
     } else {
       setState("defined");
+      if (many1 === "" && many2 === "") {
+        setMany1(similar_code10);
+      } else if (many1 != "" && many2 === "") {
+        setMany2(similar_code10);
+      } else if (many1 != "" && many2 != "") {
+        setMany1(many2);
+        setMany2(similar_code10);
+      }
     }
-    setCode(similar_code10);
+  };
+
+  const getManyCode = () => {
+    setMode("welcome");
+    setLoading(true);
+    setState("defined");
+    setCode(many1 + "," + many2);
   };
 
   const searchCode = () => {
     setMode("search");
     setKeyword("");
+    setMany1("");
+    setMany2("");
   };
 
   if (list === "obtained") {
@@ -540,132 +613,138 @@ function App() {
         {loading ? (
           <Loading />
         ) : (
-          <div className={styles.table_block}>
-            <div className={styles.table}>
-              <table>
-                <thead>
-                  <tr>
-                    <th className={styles.th1}>Category</th>
-                    <th className={styles.th2}>Name</th>
-                    <th className={styles.th3}>Similar group code</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* <tr onClick={getCode, setSimilarCode({similar_code1})}>
-                   */}
-                  <tr onClick={getCode1}>
-                    <td className={styles.td1} id="td1">
-                      {category1}
-                    </td>
-                    <td className={styles.td2} id="td2">
-                      {name1}
-                    </td>
-                    <td className={styles.td3} id="td3">
-                      {similar_code1}
-                    </td>
-                  </tr>
-                  <tr onClick={getCode2}>
-                    <td className={styles.td1} id="td1">
-                      {category2}
-                    </td>
-                    <td className={styles.td2} id="td2">
-                      {name2}
-                    </td>
-                    <td className={styles.td3} id="td3">
-                      {similar_code2}
-                    </td>
-                  </tr>
-                  <tr onClick={getCode3}>
-                    <td className={styles.td1} id="td1">
-                      {category3}
-                    </td>
-                    <td className={styles.td2} id="td2">
-                      {name3}
-                    </td>
-                    <td className={styles.td3} id="td3">
-                      {similar_code3}
-                    </td>
-                  </tr>
-                  <tr onClick={getCode4}>
-                    <td className={styles.td1} id="td1">
-                      {category4}
-                    </td>
-                    <td className={styles.td2} id="td2">
-                      {name4}
-                    </td>
-                    <td className={styles.td3} id="td3">
-                      {similar_code4}
-                    </td>
-                  </tr>
-                  <tr onClick={getCode5}>
-                    <td className={styles.td1} id="td1">
-                      {category5}
-                    </td>
-                    <td className={styles.td2} id="td2">
-                      {name5}
-                    </td>
-                    <td className={styles.td3} id="td3">
-                      {similar_code5}
-                    </td>
-                  </tr>
-                  <tr onClick={getCode6}>
-                    <td className={styles.td1} id="td1">
-                      {category6}
-                    </td>
-                    <td className={styles.td2} id="td2">
-                      {name6}
-                    </td>
-                    <td className={styles.td3} id="td3">
-                      {similar_code6}
-                    </td>
-                  </tr>
-                  <tr onClick={getCode7}>
-                    <td className={styles.td1} id="td1">
-                      {category7}
-                    </td>
-                    <td className={styles.td2} id="td2">
-                      {name7}
-                    </td>
-                    <td className={styles.td3} id="td3">
-                      {similar_code7}
-                    </td>
-                  </tr>
-                  <tr onClick={getCode8}>
-                    <td className={styles.td1} id="td1">
-                      {category8}
-                    </td>
-                    <td className={styles.td2} id="td2">
-                      {name8}
-                    </td>
-                    <td className={styles.td3} id="td3">
-                      {similar_code8}
-                    </td>
-                  </tr>
-                  <tr onClick={getCode9}>
-                    <td className={styles.td1} id="td1">
-                      {category9}
-                    </td>
-                    <td className={styles.td2} id="td2">
-                      {name9}
-                    </td>
-                    <td className={styles.td3} id="td3">
-                      {similar_code9}
-                    </td>
-                  </tr>
-                  <tr onClick={getCode10}>
-                    <td className={styles.td1} id="td1">
-                      {category10}
-                    </td>
-                    <td className={styles.td2} id="td2">
-                      {name10}
-                    </td>
-                    <td className={styles.td3} id="td3">
-                      {similar_code10}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+          <div>
+            <div className={styles.table_block}>
+              <div className={styles.table}>
+                <table>
+                  <thead>
+                    <tr>
+                      <th className={styles.th1}>Category</th>
+                      <th className={styles.th2}>Name</th>
+                      <th className={styles.th3}>Similar group code</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* <tr onClick={getCode, setSimilarCode({similar_code1})}>
+                     */}
+                    <tr onClick={getCode1}>
+                      <td className={styles.td1} id="td1">
+                        {category1}
+                      </td>
+                      <td className={styles.td2} id="td2">
+                        {name1}
+                      </td>
+                      <td className={styles.td3} id="td3">
+                        {similar_code1}
+                      </td>
+                    </tr>
+                    <tr onClick={getCode2}>
+                      <td className={styles.td1} id="td1">
+                        {category2}
+                      </td>
+                      <td className={styles.td2} id="td2">
+                        {name2}
+                      </td>
+                      <td className={styles.td3} id="td3">
+                        {similar_code2}
+                      </td>
+                    </tr>
+                    <tr onClick={getCode3}>
+                      <td className={styles.td1} id="td1">
+                        {category3}
+                      </td>
+                      <td className={styles.td2} id="td2">
+                        {name3}
+                      </td>
+                      <td className={styles.td3} id="td3">
+                        {similar_code3}
+                      </td>
+                    </tr>
+                    <tr onClick={getCode4}>
+                      <td className={styles.td1} id="td1">
+                        {category4}
+                      </td>
+                      <td className={styles.td2} id="td2">
+                        {name4}
+                      </td>
+                      <td className={styles.td3} id="td3">
+                        {similar_code4}
+                      </td>
+                    </tr>
+                    <tr onClick={getCode5}>
+                      <td className={styles.td1} id="td1">
+                        {category5}
+                      </td>
+                      <td className={styles.td2} id="td2">
+                        {name5}
+                      </td>
+                      <td className={styles.td3} id="td3">
+                        {similar_code5}
+                      </td>
+                    </tr>
+                    <tr onClick={getCode6}>
+                      <td className={styles.td1} id="td1">
+                        {category6}
+                      </td>
+                      <td className={styles.td2} id="td2">
+                        {name6}
+                      </td>
+                      <td className={styles.td3} id="td3">
+                        {similar_code6}
+                      </td>
+                    </tr>
+                    <tr onClick={getCode7}>
+                      <td className={styles.td1} id="td1">
+                        {category7}
+                      </td>
+                      <td className={styles.td2} id="td2">
+                        {name7}
+                      </td>
+                      <td className={styles.td3} id="td3">
+                        {similar_code7}
+                      </td>
+                    </tr>
+                    <tr onClick={getCode8}>
+                      <td className={styles.td1} id="td1">
+                        {category8}
+                      </td>
+                      <td className={styles.td2} id="td2">
+                        {name8}
+                      </td>
+                      <td className={styles.td3} id="td3">
+                        {similar_code8}
+                      </td>
+                    </tr>
+                    <tr onClick={getCode9}>
+                      <td className={styles.td1} id="td1">
+                        {category9}
+                      </td>
+                      <td className={styles.td2} id="td2">
+                        {name9}
+                      </td>
+                      <td className={styles.td3} id="td3">
+                        {similar_code9}
+                      </td>
+                    </tr>
+                    <tr onClick={getCode10}>
+                      <td className={styles.td1} id="td1">
+                        {category10}
+                      </td>
+                      <td className={styles.td2} id="td2">
+                        {name10}
+                      </td>
+                      <td className={styles.td3} id="td3">
+                        {similar_code10}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
+            <button className={styles.table_button} onClick={getManyCode}>
+              {many1}&nbsp;
+              {many2}
+            </button>
           </div>
         )}
       </div>
@@ -733,7 +812,7 @@ function App() {
             </p>
           </div>
         </div>
-        {<Banner/>}
+        {/* {<Banner />} */}
       </div>
     );
   }
