@@ -3,3 +3,4 @@ prometheus/data/
 grafana/data/
 mongo/db/
 backend/codes/api_key.txt
+backend/codes/__pycache__
