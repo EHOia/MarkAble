@@ -114,7 +114,7 @@ def search_similar_text(query_title, similar_group):
                     "query": query_title,
                     "fuzziness": "1",
                     'fields':[
-                        tokenizer
+                        tokenizer, similar_group
                     ]
                 }
             },
