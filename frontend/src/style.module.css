@@ -99,6 +99,8 @@ a:-webkit-any-link {
 .title_img {
   margin-bottom: 5%;
   cursor: pointer;
+  width: 300px;
+  
 }
 
 .text_gradient {
