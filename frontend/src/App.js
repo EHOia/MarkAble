@@ -6,7 +6,7 @@ import styles from "./style.module.css";
 import Title from "./components/Title";
 import MostSimilarityTxt from "./components/MostSimilarityTxt";
 import Loading from "./components/Loading";
-// import Banner from "./components/Banner";
+import Banner from "./components/Banner";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-regular-svg-icons";
@@ -733,7 +733,7 @@ function App() {
             </p>
           </div>
         </div>
-        {/* <Banner /> */}
+        {<Banner/>}
       </div>
     );
   }
