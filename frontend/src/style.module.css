@@ -48,7 +48,7 @@
 }
 
 body {
-  background-color: #d6ecea13;
+  background-color: #ffffff13;
 }
 
 a {
@@ -86,7 +86,6 @@ a:-webkit-any-link {
   align-items: center;
   text-align: center;
   margin-top: 7%;
-  cursor: pointer;
 }
 
 .title {
@@ -95,6 +94,11 @@ a:-webkit-any-link {
   font-size: 2.1vw;
   font-weight: 800;
   letter-spacing: -1px;
+}
+
+.title_img {
+  margin-bottom: 5%;
+  cursor: pointer;
 }
 
 .text_gradient {
@@ -215,7 +219,7 @@ a:-webkit-any-link {
 }
 
 .table tbody tr:hover {
-  background-color: #52b78844;
+  background-color: #0b528c44;
   font-weight: 500;
 }
 
@@ -279,21 +283,20 @@ input {
 }
 
 input::placeholder {
-  color : #ced4da;
+  color: #ced4da;
 }
-
 
 .input_name {
   margin-left: 1%;
-  font-size : 0.9vw;
+  font-size: 0.9vw;
 }
 
-.input_name svg{
+.input_name svg {
   margin-right: 1vw;
-  font-size : 0.98vw;
+  font-size: 0.98vw;
 }
 
-.input_name input{
+.input_name input {
   width: 12vw;
 }
 
@@ -323,7 +326,7 @@ input::placeholder {
 button {
   width: 8vw;
   height: 5vh;
-  color: #52b788cc;
+  color: rgba(11, 82, 140, 0.836);
   font-size: 0.8vw;
   font-weight: 700;
   appearance: auto;
@@ -341,14 +344,14 @@ button {
   box-sizing: border-box;
   margin-left: 2vw;
   padding: 5% 5%;
-  border: 2px solid #52b788cc;
+  border: 2px solid rgba(11, 82, 140, 0.836);
   border-radius: 100px;
   transition: all 0.2s ease-in-out;
   font-family: "Noto Sans KR", sans-serif !important;
 }
 
 button:hover {
-  background-color: #52b788ee;
+  background-color: rgba(11, 82, 140, 0.836);
   color: #fff;
   transition: all 0.2s ease-in-out;
 }
@@ -456,7 +459,6 @@ i {
   font-size: 1.2vw;
 }
 
-
 ::-webkit-scrollbar {
   display: none;
 }
@@ -503,7 +505,7 @@ i {
   display: flex;
   flex-direction: column;
   width: 50%;
-  background: #c6e6e22d;
+  background: rgba(11, 82, 140, 0.089);
   border-radius: 20px 20px 0 0;
   position: relative;
   box-shadow: 0 0 10px 10px #7483a805;
@@ -548,17 +550,18 @@ i {
   display: flex;
   flex-direction: row;
   width: 50%;
-  background-color: #83c5be99;
+  background-color: rgba(11, 82, 140, 0.534);
   border-radius: 0 0 20px 20px;
   position: relative;
   margin-bottom: 10%;
 }
 
 .result_url {
+  position: absolute;
+  left: 50%;
+  top: 20%;
   margin-bottom: 3%;
-  display: flex;
-  width: 30%;
-  position: relative;
+  width: 40%;
 }
 
 .similar_list {
@@ -594,33 +597,32 @@ ul li {
 }
 
 .project_name {
-    font-family: "Poppins", "Noto Sans KR", sans-serif !important;
-    font-weight: 570;
-    width: 95%;
-    font-size: 1.7vw;
-    margin-left: 3.2%;
-    margin-top: 2%;
-  }
+  font-family: "Poppins", "Noto Sans KR", sans-serif !important;
+  font-weight: 570;
+  width: 95%;
+  font-size: 1.7vw;
+  margin-left: 3.2%;
+  margin-top: 2%;
+}
 
+.banner {
+  font-family: "Poppins", "Noto Sans KR", sans-serif;
+  font-size: 1.7vw;
+  line-height: 3vw;
+  color: #52b788ee;
+  align-content: stretch;
+  align-items: center;
+  padding: 10px;
+}
 
-  .banner {
-    font-family: "Poppins", "Noto Sans KR", sans-serif;
-    font-size: 1.7vw;
-    line-height: 3vw;
-    color: #52b788ee;
-    align-content:stretch;
-    align-items: center;
-    padding: 10px;
-  }
-
-  .banner table {
-      margin-left: auto;
-      margin-right: auto;
-      border-collapse: seperate;
-      border-spacing: 5px;
-  }
-  .banner td {
-      padding-right: 30px;
-      padding-left: 30px;
-      text-align: center;
-  }
+.banner table {
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: seperate;
+  border-spacing: 5px;
+}
+.banner td {
+  padding-right: 30px;
+  padding-left: 30px;
+  text-align: center;
+}
