@@ -184,8 +184,10 @@ def make_prob(query_title, es_score, meta_data):
     es_prob = make_score_prob(query_title, es_score, alpha=0.1, beta=1.5, gamma=2)
   for i, prob in enumerate(es_prob):
     meta_data[i]['prob'] = prob[1]
-  df = pd.DataFrame(meta_data)
-  df = df.sort_values('prob', ascending=False)
-  sorted_meta_data = df.apply(lambda x: make_dic(x['enroll_num'], x['title'],x['category'], x['similar_group'], x['enroll_statement']), axis=1).to_list()
-  sorted_probs = df['prob'].to_list()
-  return sorted_probs[:5], es_prob, sorted_meta_data[:5]
+  if es_prob:
+    df = pd.DataFrame(meta_data)
+    df = df.sort_values('prob', ascending=False)
+    sorted_meta_data = df.apply(lambda x: make_dic(x['enroll_num'], x['title'],x['category'], x['similar_group'], x['enroll_statement']), axis=1).to_list()
+    sorted_probs = df['prob'].to_list()
+    return sorted_probs[:5], es_prob, sorted_meta_data[:5]
+  return [],[],[]
