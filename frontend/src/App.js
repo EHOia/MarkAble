@@ -82,9 +82,18 @@ function App() {
       getList();
     }
   }
-  // const codeText = e => {
-  //   setCode(e.target.value);
-  // };
+   const codeText = ()=> {
+    getCode1();
+    getCode2();
+    getCode3();
+    getCode4();
+    getCode5();
+    getCode6();
+    getCode7();
+    getCode8();
+    getCode9();
+    getCode10();
+   };
 
   const sendData = () => {
     if (code === "") {
@@ -485,70 +494,70 @@ function App() {
                 <tbody>
                   {/* <tr onClick={getCode, setSimilarCode({similar_code1})}>
                  */}
-                  <tr onClick={getCode1}>
+                  <tr onClick={codeText}>
                     <td className={styles.td1} id="td1">
                       {category1}
                     </td>
                     <td className={styles.td2} id="td2">{name1}</td>
                     <td className={styles.td3} id="td3">{similar_code1}</td>
                   </tr>
-                  <tr onClick={getCode2}>
+                  <tr onClick={codeText}>
                     <td className={styles.td1} id="td1">
                       {category2}
                     </td>
                     <td className={styles.td2} id="td2">{name2}</td>
                     <td className={styles.td3} id="td3">{similar_code2}</td>
                   </tr>
-                  <tr onClick={getCode3}>
+                  <tr onClick={codeText}>
                     <td className={styles.td1} id="td1">
                       {category3}
                     </td>
                     <td className={styles.td2} id="td2">{name3}</td>
                     <td className={styles.td3} id="td3">{similar_code3}</td>
                   </tr>
-                  <tr onClick={getCode4}>
+                  <tr onClick={codeText}>
                     <td className={styles.td1} id="td1">
                       {category4}
                     </td>
                     <td className={styles.td2} id="td2">{name4}</td>
                     <td className={styles.td3} id="td3">{similar_code4}</td>
                   </tr>
-                  <tr onClick={getCode5}>
+                  <tr onClick={codeText}>
                     <td className={styles.td1} id="td1">
                       {category5}
                     </td>
                     <td className={styles.td2} id="td2">{name5}</td>
                     <td className={styles.td3} id="td3">{similar_code5}</td>
                   </tr>
-                  <tr onClick={getCode6}>
+                  <tr onClick={codeText}>
                     <td className={styles.td1} id="td1">
                       {category6}
                     </td>
                     <td className={styles.td2} id="td2">{name6}</td>
                     <td className={styles.td3} id="td3">{similar_code6}</td>
                   </tr>
-                  <tr onClick={getCode7}>
+                  <tr onClick={codeText}>
                     <td className={styles.td1} id="td1">
                       {category7}
                     </td>
                     <td className={styles.td2} id="td2">{name7}</td>
                     <td className={styles.td3} id="td3">{similar_code7}</td>
                   </tr>
-                  <tr onClick={getCode8}>
+                  <tr onClick={codeText}>
                     <td className={styles.td1} id="td1">
                       {category8}
                     </td>
                     <td className={styles.td2} id="td2">{name8}</td>
                     <td className={styles.td3} id="td3">{similar_code8}</td>
                   </tr>
-                  <tr onClick={getCode9}>
+                  <tr onClick={codeText}>
                     <td className={styles.td1} id="td1">
                       {category9}
                     </td>
                     <td className={styles.td2} id="td2">{name9}</td>
                     <td className={styles.td3} id="td3">{similar_code9}</td>
                   </tr>
-                  <tr onClick={getCode10}>
+                  <tr onClick={codeText}>
                     <td className={styles.td1} id="td1">
                       {category10}
                     </td>
