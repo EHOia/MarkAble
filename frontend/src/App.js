@@ -134,7 +134,12 @@ function App() {
           }
           else {
             setScore(score_split[1].split(",")[0].split("[")[1].split("]")[0]);
-            setUrl(url_split[1].split("\"")[2]);
+            if (url_split[1].charAt(2) == "\""){
+              setUrl(url_split[1].split("\"")[2]);
+            }
+            else{
+              setUrl(url_split[1].split("\'")[2]);
+            }
           }
 
           var list_split = data_split.split("title");
