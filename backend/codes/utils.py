@@ -96,7 +96,7 @@ def es_load_data(mongo_res): # elasticsearch data_load using json
     helpers.bulk(es, actions=mongo_res, index='trademark')
     es.indices.refresh()
     
-def search_similar_text(query_title, similar_group):
+def search_similar_text(query_title, similar_group, match_title_weight=10):
     
   es = Elasticsearch('elasticsearch:9200')
   
@@ -135,7 +135,10 @@ def search_similar_text(query_title, similar_group):
   meta_data = []
   for idx, match in enumerate(res['hits']['hits']):
       meta_data.append(match['_source'])
-      es_score.append((match['_source']['title'],match['_score']))
+      score = match['_score']
+      if query_title in match['_source']['title']:
+        score += match_title_weight
+      es_score.append((match['_source']['title'],score))
       
   score, es_prob, meta_data = make_prob(query_title, es_score, meta_data)
 
