@@ -44,7 +44,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: "Poppins", "Noto Sans KR", sans-serif;
 }
 
 body {
@@ -94,22 +94,24 @@ a:-webkit-any-link {
   font-size: 2.1vw;
   font-weight: 800;
   letter-spacing: -1px;
+  margin-bottom: 3%;
 }
 
 .title_img {
-  margin-bottom: 5%;
+  margin-bottom: 1%;
   cursor: pointer;
-  width: 300px;
+  width: 50%;
 }
 
 .text_gradient {
   font-family: "Poppins", "Noto Sans KR", sans-serif !important;
   font-weight: 900;
-  background-image: linear-gradient(45deg, #11998e 25%, #38ef7d);
+  background-image: linear-gradient(45deg, #0b528c 25%, #4891cc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
+  cursor: pointer;
 }
 
 .title_desc {
@@ -619,13 +621,13 @@ ul li {
 }
 
 .banner {
-  font-family: "Poppins", "Noto Sans KR", sans-serif;
-  font-size: 1.7vw;
-  line-height: 3vw;
-  color: rgba(11, 82, 140, 0.836);
-  align-content: stretch;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
   align-items: center;
-  padding: 10px;
+  text-align: center;
+  margin-top: 2%;
 }
 
 .banner table {
@@ -635,7 +637,27 @@ ul li {
   border-spacing: 5px;
 }
 .banner td {
-  padding-right: 30px;
-  padding-left: 30px;
+  padding-right: 37px;
+  padding-left: 37px;
   text-align: center;
+}
+
+.banner tbody tr {
+  font-family: "Poppins", "Noto Sans KR", sans-serif;
+  cursor: unset;
+  transition: all 0.3s ease-in-out;
+  padding-bottom: 2.5%;
+  border-bottom: none;
+}
+
+.banner tbody tr:hover {
+  background-color: transparent;
+  font-weight: inherit;
+}
+
+.banner p {
+  margin-top: 15px;
+  font-weight: 600;
+  color: #555;
+  font-size: 0.73vw;
 }

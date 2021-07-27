@@ -236,7 +236,7 @@ function App() {
           <ListTitle></ListTitle>
           <Ul></Ul>
 
-          <img className={styles.result_url} src={url} alt="resultUrl"></img>
+          <img className={styles.result_url} src={url} alt=""></img>
         </div>
       );
     }

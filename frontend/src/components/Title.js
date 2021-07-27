@@ -8,8 +8,7 @@ class Title extends Component {
   render() {
     return (
       <div className={styles.title}>
-        {/* Welcome{" "}
-        <span className={styles.text_gradient}>MARK SURE</span> */}
+        {/* Welcome &nbsp;<span className={styles.text_gradient}>MARK-ABLE</span> */}
         <img className={styles.title_img} src={Logo} alt="Logo"></img>
       </div>
     );
