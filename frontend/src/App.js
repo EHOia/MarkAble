@@ -136,8 +136,9 @@ function App() {
             setUrl("");
           } else {
             setScore(
-              score_split[1].split(",")[0].split("[")[1].split("]")[0] * 100 +
-                "%"
+              (
+                score_split[1].split(",")[0].split("[")[1].split("]")[0] * 100
+              ).toFixed(2) + "%"
             );
             if (url_split[1].charAt(2) === '"') {
               setUrl(url_split[1].split('"')[2]);
