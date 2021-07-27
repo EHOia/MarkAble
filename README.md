@@ -10,7 +10,7 @@
 
 ## **💡 System Architecture**
 
-![image](https://user-images.githubusercontent.com/75110752/126993976-ae09d297-ee7b-42a0-96c3-db51bde60239.png)
+![image](https://user-images.githubusercontent.com/75110752/127173731-ab57644e-2b31-4ecc-baa5-c411e1f1c990.png)
 ## **🖇 Tech Stack**
 ```
 frontend : React 
