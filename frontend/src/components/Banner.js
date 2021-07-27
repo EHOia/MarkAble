@@ -13,6 +13,7 @@ class Banner extends Component {
     return (
       <div className={styles.banner}>
         <table className={styles.table}>
+          <tbody>
           <tr>
             <td>
               <img
@@ -46,6 +47,7 @@ class Banner extends Component {
               <p>Report 제공</p>
             </td>
           </tr>
+          </tbody>
         </table>
       </div>
     );
