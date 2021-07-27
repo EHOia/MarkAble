@@ -10,7 +10,7 @@ class Title extends Component {
       <div className={styles.title}>
         {/* Welcome{" "}
         <span className={styles.text_gradient}>MARK SURE</span> */}
-        <img className={styles.title_img} src={Logo}></img>
+        <img className={styles.title_img} src={Logo} alt="Logo"></img>
       </div>
     );
   }
