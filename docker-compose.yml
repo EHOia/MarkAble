@@ -46,10 +46,10 @@ services:
     ports:
       - "27017:27017"
 
-  #mongo-seed: # 현재 다시 사용 (한번 실행 후에는 꼭 주석처리)
-  #  build: ./mongo-seed
-  #  links:
-  #    - mongo_db
+  mongo-seed: # 현재 다시 사용 (한번 실행 후에는 꼭 주석처리)
+    build: ./mongo-seed
+    links:
+      - mongo_db
 
   nginx:
     image: nginx:latest
