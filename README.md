@@ -3,7 +3,9 @@
 ## **1️⃣  프로젝트 소개**
 
 상품명칭을 검색해 **유사군코드**를 구한 후 **상표명**을 **입력**했을 때, 같은 상품의 상표명 데이터 내에서 **유사도가 높게 나타나는 상표명들**과 **가장 높은 유사도 확률**을 확인해 원하는 상표명이 출원 가능한지 판단할 수 있는 웹 서비스를 구축한다. 더 나은 시각화를 위해 검색해서 나온 유사한 상표명들을 이용해 wordcloud로 강조해주었다.   
-<img src = "https://user-images.githubusercontent.com/52441906/127099647-acf124f8-645a-4d7c-8dab-f0f59a079f3d.png" width="450px"> <img src = "https://user-images.githubusercontent.com/52441906/127078511-02e08cf2-30e2-4bf9-93b4-2e34538eac70.png" width="450px">
+
+<p align="center"><img src = "https://user-images.githubusercontent.com/52441906/127099647-acf124f8-645a-4d7c-8dab-f0f59a079f3d.png" width="600px"></p>
+<p align="center"><img src = "https://user-images.githubusercontent.com/52441906/127078511-02e08cf2-30e2-4bf9-93b4-2e34538eac70.png" width="600px"></p>
 </br>
 
 ## **2️⃣  System Architecture**
