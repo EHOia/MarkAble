@@ -436,17 +436,18 @@ function App() {
     if (many1 === "최대 두개" && many2 === "선택 가능") {
       setMany1(similar_code1);
       setMany2("");
-    } else if (many1 === many2 && many1 !== "") {
-      if (many1 === many2) {
-        setMany2("");
-      } else {
-        setMany2(similar_code1);
-      }
+    } else if (many1 === similar_code1 && many1 !== "") {
+      setMany2("");
     } else if (many1 !== "" && many2 === "") {
       setMany2(similar_code1);
     } else if (many1 !== "" && many2 !== "") {
-      setMany1(many2);
-      setMany2(similar_code1);
+      if (many2 === similar_code1) {
+        setMany1(many2);
+        setMany2("");
+      } else {
+        setMany1(many2);
+        setMany2(similar_code1);
+      }
     }
   };
 
@@ -457,15 +458,18 @@ function App() {
     if (many1 === "최대 두개" && many2 === "선택 가능") {
       setMany1(similar_code2);
       setMany2("");
+    } else if (many1 === similar_code2 && many1 !== "") {
+      setMany2("");
     } else if (many1 !== "" && many2 === "") {
-      if (many1 === many2) {
+      setMany2(similar_code2);
+    } else if (many1 !== "" && many2 !== "") {
+      if (many2 === similar_code2) {
+        setMany1(many2);
         setMany2("");
       } else {
+        setMany1(many2);
         setMany2(similar_code2);
       }
-    } else if (many1 !== "" && many2 !== "") {
-      setMany1(many2);
-      setMany2(similar_code2);
     }
   };
 
@@ -476,17 +480,18 @@ function App() {
     if (many1 === "최대 두개" && many2 === "선택 가능") {
       setMany1(similar_code3);
       setMany2("");
-    } else if (many1 === many2 && many1 !== "") {
-      if (many1 === many2) {
-        setMany2("");
-      } else {
-        setMany2(similar_code3);
-      }
+    } else if (many1 === similar_code3 && many1 !== "") {
+      setMany2("");
     } else if (many1 !== "" && many2 === "") {
       setMany2(similar_code3);
     } else if (many1 !== "" && many2 !== "") {
-      setMany1(many2);
-      setMany2(similar_code3);
+      if (many2 === similar_code3) {
+        setMany1(many2);
+        setMany2("");
+      } else {
+        setMany1(many2);
+        setMany2(similar_code3);
+      }
     }
   };
 
@@ -497,17 +502,18 @@ function App() {
     if (many1 === "최대 두개" && many2 === "선택 가능") {
       setMany1(similar_code4);
       setMany2("");
-    } else if (many1 === many2 && many1 !== "") {
-      if (many1 === many2) {
-        setMany2("");
-      } else {
-        setMany2(similar_code4);
-      }
+    } else if (many1 === similar_code4 && many1 !== "") {
+      setMany2("");
     } else if (many1 !== "" && many2 === "") {
       setMany2(similar_code4);
     } else if (many1 !== "" && many2 !== "") {
-      setMany1(many2);
-      setMany2(similar_code4);
+      if (many2 === similar_code4) {
+        setMany1(many2);
+        setMany2("");
+      } else {
+        setMany1(many2);
+        setMany2(similar_code4);
+      }
     }
   };
 
@@ -518,17 +524,18 @@ function App() {
     if (many1 === "최대 두개" && many2 === "선택 가능") {
       setMany1(similar_code5);
       setMany2("");
-    } else if (many1 === many2 && many1 !== "") {
-      if (many1 === many2) {
-        setMany2("");
-      } else {
-        setMany2(similar_code5);
-      }
+    } else if (many1 === similar_code5 && many1 !== "") {
+      setMany2("");
     } else if (many1 !== "" && many2 === "") {
       setMany2(similar_code5);
     } else if (many1 !== "" && many2 !== "") {
-      setMany1(many2);
-      setMany2(similar_code5);
+      if (many2 === similar_code5) {
+        setMany1(many2);
+        setMany2("");
+      } else {
+        setMany1(many2);
+        setMany2(similar_code5);
+      }
     }
   };
 
@@ -539,17 +546,18 @@ function App() {
     if (many1 === "최대 두개" && many2 === "선택 가능") {
       setMany1(similar_code6);
       setMany2("");
-    } else if (many1 === many2 && many1 !== "") {
-      if (many1 === many2) {
-        setMany2("");
-      } else {
-        setMany2(similar_code6);
-      }
+    } else if (many1 === similar_code6 && many1 !== "") {
+      setMany2("");
     } else if (many1 !== "" && many2 === "") {
       setMany2(similar_code6);
     } else if (many1 !== "" && many2 !== "") {
-      setMany1(many2);
-      setMany2(similar_code6);
+      if (many2 === similar_code6) {
+        setMany1(many2);
+        setMany2("");
+      } else {
+        setMany1(many2);
+        setMany2(similar_code6);
+      }
     }
   };
 
@@ -565,17 +573,18 @@ function App() {
       if (many1 === "최대 두개" && many2 === "선택 가능") {
         setMany1(similar_code7);
         setMany2("");
-      } else if (many1 === many2 && many1 !== "") {
-        if (many1 === many2) {
-          setMany2("");
-        } else {
-          setMany2(similar_code7);
-        }
+      } else if (many1 === similar_code7 && many1 !== "") {
+        setMany2("");
       } else if (many1 !== "" && many2 === "") {
         setMany2(similar_code7);
       } else if (many1 !== "" && many2 !== "") {
-        setMany1(many2);
-        setMany2(similar_code7);
+        if (many2 === similar_code7) {
+          setMany1(many2);
+          setMany2("");
+        } else {
+          setMany1(many2);
+          setMany2(similar_code7);
+        }
       }
     }
   };
@@ -592,17 +601,18 @@ function App() {
       if (many1 === "최대 두개" && many2 === "선택 가능") {
         setMany1(similar_code8);
         setMany2("");
-      } else if (many1 === many2 && many1 !== "") {
-        if (many1 === many2) {
-          setMany2("");
-        } else {
-          setMany2(similar_code8);
-        }
+      } else if (many1 === similar_code8 && many1 !== "") {
+        setMany2("");
       } else if (many1 !== "" && many2 === "") {
         setMany2(similar_code8);
       } else if (many1 !== "" && many2 !== "") {
-        setMany1(many2);
-        setMany2(similar_code8);
+        if (many2 === similar_code8) {
+          setMany1(many2);
+          setMany2("");
+        } else {
+          setMany1(many2);
+          setMany2(similar_code8);
+        }
       }
     }
   };
@@ -619,17 +629,18 @@ function App() {
       if (many1 === "최대 두개" && many2 === "선택 가능") {
         setMany1(similar_code9);
         setMany2("");
-      } else if (many1 === many2 && many1 !== "") {
-        if (many1 === many2) {
-          setMany2("");
-        } else {
-          setMany2(similar_code9);
-        }
+      } else if (many1 === similar_code9 && many1 !== "") {
+        setMany2("");
       } else if (many1 !== "" && many2 === "") {
         setMany2(similar_code9);
       } else if (many1 !== "" && many2 !== "") {
-        setMany1(many2);
-        setMany2(similar_code9);
+        if (many2 === similar_code9) {
+          setMany1(many2);
+          setMany2("");
+        } else {
+          setMany1(many2);
+          setMany2(similar_code9);
+        }
       }
     }
   };
@@ -646,29 +657,34 @@ function App() {
       if (many1 === "최대 두개" && many2 === "선택 가능") {
         setMany1(similar_code10);
         setMany2("");
-      } else if (many1 === many2 && many1 !== "") {
-        if (many1 === many2) {
-          setMany2("");
-        } else {
-          setMany2(similar_code10);
-        }
+      } else if (many1 === similar_code10 && many1 !== "") {
+        setMany2("");
       } else if (many1 !== "" && many2 === "") {
         setMany2(similar_code10);
       } else if (many1 !== "" && many2 !== "") {
-        setMany1(many2);
-        setMany2(similar_code10);
+        if (many2 === similar_code10) {
+          setMany1(many2);
+          setMany2("");
+        } else {
+          setMany1(many2);
+          setMany2(similar_code10);
+        }
       }
     }
   };
 
   const getManyCode = () => {
-    setMode("welcome");
-    setLoading(true);
-    setState("defined");
-    if (many2 === "") {
-      setCode(many1);
+    if (many1 === "최대 두개") {
+      alert("유사군코드를 선택해주세요.");
     } else {
-      setCode(many1 + "," + many2);
+      setMode("welcome");
+      setLoading(true);
+      setState("defined");
+      if (many2 === "") {
+        setCode(many1);
+      } else {
+        setCode(many1 + "," + many2);
+      }
     }
   };
 

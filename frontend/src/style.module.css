@@ -360,10 +360,10 @@ button:hover {
 .table_button {
   left: calc(50% - 6vw);
   margin-top: 8%;
-  font-family: "Poppins" !important;
+  font-family: "Poppins", "Noto Sans KR", sans-serif !important;
   width: 12vw;
   position: relative;
-  height: 4vh;
+  padding: 4%;
   line-height: 0.4vw;
   font-weight: 700;
   text-align: center;
