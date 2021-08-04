@@ -600,6 +600,7 @@ ul li {
   display: flex;
   padding: 5%;
   margin-top: 5%;
+  white-space: pre-line;
 }
 
 .rank {
@@ -609,6 +610,7 @@ ul li {
 
 .mark_name {
   font-size: 1vw;
+  white-space: pre-line;
 }
 
 .project_name {
