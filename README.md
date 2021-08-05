@@ -66,7 +66,7 @@ c. Kipris API KEY 세팅.
 
 d. 2015~2020년데이터 다운로드
 
-[Link](https://drive.google.com/file/d/1OWuc19KDH1Bm3cK_JqM7vxLMrL2d1DTF/view?usp=sharing)에서 json파일을 다운로드뒤 이름이 data.json인지 확인한 이후 mongo-seed 폴더안에 넣어준다.
+[Link](https://drive.google.com/file/d/1OWuc19KDH1Bm3cK_JqM7vxLMrL2d1DTF/view?usp=sharing)에서 json파일을 다운로드하고 이름이 data.json인지 확인한 이후 mongo-seed 폴더안에 넣어준다.
 
 e. 빌드
 
