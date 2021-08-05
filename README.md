@@ -64,8 +64,11 @@ c. Kipris API KEY 세팅.
       <img src = "https://user-images.githubusercontent.com/52441697/128176181-f8cecd98-185e-427d-9806-168bb6282ad0.png" width="300px">
       <img src = "https://user-images.githubusercontent.com/52441697/128176708-f5760812-f41a-4492-b36e-3f5a961af1e5.png" width="400px">
 
+d. 2015~2020년데이터 다운로드
 
-d. 빌드
+[Link](https://drive.google.com/file/d/1OWuc19KDH1Bm3cK_JqM7vxLMrL2d1DTF/view?usp=sharing)에서 json파일을 다운로드뒤 이름이 data.json인지 확인한 이후 mongo-seed 폴더안에 넣어준다.
+
+e. 빌드
 
 docker-compose.yml 파일이있는 폴더(root 폴더)에서 다음을 실행
 ```shell
