@@ -54,7 +54,9 @@ git clone https://github.com/2021-summer-program/Trademark_verification
 ### c. Kipris API KEY 세팅.
 
 1. [KIPRIS Plus 웹사이트](https://plus.kipris.or.kr/portal/bbs/view.do?bbsId=B0000004&nttId=683&menuNo=200019) 접속
+
 2. 회원가입 진행
+
 3. [KIPRIS Plus](https://plus.kipris.or.kr/portal/main.do) 메인페이지 데이터서비스 -> OpenAPI -> 상표출원속보 API 신청</br>
       </br>
       <img src = "https://user-images.githubusercontent.com/52441697/128177546-766e6bb4-f340-4d78-96ff-dabf825a4769.png" width="400px">
