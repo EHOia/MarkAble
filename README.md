@@ -43,15 +43,15 @@ cloud : aws ec2
 
 ## **💻  설치**
 
-a. 도커 설치.
+### a. 도커 설치.
 
 [공식 사이트](https://docs.docker.com/engine/install/)의 가이드를 따라서 도커를 설치한다.
 
-b. 이 Repository를 Clone 한다.
+### b. 이 Repository를 Clone 한다.
 ```shell
 git clone https://github.com/2021-summer-program/Trademark_verification
 ```
-c. Kipris API KEY 세팅.
+### c. Kipris API KEY 세팅.
 
 1. [KIPRIS Plus 웹사이트](https://plus.kipris.or.kr/portal/bbs/view.do?bbsId=B0000004&nttId=683&menuNo=200019) 접속
 2. 회원가입 진행
@@ -59,16 +59,16 @@ c. Kipris API KEY 세팅.
       </br>
       <img src = "https://user-images.githubusercontent.com/52441697/128177546-766e6bb4-f340-4d78-96ff-dabf825a4769.png" width="400px">
 
-5. backend/codes/api_key.txt 파일생성후, api_key.txt에 본인의 REST API KEY 복사해서 붙여넣기.</br>
+4. backend/codes/api_key.txt 파일생성후, api_key.txt에 본인의 REST API KEY 복사해서 붙여넣기.</br>
       </br>
       <img src = "https://user-images.githubusercontent.com/52441697/128176181-f8cecd98-185e-427d-9806-168bb6282ad0.png" width="300px">
       <img src = "https://user-images.githubusercontent.com/52441697/128176708-f5760812-f41a-4492-b36e-3f5a961af1e5.png" width="400px">
 
-d. 2015~2020년데이터 다운로드
+### d. 2015~2020년데이터 다운로드
 
 [Link](https://drive.google.com/file/d/1OWuc19KDH1Bm3cK_JqM7vxLMrL2d1DTF/view?usp=sharing)에서 json파일을 다운로드하고 이름이 data.json인지 확인한 이후 mongo-seed 폴더안에 넣어준다.
 
-e. 빌드
+### e. 빌드
 
 docker-compose.yml 파일이있는 폴더(root 폴더)에서 다음을 실행
 ```shell
