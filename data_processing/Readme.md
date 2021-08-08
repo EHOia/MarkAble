@@ -5,7 +5,7 @@ Markable을 위한 데이터 프로세싱 파이프라인.
 ## Installation
 ### Requirements
 
-- Linux
+- Linux(Recommand)
 - Python 3.6+
 - Anaconda environment(Recommand)
 
